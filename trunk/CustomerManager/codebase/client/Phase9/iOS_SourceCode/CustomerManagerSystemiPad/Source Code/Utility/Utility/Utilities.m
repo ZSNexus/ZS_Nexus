@@ -172,7 +172,7 @@
                         
                         if ([roleObj objectForKey:@"TR_ENBLE_FLAG"]) {
                             [terrRoleObj1 setObject:[roleObj objectForKey:@"TR_ENBLE_FLAG"] forKey:@"TargetFlag"];
-//                            [defaults setObject:[roleObj objectForKey:@"TR_ENBLE_FLAG"] forKey:@"TargetFlag"];
+                            [defaults setObject:[roleObj objectForKey:@"TR_ENBLE_FLAG"] forKey:@"TargetFlag"];
                         }
                         
                         if([roleObj objectForKey:@"role_id"])
