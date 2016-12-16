@@ -110,6 +110,9 @@
 		82E8AC2D178841E100F5FDCE /* ModalDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC2C178841E100F5FDCE /* ModalDataLoader.m */; };
 		82E8AC30178A90D800F5FDCE /* CustomModalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E8AC2F178A90D800F5FDCE /* CustomModalTableViewCell.m */; };
 		82E8AC32178A913C00F5FDCE /* CustomModalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E8AC31178A913C00F5FDCE /* CustomModalTableViewCell.xib */; };
+		84C63E0C1E03FB9100125E6B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C63E0B1E03FB9100125E6B /* Security.framework */; };
+		84C63E0E1E03FD9800125E6B /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C63E0D1E03FD9800125E6B /* GoogleMaps.framework */; };
+		8A13E3A629D2D3FC737D6736 /* libPods-CustomerManagerSystemiPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C0696AE67852E6CF8AAC28 /* libPods-CustomerManagerSystemiPad.a */; };
 		B20B407917BA6599001F8740 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20B407817BA6599001F8740 /* DatePickerViewController.m */; };
 		B20B407B17BA65A6001F8740 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20B407A17BA65A6001F8740 /* DatePickerViewController.xib */; };
 		B445F0BB1CC66A5600345C29 /* logo_ZS.png in Resources */ = {isa = PBXBuildFile; fileRef = B445F0BA1CC66A5600345C29 /* logo_ZS.png */; };
@@ -237,7 +240,6 @@
 		DDDFDC1B1762126B00E45AF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDFDC1A1762126B00E45AF6 /* Foundation.framework */; };
 		DDDFDC1D1762126B00E45AF6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDFDC1C1762126B00E45AF6 /* CoreGraphics.framework */; };
 		ED6C7C0E19F12531007C6B0D /* button_confirmaffiliation.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C7C0D19F12531007C6B0D /* button_confirmaffiliation.png */; };
-		ED86AF081B143E7600AAFC16 /* GoogleMaps.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ED86AF071B143E7600AAFC16 /* GoogleMaps.bundle */; };
 		ED921BBB19CD565E0093D5FE /* RemoveCustomerResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = ED921BBA19CD565E0093D5FE /* RemoveCustomerResponse.json */; };
 		ED9CF13A19D472EE0041D530 /* MLPModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9CF13819D472EE0041D530 /* MLPModalViewController.m */; };
 		ED9CF13B19D472EE0041D530 /* MLPModalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED9CF13919D472EE0041D530 /* MLPModalViewController.xib */; };
@@ -266,6 +268,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.release.xcconfig"; sourceTree = "<group>"; };
+		2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.staging.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.staging.xcconfig"; sourceTree = "<group>"; };
 		770337851B95AD6800DD3CD5 /* approve_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = approve_selected.png; sourceTree = "<group>"; };
 		770337871B95AD7A00DD3CD5 /* approve_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "approve_selected@2x.png"; sourceTree = "<group>"; };
 		7724A2D71B1DF76500510484 /* AlignNewAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlignNewAddressTableViewCell.h; path = "CustomerManagerSystemiPad/Source Code/View/AlignNewAddressTableViewCell.h"; sourceTree = SOURCE_ROOT; };
@@ -364,6 +368,7 @@
 		77FD0D991ACC63D900FDA54C /* iOS7-Default1024x768.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS7-Default1024x768.png"; path = "../../iOS7-Default1024x768.png"; sourceTree = "<group>"; };
 		77FD0D9C1ACC63E500FDA54C /* iOS7-Default1024x748@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS7-Default1024x748@2x.png"; path = "../iOS7-Default1024x748@2x.png"; sourceTree = "<group>"; };
 		77FD0D9D1ACC63E500FDA54C /* iOS7-Default1024x768@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS7-Default1024x768@2x.png"; path = "../iOS7-Default1024x768@2x.png"; sourceTree = "<group>"; };
+		7CDF51C62B740411D4C79F67 /* Pods-CustomerManagerSystemiPad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.debug.xcconfig"; sourceTree = "<group>"; };
 		826E42E61772F5110040A2AF /* logo_BMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_BMS.png; sourceTree = "<group>"; };
 		826E4300177311A30040A2AF /* logo_ZSBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ZSBlack.png; sourceTree = "<group>"; };
 		826E430217731CF00040A2AF /* detail_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = detail_right.png; sourceTree = "<group>"; };
@@ -380,6 +385,8 @@
 		82E8AC2E178A90D800F5FDCE /* CustomModalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModalTableViewCell.h; sourceTree = "<group>"; };
 		82E8AC2F178A90D800F5FDCE /* CustomModalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModalTableViewCell.m; sourceTree = "<group>"; };
 		82E8AC31178A913C00F5FDCE /* CustomModalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomModalTableViewCell.xib; sourceTree = "<group>"; };
+		84C63E0B1E03FB9100125E6B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		84C63E0D1E03FD9800125E6B /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		B20B407717BA6599001F8740 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
 		B20B407817BA6599001F8740 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		B20B407A17BA65A6001F8740 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
@@ -409,6 +416,7 @@
 		CC1751181B8B3CBB007112CA /* ApproveInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ApproveInfoCell.xib; path = "../../Source Code/View/ApproveInfoCell.xib"; sourceTree = "<group>"; };
 		CC17511B1B8B516F007112CA /* ApproveInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproveInfoCell.h; sourceTree = "<group>"; };
 		CC17511C1B8B516F007112CA /* ApproveInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproveInfoCell.m; sourceTree = "<group>"; };
+		D8C0696AE67852E6CF8AAC28 /* libPods-CustomerManagerSystemiPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CustomerManagerSystemiPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA28D69B180FEBB500EE6B42 /* ErrroPopOverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrroPopOverContentViewController.h; sourceTree = "<group>"; };
 		DA28D69C180FEBB500EE6B42 /* ErrroPopOverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrroPopOverContentViewController.m; sourceTree = "<group>"; };
 		DA28D69D180FEBB500EE6B42 /* PopOverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopOverContentViewController.h; sourceTree = "<group>"; };
@@ -549,8 +557,8 @@
 		DDDFDC181762126B00E45AF6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDDFDC1A1762126B00E45AF6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DDDFDC1C1762126B00E45AF6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E63A0BC1B6EECC3292FFFB73 /* Pods-CustomerManagerSystemiPad.intg_staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.intg_staging.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.intg_staging.xcconfig"; sourceTree = "<group>"; };
 		ED6C7C0D19F12531007C6B0D /* button_confirmaffiliation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_confirmaffiliation.png; sourceTree = "<group>"; };
-		ED86AF071B143E7600AAFC16 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		ED921BBA19CD565E0093D5FE /* RemoveCustomerResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RemoveCustomerResponse.json; sourceTree = "<group>"; };
 		ED9CF13719D472EE0041D530 /* MLPModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPModalViewController.h; sourceTree = "<group>"; };
 		ED9CF13819D472EE0041D530 /* MLPModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPModalViewController.m; sourceTree = "<group>"; };
@@ -592,7 +600,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED86AF081B143E7600AAFC16 /* GoogleMaps.bundle in Frameworks */,
+				84C63E0E1E03FD9800125E6B /* GoogleMaps.framework in Frameworks */,
+				84C63E0C1E03FB9100125E6B /* Security.framework in Frameworks */,
 				DB6DFB4117718E8300C1ECDA /* libsqlite3.dylib in Frameworks */,
 				DD65C4B81764E103001BD19C /* CoreLocation.framework in Frameworks */,
 				DD65C4B21764DCFC001BD19C /* SystemConfiguration.framework in Frameworks */,
@@ -610,12 +619,24 @@
 				DDDFDC191762126B00E45AF6 /* UIKit.framework in Frameworks */,
 				DDDFDC1B1762126B00E45AF6 /* Foundation.framework in Frameworks */,
 				DDDFDC1D1762126B00E45AF6 /* CoreGraphics.framework in Frameworks */,
+				8A13E3A629D2D3FC737D6736 /* libPods-CustomerManagerSystemiPad.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		507C394E35C878B932CAB94D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7CDF51C62B740411D4C79F67 /* Pods-CustomerManagerSystemiPad.debug.xcconfig */,
+				1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */,
+				E63A0BC1B6EECC3292FFFB73 /* Pods-CustomerManagerSystemiPad.intg_staging.xcconfig */,
+				2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		77FD0D441ACC5DC400FDA54C /* Retina Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1142,6 +1163,7 @@
 				DDDFDC1E1762126B00E45AF6 /* CustomerManagerSystemiPad */,
 				DDDFDC171762126B00E45AF6 /* Frameworks */,
 				DDDFDC161762126B00E45AF6 /* Products */,
+				507C394E35C878B932CAB94D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1156,7 +1178,8 @@
 		DDDFDC171762126B00E45AF6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED86AF071B143E7600AAFC16 /* GoogleMaps.bundle */,
+				84C63E0D1E03FD9800125E6B /* GoogleMaps.framework */,
+				84C63E0B1E03FB9100125E6B /* Security.framework */,
 				DB6DFB4017718E8300C1ECDA /* libsqlite3.dylib */,
 				DD65C4B71764E103001BD19C /* CoreLocation.framework */,
 				DD65C4B51764DF59001BD19C /* libc++abi.dylib */,
@@ -1176,6 +1199,7 @@
 				DDDFDC181762126B00E45AF6 /* UIKit.framework */,
 				DDDFDC1A1762126B00E45AF6 /* Foundation.framework */,
 				DDDFDC1C1762126B00E45AF6 /* CoreGraphics.framework */,
+				D8C0696AE67852E6CF8AAC28 /* libPods-CustomerManagerSystemiPad.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1198,10 +1222,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDDFDC381762126B00E45AF6 /* Build configuration list for PBXNativeTarget "CustomerManagerSystemiPad" */;
 			buildPhases = (
+				107D6FD7A3211E07B202D502 /* [CP] Check Pods Manifest.lock */,
 				C9AD6ECF18EB33A300F97E36 /* Run Script */,
 				DDDFDC111762126B00E45AF6 /* Sources */,
 				DDDFDC121762126B00E45AF6 /* Frameworks */,
 				DDDFDC131762126B00E45AF6 /* Resources */,
+				9AD3EBBBD739AE5E5EC1C779 /* [CP] Embed Pods Frameworks */,
+				E5E2FB52C50BB9B809E4A01B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1435,6 +1462,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		107D6FD7A3211E07B202D502 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9AD3EBBBD739AE5E5EC1C779 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C9AD6ECF18EB33A300F97E36 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1448,6 +1505,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#Load Google maps library from business SDK for Production build\n#Also load Settings bundle for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\ncp -r $PROJECT_DIR/GoogleMapsM4B.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/ProductionSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Load Google maps library from iOS SDK for free license to be used with internal releases\n#Also load Settings bundle for internal releases\nif [ $CONFIGURATION == \"Debug\" ] || [ $CONFIGURATION == \"Staging\" ] || [ $CONFIGURATION == \"Intg_Staging\" ]; then\ncp -r $PROJECT_DIR/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/StagingSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Change Server Domain on Settings page as per the build type\nAPPS_SETTINGS_BUNDLE_PATH=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Settings.bundle\"\n\nif [ $CONFIGURATION == \"Debug\" ]; then\nSERVER_DOMAIN=\"https://nexus.test.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Intg_Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.intgstaging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.staging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\nfi\n\n#Load bundle version from info.plist into Settings bundle for Production build\n#No need to change Server domain as we are not displaying it on Settings page for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\nBUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$PROJECT_DIR/CustomerManagerSystemiPad/Supporting Files/$PRODUCT_NAME-Info.plist\")\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $BUNDLE_SHORT_VERSION\"\n\n#Change version on Settings page for internal releases\nelse\nAPP_VERSION=\"5.2.3\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $APP_VERSION\"\nfi";
+		};
+		E5E2FB52C50BB9B809E4A01B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1550,7 +1622,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1564,6 +1636,7 @@
 		};
 		C9C1DC3618E4546B00DB8CA7 /* Intg_Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E63A0BC1B6EECC3292FFFB73 /* Pods-CustomerManagerSystemiPad.intg_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1573,6 +1646,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1582,13 +1656,9 @@
 					"INTG_STAGING_BUILD=1",
 				);
 				INFOPLIST_FILE = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					GoogleMaps,
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsa.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1621,7 +1691,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1635,6 +1705,7 @@
 		};
 		C9C1DC3818E4548200DB8CA7 /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1644,6 +1715,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Prefix.pch";
@@ -1652,13 +1724,9 @@
 					"STAGING_BUILD=1",
 				);
 				INFOPLIST_FILE = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					GoogleMaps,
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsa.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1698,7 +1766,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1729,7 +1797,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1743,6 +1811,7 @@
 		};
 		DDDFDC391762126B00E45AF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CDF51C62B740411D4C79F67 /* Pods-CustomerManagerSystemiPad.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1752,6 +1821,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Prefix.pch";
@@ -1760,13 +1830,9 @@
 					"TEST_BUILD=1",
 				);
 				INFOPLIST_FILE = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					GoogleMaps,
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsa.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
@@ -1780,6 +1846,7 @@
 		};
 		DDDFDC3A1762126B00E45AF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1789,6 +1856,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Prefix.pch";
@@ -1797,13 +1865,9 @@
 					"PRODUCTION_BUILD=1",
 				);
 				INFOPLIST_FILE = "CustomerManagerSystemiPad/Supporting Files/CustomerManagerSystemiPad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					GoogleMaps,
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zsa.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9424cf82-821c-4ff6-a614-29a92b0839f6";
