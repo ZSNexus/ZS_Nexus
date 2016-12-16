@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "f19f06f2-b79c-490f-b3ab-9129d6422df2++328",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "f19f06f2-b79c-490f-b3ab-9129d6422df2++328" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "f19f06f2-b79c-490f-b3ab-9129d6422df2++328" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BAA7FF61-ACC8-42DA-BD76-3240C98B6202",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "f19f06f2-b79c-490f-b3ab-9129d6422df2++328" : "Phase9\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CustomerManagerSystemiPad",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOS_SourceCode\/CustomerManagerSystemiPad.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/svn.persistent.co.in\/svn\/ZSAssociates",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "f19f06f2-b79c-490f-b3ab-9129d6422df2++328"
+    }
+  ]
+}
