@@ -327,7 +327,7 @@
 #define ADDRESS_REMOVAL_ALL @"The customer would be removed from your territory as you have selected all addresses for removal. Please confirm"
 #define ORGANISATION_REMOVAL_STRING     @"Do you want to remove this organisation?"
 #define CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE  @"Address Removal"
-#define ADDRESS_REMOVAL_STRING                      @"Address Removal"
+//#define ADDRESS_REMOVAL_STRING                      @"Address Removal"
 #define TABLE_HEADER_FOR_DUPLICATE          @"Addresses marked as duplicates will only be sent to BMS' customer master for review. If present in your CTU, they will not be removed as part of this request."
 
 #define SELECT_ONE_DUPLICATE_ADDRESS    @"Please select at least one duplicate address."
@@ -372,7 +372,7 @@
 #define REQUEST_STATUS_PENDING  @"Pending"
 #define PLEASE_SELECT_STATE @"Please select State"
 #define PLEASE_SELECT_CITY_OR_STATE   @"Please select City or State"
-#define RETRY_STRING    @"Retry"
+//#define RETRY_STRING    @"Retry"
 #define NOTE_REMOVE_SINGLE_ADDRESS  @"Removing the single address entry will result in removing the customer"
 
 #define PRODUCT_STRING @"Product"

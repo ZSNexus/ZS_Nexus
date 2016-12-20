@@ -125,8 +125,16 @@
 #pragma mark Common to All
 -(void)Logout
 {
+    /*Add UIAlertController
     UIAlertView * alt=[[UIAlertView alloc]initWithTitle:LOGOUT_STRING message:ARE_YOU_SURE_YOU_WANT_TO_LOGOUT_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:YES_STRING,NO_STRING, nil];
     [alt show];
+    */
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:LOGOUT_STRING  message:ARE_YOU_SURE_YOU_WANT_TO_LOGOUT_STRING  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self userSessionExpireAction];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_STRING style:UIAlertActionStyleDefault handler:nil]];
+    [self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)resetAppForTerritoryChange
@@ -292,6 +300,7 @@
 }
 #pragma mark -
 
+/*Add UIAlertController
 #pragma mark Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -328,6 +337,40 @@
         [self setNvc:self.nvc];
         self.window.rootViewController = self.nvc;
     }
+}*/
+
+-(void)userSessionExpireAction
+{
+    [[JSONDataFlowManager sharedInstance]setSelectedTerritoryName:@""];
+    
+    //cancel all active connections
+    [ConnectionClass cancelNSUrlConnectionForIdentifier:nil];
+    
+    if(iSLiveApp)
+    {
+        //Logout URL
+        ConnectionClass *connection = [ConnectionClass sharedSingleton];
+        [connection fetchDataFromUrl:[LOGOUT_URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] withParameters:nil forConnectionIdentifier:@"Logout" andConnectionCallback:^(NSMutableData* data, NSString* identifier, NSString* error)
+         {
+             //CallBack Block
+             if(!error)
+             {
+                 [self receiveDataFromServer:data ofCallIdentifier:identifier];
+             }
+             else
+             {
+                 [self failWithError:error ofCallIdentifier:identifier];
+             }
+         }];
+    }
+    
+    //No need to check for the response in case of Logout, it should always succeed
+    [self.nvc removeFromParentViewController];
+    self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    nvc=[[UINavigationController alloc]initWithRootViewController:self.viewController];
+    [nvc setNavigationBarHidden:YES];
+    [self setNvc:self.nvc];
+    self.window.rootViewController = self.nvc;
 }
 
 //on click Home button load BU, Team and terriotary selection page

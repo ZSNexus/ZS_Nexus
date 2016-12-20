@@ -313,8 +313,29 @@
         if(selectedAddressItems == 0)
             msgString = [NSString stringWithFormat:@"%@",@"You have selected 1 address for removal. Please click OK to proceed."];
         
+        /*Add UIAlertController
         UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE message:msgString delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",CANCEL_STRING, nil];
-        [alertView show];
+        [alertView show];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE  message:msgString  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            NSMutableArray *bpaArray = [[NSMutableArray alloc] init];
+            NSMutableString *reasonString = [[NSMutableString alloc] init];
+            [bpaArray addObject:[NSString stringWithFormat:@"%@",masterIDAnsLabel.text]];
+            
+            for(NSNumber * selectedValue in customTableViewController.selectedDuplicateAddressesArray)
+            {
+                NSDictionary *item = [customTableViewController.dataArray objectAtIndex:[selectedValue intValue]];
+                [reasonString appendString:[NSString stringWithFormat:@",%@", [item objectForKey:@"bpaId"]]];
+                [bpaArray addObject:[NSString stringWithFormat:@"%@", [item objectForKey:@"bpaId"]]];
+            }
+            if ([self.duplicateAddressDataDelegate respondsToSelector:@selector(getDuplicateAddressRemovalReasonWithString:)]) {
+                [self.duplicateAddressDataDelegate getDuplicateAddressRemovalReasonWithString:reasonString andAddressArrays:bpaArray];
+            }
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            /*Write No button click code here*/
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     if([customTableViewController.popUpScreenTitle isEqualToString:MLP_SCREEN])
     {
@@ -390,7 +411,7 @@
 }
 
 #pragma mark -
-
+/*Add UIAlertController
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0 && [alertView.title isEqualToString:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE]) // Yes
@@ -414,6 +435,6 @@
         [alertView dismissWithClickedButtonIndex:1 animated:YES];
     }
 }
-
+*/
 
 @end

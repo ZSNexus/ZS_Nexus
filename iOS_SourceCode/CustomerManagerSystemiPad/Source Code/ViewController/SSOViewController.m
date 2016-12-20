@@ -53,6 +53,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSessionTimeoutRetry) name:@"USER_SESSION_TIMEOUT_RETRY" object:nil];/*Add UIAlertController*/
+
     //Set Top Bar Theme
     topBar.tintColor=THEME_COLOR;
     topBar.topItem.titleView=[Themes setNavigationBarNormal:LOGIN_SCREEN_TITLE_STRING ofViewController:@"Login"];
@@ -549,6 +551,7 @@ didReceiveResponse:(NSURLResponse *)response
 }
 #pragma mark -
 
+/*Add UIAlertController
 #pragma mark UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -571,6 +574,25 @@ didReceiveResponse:(NSURLResponse *)response
         [self.view bringSubviewToFront:spinnerView];
     }
 }
-#pragma mark -
+*/
+
+-(void)userSessionTimeoutRetry
+{
+    ConnectionClass *connection = [ConnectionClass sharedSingleton];
+    [connection fetchDataFromUrl:[SSO_URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] withParameters:nil forConnectionIdentifier:@"SSORedirect" andConnectionCallback:^(NSMutableData* data, NSString* identifier, NSString* error)
+     {
+         //CallBack Block
+         if(!error)
+         {
+             [self receiveDataFromServer:data ofCallIdentifier:identifier];
+         }
+         else
+         {
+             [self failWithError:error ofCallIdentifier:identifier];
+         }
+     }];
+    
+    [self.view bringSubviewToFront:spinnerView];
+}
 
 @end

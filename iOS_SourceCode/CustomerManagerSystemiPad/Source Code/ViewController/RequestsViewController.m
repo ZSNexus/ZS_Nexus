@@ -758,35 +758,202 @@
 
 -(IBAction)clickWithdrawRequest:(id)sender
 {
+    /*Add UIAlertController
     UIAlertView * alt=[[UIAlertView alloc]initWithTitle:WITHDRAW_STRING message:WITHDRAW_REQUEST_ALERT_MSG_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:YES_STRING,NO_STRING, nil];
-    [alt show];
+    [alt show];*/
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:WITHDRAW_STRING  message:WITHDRAW_REQUEST_ALERT_MSG_STRING  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        RequestObject *reqObj=nil;
+        if([[DataManager sharedObject] isIndividualSegmentSelectedForRequest])  //Individual
+        {
+            reqObj = [indvRequestsData objectAtIndex:selectedRequestListIndex];
+        }
+        
+        if(shouldLoadRemoveAddress)
+        {
+            addressRemovalRequestType = REQUEST_TYPE_WITHDRAW;
+            [self makeWithdrawOrApproveOrrejectRequest];
+        }
+        else if((reqObj != nil) && [reqObj.requestType isEqualToString:@"3"])
+        {
+            //Clear server response label
+            [self updateServerResponseLabelWithText:@"" forIdentifier:CLEAR_VIEW_ERROR_LABEL successOrFailure:YES];
+            
+            //Set connectionInProgress flag
+            isConnectionInProgress = TRUE;
+            
+            //Add spinner on view
+            [Utilities addSpinnerOnView:self.view withMessage:nil];
+            
+            NSMutableDictionary * parameters=[[NSMutableDictionary alloc]init];
+            [parameters setObject:@"POST" forKey:@"request_type"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString * postBody=nil;
+            
+            RequestObject *reqObj=nil;
+            if([[DataManager sharedObject] isIndividualSegmentSelectedForRequest])  //Individual
+            {
+                reqObj = [indvRequestsData objectAtIndex:selectedRequestListIndex];
+                postBody=[NSString stringWithFormat:@"{\"personnelId\": \"%@\", \"ticketNo\":\"%@\", \"requestTypeId\":\"%@\"}",[[defaults objectForKey:@"LoggedInUser"] objectForKey:@"PersonalId"], reqObj.ticketNo, reqObj.requestType];
+                [parameters setObject:postBody forKey:@"post_body"];
+                
+                
+                ConnectionClass * connection= [ConnectionClass sharedSingleton];
+                noAlignedAddressMessage.hidden = YES;
+                noRemovalAddressMessage.hidden = YES;
+                //Protocol : withdrawAlignmentReq
+                [connection fetchDataFromUrl:[WITHDRAW_ALIGNMENT_REQUEST_URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] withParameters:parameters forConnectionIdentifier:@"WithdrawAlignmentRequest" andConnectionCallback:^(NSMutableData* data, NSString* identifier, NSString* error)
+                 {
+                     //CallBack Block
+                     if(!error)
+                     {
+                         [self receiveDataFromServer:data ofCallIdentifier:identifier];
+                     }
+                     else
+                     {
+                         [self failWithError:error ofCallIdentifier:identifier];
+                     }
+                 }];
+            }
+            latestConnectionIdentifier = @"WithdrawAlignmentRequest";
+        }
+        else
+        {
+            //Clear server response label
+            [self updateServerResponseLabelWithText:@"" forIdentifier:CLEAR_VIEW_ERROR_LABEL successOrFailure:YES];
+            
+            //Set connectionInProgress flag
+            isConnectionInProgress = TRUE;
+            
+            //Add spinner on view
+            [Utilities addSpinnerOnView:self.view withMessage:nil];
+            
+            NSMutableDictionary * parameters=[[NSMutableDictionary alloc]init];
+            [parameters setObject:@"POST" forKey:@"request_type"];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString * postBody=nil;
+            
+            RequestObject *reqObj=nil;
+            if([[DataManager sharedObject] isIndividualSegmentSelectedForRequest])  //Individual
+            {
+                reqObj = [indvRequestsData objectAtIndex:selectedRequestListIndex];
+            }
+            else    //Organization
+            {
+                reqObj = [orgRequestsData objectAtIndex:selectedRequestListIndex];
+            }
+            
+            postBody=[NSString stringWithFormat:@"{\"personnelId\": \"%@\", \"ticketNo\":\"%@\", \"requestTypeId\":\"%@\"}",[[defaults objectForKey:@"LoggedInUser"] objectForKey:@"PersonalId"], reqObj.ticketNo, reqObj.requestType];
+            [parameters setObject:postBody forKey:@"post_body"];
+            
+            ConnectionClass * connection= [ConnectionClass sharedSingleton];
+            noAlignedAddressMessage.hidden = YES;
+            noRemovalAddressMessage.hidden = YES;
+            //Protocol : withdrawRequest
+            [connection fetchDataFromUrl:[WITHDRAW_REQUEST_URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] withParameters:parameters forConnectionIdentifier:@"WithdrawRequest" andConnectionCallback:^(NSMutableData* data, NSString* identifier, NSString* error)
+             {
+                 //CallBack Block
+                 if(!error)
+                 {
+                     [self receiveDataFromServer:data ofCallIdentifier:identifier];
+                 }
+                 else
+                 {
+                     [self failWithError:error ofCallIdentifier:identifier];
+                 }
+             }];
+            
+            latestConnectionIdentifier = @"WithdrawRequest";
+        }
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_STRING style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(IBAction)clickRemoveAddressWithdraw:(id)sender
 {
+    /*Add UIAlertController
     UIAlertView * alt=[[UIAlertView alloc]initWithTitle:nil message:WITHDRAW_ADDRESS_REQUEST_ALERT_MSG_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:CONFIRM_STRING,CANCEL_STRING, nil];
-    [alt show];
+    [alt show];*/
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:nil  message:WITHDRAW_ADDRESS_REQUEST_ALERT_MSG_STRING  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:CONFIRM_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if(shouldLoadRemoveAddress)
+        {
+            addressRemovalRequestType = REQUEST_TYPE_WITHDRAW;
+            [self makeWithdrawOrApproveOrrejectRequest];
+        }
+        //implement the backend call for reject similar to the top code for withdraw
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(IBAction)clickRemoveAddressApprove:(id)sender
 {
     if(noAlignedAddressMessage.hidden == YES || alignedAddressArray.count >0)
     {
+        /*Add UIAlertController
         UIAlertView * alt=[[UIAlertView alloc]initWithTitle:nil message:APPROVE_REQUEST_ALERT_MSG_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:CONFIRM_STRING,CANCEL_STRING, nil];
-        [alt show];
+        [alt show];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:nil  message:APPROVE_REQUEST_ALERT_MSG_STRING  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:CONFIRM_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if(shouldLoadRemoveAddress)
+            {
+                addressRemovalRequestType = REQUEST_TYPE_APPROVE;
+                [self makeWithdrawOrApproveOrrejectRequest];
+            }
+            //implement the backend call for approve similar to the top code for withdraw
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     else
     {
+        /*Add UIAlertController
         //approval against last address in territory
         UIAlertView * alt=[[UIAlertView alloc]initWithTitle:nil message:HCP_ALERT_MSG_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:APPROVE_STRING,ALIGN_APPROVE_STRING,CANCEL_STRING, nil];
-        [alt show];
+        [alt show];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:nil  message:HCP_ALERT_MSG_STRING  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:APPROVE_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if(shouldLoadRemoveAddress)
+            {
+                addressRemovalRequestType = REQUEST_TYPE_APPROVE;
+                [self makeWithdrawOrApproveOrrejectRequest];
+            }
+            //implement the backend call for approve similar to the top code for withdraw
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:ALIGN_APPROVE_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if(alignedAddressArray.count == 0)
+            {
+                if(shouldLoadRemoveAddress)
+                {
+                    addressRemovalRequestType = ALIGN_NEW_ADDRESS;
+                    [self searchOtherAddressesForAlignment];
+                }
+            }
+            
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
 -(IBAction)clickRemoveAddressReject:(id)sender
 {
+    /*Add UIAlertController
     UIAlertView * alt=[[UIAlertView alloc]initWithTitle:nil message:REJECT_REQUEST_ALERT_MSG_STRING delegate:self cancelButtonTitle:nil otherButtonTitles:CONFIRM_STRING,CANCEL_STRING, nil];
-    [alt show];
+    [alt show];*/
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:nil  message:REJECT_REQUEST_ALERT_MSG_STRING  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:CONFIRM_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if(shouldLoadRemoveAddress)
+        {
+            addressRemovalRequestType = REQUEST_TYPE_REJECT;
+            [self makeWithdrawOrApproveOrrejectRequest];
+        }
+        //implement the backend call for reject similar to the top code for withdraw
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(IBAction)clickMoreInfoForTicketId:(id)sender
@@ -1720,10 +1887,14 @@
             //completeDuplicateAddressArray = [[NSMutableArray alloc] init];
             if(jsonArray.count == 0)
             {
+                /*Add UIAlertController
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No records found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 
-                [alert show];
+                [alert show];*/
                 [Utilities removeSpinnerFromView:self.view];
+                UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:@"No records found"  preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertController animated:YES completion:nil];
                 return;
             }
             if (!jsonArray) {
@@ -1763,10 +1934,14 @@
                 }
                 else
                 {
+                    /*Add UIAlertController
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No records found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     
-                    [alert show];
+                    [alert show];*/
                     [Utilities removeSpinnerFromView:self.view];
+                    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:@"No records found"  preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:nil]];
+                    [self presentViewController:alertController animated:YES completion:nil];
                     return;
                 }
             }
@@ -1775,10 +1950,14 @@
         {
             if(jsonDataArray.count == 0)
             {
+                /*Add UIAlertController
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No records found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 
-                [alert show];
+                [alert show];*/
                 [Utilities removeSpinnerFromView:self.view];
+                UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:@"No records found"  preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertController animated:YES completion:nil];
                 return;
             }
             if (!jsonDataArray) {
@@ -3708,7 +3887,7 @@
     }
     //}
 }
-
+/*Add UIAlertController
 #pragma mark Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -3852,7 +4031,7 @@
             [self searchOtherAddressesForAlignment];
         }
     }
-}
+}*/
 #pragma mark -
 
 #pragma mark Popover Controller Delegate

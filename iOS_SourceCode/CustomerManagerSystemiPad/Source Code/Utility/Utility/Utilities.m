@@ -1403,24 +1403,43 @@
 #pragma mark App View Handlers
 +(void)displayErrorAlertWithTitle:(NSString *)title andErrorMessage:(NSString *)errorMessage withDelegate:(id)delegate
 {
-    UIAlertView *alertView;
-    
+//    UIAlertView *alertView;
+    AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     if([title isEqualToString:SESSION_EXPIRED])
     {
-        AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+        
+        /*Add UIAlertController
+         AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
         alertView = [[UIAlertView alloc] initWithTitle:title message:errorMessage delegate:appDelegate cancelButtonTitle:OK_STRING otherButtonTitles:nil, nil];
+         */
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:title  message:errorMessage  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [appDelegate userSessionExpireAction];
+        }]];
+        [appDelegate.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     }
     else if(delegate && ([title rangeOfString:RETRY_STRING].location != NSNotFound))
     {
         title = [title stringByReplacingOccurrencesOfString:RETRY_STRING withString:@""];
-        alertView = [[UIAlertView alloc] initWithTitle:title message:errorMessage delegate:delegate cancelButtonTitle:RETRY_STRING otherButtonTitles:nil, nil];
+        /*Add UIAlertController
+        alertView = [[UIAlertView alloc] initWithTitle:title message:errorMessage delegate:delegate cancelButtonTitle:RETRY_STRING otherButtonTitles:nil, nil];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:title  message:errorMessage  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:RETRY_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"USER_SESSION_TIMEOUT_RETRY" object:nil];
+        }]];
+        [appDelegate.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     }
     else
     {
-        alertView = [[UIAlertView alloc] initWithTitle:title message:errorMessage delegate:(delegate ? delegate : self) cancelButtonTitle:OK_STRING otherButtonTitles:nil, nil];
+        /*Add UIAlertControlleralertView = [[UIAlertView alloc] initWithTitle:title message:errorMessage delegate:(delegate ? delegate : self) cancelButtonTitle:OK_STRING otherButtonTitles:nil, nil];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:title  message:errorMessage  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            /*Write Ok button click code here*/
+        }]];
+        [appDelegate.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     }
     
-    [alertView show];
+//    [alertView show];
 }
 
 +(void)addSpinnerOnView:(UIView *)view withMessage:(NSString *)messageStringOrNil
