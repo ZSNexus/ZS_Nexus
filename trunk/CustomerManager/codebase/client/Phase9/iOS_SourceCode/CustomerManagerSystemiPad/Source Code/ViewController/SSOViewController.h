@@ -20,4 +20,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withParameters:(NSDictionary *)params;
 
+-(void)userSessionTimeoutRetry;/*Add UIAlertController*/
+
 @end

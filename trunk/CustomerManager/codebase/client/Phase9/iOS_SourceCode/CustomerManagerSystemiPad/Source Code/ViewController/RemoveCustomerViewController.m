@@ -562,9 +562,17 @@
             
             //Need to ask for reason
             selectedReasonForRemoval = [NSString stringWithFormat:@"Moved out of territory"];
+            /*Add UIAlertController
             UIAlertView *alView = [[UIAlertView alloc] initWithTitle:@"Address Removal" message:ADDRESS_REMOVAL_MESSAGE delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",@"Cancel", nil];
-            [alView show];
+            [alView show];*/
             //[self clickRemoveCustomerAddress];
+            UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:ADDRESS_REMOVAL_STRING  message:ADDRESS_REMOVAL_MESSAGE  preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                isSingleAddress= YES;
+                [self clickRemoveCustomerAddress];
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
     else    //Do not display popup of reasons for removal for organizations.
@@ -881,10 +889,17 @@
     }
     else    //Do not display popup of reasons for removal for organizations.
     {
+        /*Add UIAlertController
         UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:@"Organisation Removal" message:ORGANISATION_REMOVAL_STRING delegate:self cancelButtonTitle:@"OK" otherButtonTitles:CANCEL_STRING, nil];
-        [alertView show];
+        [alertView show];*/
         //Call to remove organisation after popup
         //[self clickRemoveCustomer];
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Organisation Removal"  message:ORGANISATION_REMOVAL_STRING  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self clickRemoveCustomer];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
@@ -954,8 +969,15 @@
        ([selectedReasonForRemoval isEqualToString:@"Deceased"] ||
         [selectedReasonForRemoval isEqualToString:@"Retired"]))
     {
+        /*Add UIAlertController
         UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:@"Customer Removal" message:REMOVE_CUSTOMER_ALERT_MSG delegate:self cancelButtonTitle:@"OK" otherButtonTitles:CANCEL_STRING, nil];
-        [alertView show];
+        [alertView show];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Customer Removal"  message:REMOVE_CUSTOMER_ALERT_MSG  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self removeCustomerRequest];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
         return;
     }
     
@@ -1582,10 +1604,14 @@
         {
             if(jsonArray.count == 0)
             {
+                /*Add UIAlertController
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"No records found" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 
-                [alert show];
+                [alert show];*/
                 [Utilities removeSpinnerFromView:self.view];
+                UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:@"No records found"  preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:nil]];
+                [self presentViewController:alertController animated:YES completion:nil];
                 return;
             }
             
@@ -3211,7 +3237,7 @@
 }
 
 #pragma mark -
-
+/*Add UIAlertController
 #pragma mark Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -3233,7 +3259,6 @@
     else if(buttonIndex == 0 && [alertView.message isEqualToString:ORGANISATION_REMOVAL_STRING]){
         [self clickRemoveCustomer];
     }
-}
-
+}*/
 
 @end

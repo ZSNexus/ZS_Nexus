@@ -288,9 +288,15 @@
    
     if(customTableViewController.isCellSelected <= 0  && [customTableViewController.popUpScreenTitle isEqualToString:DUPLICATE_ADDRESS_SCREEN])
     {
+        /*Add UIAlertController
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:SELECT_ONE_DUPLICATE_ADDRESS delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
-        [alert show];
+        [alert show];*/
+        UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:SELECT_ONE_DUPLICATE_ADDRESS  preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                /*Write No button click code here*/
+            }]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     else
     {
@@ -299,8 +305,29 @@
         if([customTableViewController.popUpScreenTitle isEqualToString:DUPLICATE_ADDRESS_SCREEN])
         {
             //int count = 0;
+            /*Add UIAlertController
             UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE message:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_MSG delegate:self cancelButtonTitle:nil otherButtonTitles:YES_STRING,NO_STRING, nil];
-            [alertView show];
+            [alertView show];*/
+            UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE  message:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_MSG  preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:YES_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                NSMutableString *reasonString = [[NSMutableString alloc] init];
+                for(NSNumber * selectedValue in customTableViewController.selectedDuplicateAddressesArray)
+                {
+                    NSDictionary *item = [customTableViewController.dataArray objectAtIndex:[selectedValue intValue]];
+                    //if(count == 0)
+                    //[reasonString appendString:[item objectForKey:@"bpaId"]];
+                    //else
+                    [reasonString appendString:[NSString stringWithFormat:@",%@", [item objectForKey:@"bpaId"]]];
+                    //count++;
+                }
+                if ([self.duplicateAddressDataDelegate respondsToSelector:@selector(getDuplicateAddressRemovalReasonWithString:)]) {
+                    [self.duplicateAddressDataDelegate getDuplicateAddressRemovalReasonWithString:reasonString];
+                }
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:NO_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                /*Write No button click code here*/
+            }]];
+            [self presentViewController:alertController animated:YES completion:nil];
             
         }
 //        if ([self.duplicateAddressDataDelegate respondsToSelector:@selector(getDuplicateAddressRemovalReasonWithString:)]) {
@@ -362,7 +389,7 @@
     self.customTableViewController.view.frame = tableFrame;
 }
 #pragma mark -
-
+/*Add UIAlertController
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex==0 && [alertView.title isEqualToString:CONFIRM_DUPLICATE_ADDRESSES_SELECTED_TITLE]) // Yes
@@ -391,7 +418,7 @@
         [alertView dismissWithClickedButtonIndex:1 animated:YES];
         //implement the backend call for reject similar to the top code for withdraw
     }
-}
+}*/
 
 
 @end

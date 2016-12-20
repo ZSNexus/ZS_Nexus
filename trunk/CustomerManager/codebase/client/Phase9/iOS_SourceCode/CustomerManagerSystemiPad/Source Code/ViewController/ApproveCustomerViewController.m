@@ -614,13 +614,26 @@
 
 //Method is called when "Withdraw" button is clicked from Review tab.
 -(IBAction)clickWithdrawRequest:(id)sender{
-    
+    /*Add UIAlertController
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:CANCEL_ACTIONS_STRING
                                                     message:@""
                                                    delegate:self
                                           cancelButtonTitle:@"Confirm"
                                           otherButtonTitles:@"Cancel",nil];
-    [alert show];
+    [alert show];*/
+    
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:CANCEL_ACTIONS_STRING  message:@""  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:CONFIRM_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self setTargetFlags:NO];
+        targetProcess = WITHDRAWAL_STRING;
+        isTargetForWithdrawal = YES;
+        selectedIndexCustAddress=0;
+        
+        [self updateServerResponseLabelWithText:@"" forIdentifier:CLEAR_VIEW_ERROR_LABEL successOrFailure:TRUE];
+        [self approveOrRejectOrWithdrawCall];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:CANCEL_STRING style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 //Method is called when "Approve"/"Reject"/"Withdraw" button is clicked from Review tab.
@@ -1600,9 +1613,16 @@
                 NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
                 if([[responseDictionary allKeys] containsObject:@"status"])
                 {
+                    /*Add UIAlertController
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@", [responseDictionary objectForKey:@"reasonCode"]] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     
-                    [alert show];
+                    [alert show];*/
+                    
+                    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:@"Error"  message:[NSString stringWithFormat:@"%@", [responseDictionary objectForKey:@"reasonCode"]]  preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addAction:[UIAlertAction actionWithTitle:OK_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                        /*Write Ok button click code here*/
+                    }]];
+                    [self presentViewController:alertController animated:YES completion:nil];
                 }
                 
             }
@@ -3347,7 +3367,7 @@
     [custDetailAddressTable reloadData];
 }
 #pragma mark -
-
+/*Add UIAlertController
 #pragma mark Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -3373,6 +3393,6 @@
 //        //implement the backend call for reject similar to the top code for withdraw
 //    }
 }
-
+*/
 
 @end

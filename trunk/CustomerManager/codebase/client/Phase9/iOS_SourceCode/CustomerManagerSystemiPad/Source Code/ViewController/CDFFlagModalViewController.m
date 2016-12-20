@@ -200,8 +200,19 @@
     // UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select atleast one duplicate address." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     //    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Selected customer is not an MD. Please select an MD to affiliate to" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     // [alertView show];
+    /*Add UIAlertController
     UIAlertView * alertView=[[UIAlertView alloc]initWithTitle:CONFIRM_AFFILIATION_ALERT_TITLE message:CONFIRM_AFFILLIATION_ALERT_MSG delegate:self cancelButtonTitle:nil otherButtonTitles:YES_STRING,NO_STRING, nil];
-    [alertView show];
+    [alertView show];*/
+    UIAlertController *alertController = [UIAlertController  alertControllerWithTitle:CONFIRM_AFFILIATION_ALERT_TITLE  message:CONFIRM_AFFILLIATION_ALERT_MSG  preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:YES_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        if ([self.mlpAffiliateProtocolDataDelegate respondsToSelector:@selector(affiliateMLP)]) {
+            [self.mlpAffiliateProtocolDataDelegate affiliateMLP];
+        }
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NO_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        /*Write No button click code here*/
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
     
         //[self.view removeFromSuperview];
 }
@@ -242,7 +253,7 @@
 //    self.customTableViewController.view.frame = tableFrame;
 }
 #pragma mark -
-
+/*Add UIAlertController
 #pragma mark Alert View Delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -261,5 +272,5 @@
         //implement the backend call for reject similar to the top code for withdraw
     }
 }
-
+*/
 @end

@@ -25,4 +25,6 @@
 -(void)startSpinnerWithMessage:(NSString*)msgString;
 -(void)dismissSpinner;
 -(void)displayHOUserHomePage;//to display HO User home page on button click
+-(void)userSessionExpireAction; /*Add UIAlertController*/
+
 @end
