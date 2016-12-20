@@ -134,26 +134,49 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
     {
         [theRequest setHTTPMethod:@"DELETE"];
     }
+   
     
-    NSURLConnection *  conn=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    if (conn) {
-        NSMutableData* receivedData = [NSMutableData data];
-        [connInfo setObject:receivedData forKey:@"recievedData"];
-        [connInfo setObject:conn forKey:@"connectionObject"];
-    } else {
-        ErrorLog(@"Connection Class | Invalid Connection");
-    }
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
     
-    [identiferFullData setObject:connInfo forKey:[conn description]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:theRequest
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      // ...
+                                      if (response) {
+                                          NSMutableData* receivedData = [NSMutableData data];
+                                          [connInfo setObject:receivedData forKey:@"recievedData"];
+                                          [connInfo setObject:session forKey:@"connectionObject"];
+                                          NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                          NSLog(@"Response : %@", str);
+                                          
+                                          NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
+                                          [[connInfo objectForKey:@"recievedData"] appendData:data];
+                                          [identiferFullData setObject:connInfo forKey:[session description]];
+                                          DebugLog(@"Connection Class | connectionDidFinishLoading | Identifier: %@", [[identiferFullData objectForKey:[session description]] objectForKey:@"identifier"]);
+                                          
+                                              [self performSelectorOnMainThread:@selector(receiveDataFromServerToUI:) withObject:session waitUntilDone:NO];
+                                          
+                                      }
+                                      else if (error)
+                                      {
+                                          ErrorLog(@"Connection Class | Invalid Connection | (%@)", error.description);
+                                          NSArray * arr=[[NSArray arrayWithObjects:session, error, nil] copy];
+                                          NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
+                                          ErrorLog(@"Connection Class | didFailWithError | Identifier: %@", [connInfo objectForKey:@"identifier"]);
+                                          
+                                          [self performSelectorOnMainThread:@selector(didFailWithErrorToUI:) withObject:arr waitUntilDone:NO];
+                                      }
+                                  }];
     
-    [conn scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [conn start];
+    [task resume];
+    [identiferFullData setObject:connInfo forKey:[session description]];
     
     //Keep secondary thread active till received data passed to main thread for UI update
     NSThread *currentThread = [NSThread currentThread];
     if(![currentThread isMainThread])
     {
-        while ([identiferFullData objectForKey:[conn description]]) {
+        while ([identiferFullData objectForKey:[session description]]) {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
         }
         DebugLog(@"Connection Class | executeFetchData Exit thread | Identifier: %@", [connInfo objectForKey:@"identifier"]);
@@ -161,53 +184,70 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
 }
 #pragma mark -
 
-#pragma mark NSURL Connection Delegates
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+#pragma mark NSURL Session Delegates
+
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
 {
-    NSArray * arr=[[NSArray arrayWithObjects:connection, error, nil] copy];
-    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[connection description]];
-    ErrorLog(@"Connection Class | didFailWithError | Identifier: %@", [connInfo objectForKey:@"identifier"]);
-    
-    [self performSelectorOnMainThread:@selector(didFailWithErrorToUI:) withObject:arr waitUntilDone:NO];
+    if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+    {
+        NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
+    }
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
-//NSURL Connection HTTPS Delegate .. We are ignoring the certificsates this time
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
-}
+//-------------------
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
+ completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler
+{
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
         [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
     
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
-#pragma mark -
 
-#pragma mark NSURL Connection Data Delegates
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
 {
-    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[connection description]];
+    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
+    [[connInfo objectForKey:@"recievedData"] appendData:data];
+    [identiferFullData setObject:connInfo forKey:[session description]];
+}
+
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
     DebugLog(@"Connection Class | Connection Did Recive Response | Identifier: %@", [connInfo objectForKey:@"identifier"]);
     
     NSMutableData *receivedData = [connInfo objectForKey:@"recievedData"];
     [receivedData setLength:0];
-    [identiferFullData setObject:connInfo forKey:[connection description]];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[connection description]];
-    [[connInfo objectForKey:@"recievedData"] appendData:data];
-    [identiferFullData setObject:connInfo forKey:[connection description]];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    DebugLog(@"Connection Class | connectionDidFinishLoading | Identifier: %@", [[identiferFullData objectForKey:[connection description]] objectForKey:@"identifier"]);
+    [identiferFullData setObject:connInfo forKey:[session description]];
+    DebugLog(@"Connection Class | connectionDidFinishLoading | Identifier: %@", [[identiferFullData objectForKey:[session description]] objectForKey:@"identifier"]);
     
-    [self performSelectorOnMainThread:@selector(receiveDataFromServerToUI:) withObject:connection waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(receiveDataFromServerToUI:) withObject:session waitUntilDone:NO];
 }
+
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error
+{
+    NSArray * arr=[[NSArray arrayWithObjects:session, error, nil] copy];
+    NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
+    ErrorLog(@"Connection Class | didFailWithError | Identifier: %@", [connInfo objectForKey:@"identifier"]);
+    
+    [self performSelectorOnMainThread:@selector(didFailWithErrorToUI:) withObject:arr waitUntilDone:NO];
+}
+
+
+
+
 #pragma mark -
 
 #pragma mark Connection Handlers
@@ -218,7 +258,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
         NSDictionary * connData=[identiferFullData objectForKey:connDataIdentifier];
         if(identifier && [[connData objectForKey:@"identifier"] isEqualToString:identifier])
         {
-            NSURLConnection * conn=[connData objectForKey:@"connectionObject"];
+            NSURLSessionDataTask * conn=[connData objectForKey:@"connectionObject"];
             [conn cancel];
             ErrorLog(@"Cancelling Connection with Identifier - %@",identifier);
             [identiferFullData removeObjectForKey:connDataIdentifier];
@@ -226,7 +266,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
         }
         else if(identifier==nil)
         {
-            NSURLConnection * conn=[connData objectForKey:@"connectionObject"];
+            NSURLSessionDataTask * conn=[connData objectForKey:@"connectionObject"];
             [conn cancel];
             ErrorLog(@"Cancelling Connection with Identifier - %@",[connData objectForKey:@"identifier"]);
             [identiferFullData removeObjectForKey:connDataIdentifier];
@@ -271,7 +311,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
 #pragma mark -
 
 #pragma mark Connection Data Handlers: Pass data to UI
--(void)receiveDataFromServerToUI:(NSURLConnection *)connection
+-(void)receiveDataFromServerToUI:(NSURLSessionDataTask *)connection
 {
     NSMutableDictionary * connInfo=[identiferFullData objectForKey:[connection description]];
     DebugLog(@"Connection Class Main Thread | receiveDataFromServerToUI | Identifier: %@", [connInfo objectForKey:@"identifier"]);
@@ -297,7 +337,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
     NSString *errorDescription = [error localizedDescription];
     
     //Modify error description if error is of type No Internet connection
-   
+    
     if(error.code == kCFURLErrorNotConnectedToInternet)
     {
         errorDescription = [errorDescription stringByAppendingString:[NSString stringWithFormat:@" %@", ERROR_NO_INTERNET_CONNECTION_RETRY]];
@@ -305,7 +345,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
     else
     {
         errorDescription = [errorDescription stringByAppendingString:[NSString stringWithFormat:@" %@", ERROR_UNKNOWN_PLEASE_RETRY]];
-//        errorDescription = ERROR_UNKNOWN_PLEASE_RETRY;
+        //        errorDescription = ERROR_UNKNOWN_PLEASE_RETRY;
     }
     
     CMConnectionCallback callBack = [callbacksMapping objectForKey:[connInfo objectForKey:@"identifier"]];

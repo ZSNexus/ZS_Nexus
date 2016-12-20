@@ -12,13 +12,13 @@
 #import "Utilities.h"
 #import "AppDelegate.h"
 
-@interface SSOViewController ()<UIWebViewDelegate,NSURLConnectionDelegate,UITextFieldDelegate>
+@interface SSOViewController ()<UIWebViewDelegate,NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate,UITextFieldDelegate>
 {
     UIWebView *webViewSSO;
     UIView* spinnerView;
     IBOutlet UINavigationBar *topBar;
     NSURL * url;
-    NSURLConnection * conn;
+//    NSURLConnection * conn;
     NSString * errorMsg;
     NSString * successMsg;
     NSMutableData * connDataRecieved;
@@ -139,10 +139,17 @@
     if(!isConnectionInProgress)
     {
         //Clear Browser History Cache
+        NSInteger sizeInteger = [[NSURLCache sharedURLCache] currentDiskUsage];
+        float sizeInMB = sizeInteger / (1024.0f * 1024.0f);
+        NSLog(@"Before----loadSSOPage size: %ld,  %f", (long)sizeInteger, sizeInMB);
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
+        sizeInteger = [[NSURLCache sharedURLCache] currentDiskUsage];
+        sizeInMB = sizeInteger / (1024.0f * 1024.0f);
+        NSLog(@"After----loadSSOPage size: %ld,  %f", (long)sizeInteger, sizeInMB);
+        
         //[self eraseCredentials];
         NSURLRequest * request=[[NSURLRequest alloc]initWithURL:url];
         [webViewSSO loadRequest:request];
@@ -242,8 +249,28 @@
     {
         [self.view bringSubviewToFront:spinnerView];
         connDataRecieved=[[NSMutableData alloc]init];
-        conn = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:request.URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0] delegate:self];
-        [conn start];
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
+        
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:[NSURLRequest requestWithURL:request.URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]
+                                                completionHandler:
+                                      ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                          // ...
+                                          if (response) {
+                                              NSMutableData* receivedData = [NSMutableData data];
+//                                              NSString *str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+//                                              NSLog(@"Response : %@", str);
+                                              
+                                              
+                                          }
+                                          else if (error)
+                                          {
+                                              ErrorLog(@"Connection Class | Invalid Connection | (%@)", error.description);
+                                              
+                                          }
+                                      }];
+        
+        [task resume];
         return NO;
     }
     return YES;
@@ -385,34 +412,34 @@
 #pragma mark -
 
 #pragma mark Connection Delegates
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler
 {
+
     SecTrustRef trust = challenge.protectionSpace.serverTrust;
     NSURLCredential *cred;
     cred = [NSURLCredential credentialForTrust:trust];
     [challenge.sender useCredential:cred forAuthenticationChallenge:challenge];
 }
 
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-    return YES;
-}
 
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
-}
 #pragma mark -
 
-#pragma mark Connection Data Delegates
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+#pragma mark Session Data Delegates
+
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
 {
     [connDataRecieved appendData:data];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
-    //NSString * data=[[NSString alloc] initWithData:connDataRecieved encoding:NSUTF8StringEncoding];
-    //ErrorLog(@"Connection Load Data - %@",data);
     if(SSOToken!=nil && SSOToken.length!=0)
     {
         if(iSLiveApp)
@@ -430,9 +457,11 @@
         [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED_NO_TOKEN withDelegate:self];
         [self loadSSOPage];
     }
+
 }
 
--(NSURLRequest *)connection:(NSURLConnection *)connection
+
+-(NSURLRequest *)connection:(NSURLSessionDataTask *)connection
             willSendRequest:(NSURLRequest *)request
            redirectResponse:(NSURLResponse *)redirectResponse
 {

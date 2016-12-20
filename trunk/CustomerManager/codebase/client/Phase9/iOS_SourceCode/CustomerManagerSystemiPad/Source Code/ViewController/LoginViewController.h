@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ConnectionClass.h"
 #import "SSOViewController.h"
-@interface LoginViewController : UIViewController<UITextFieldDelegate,UIWebViewDelegate,UITabBarControllerDelegate,NSURLConnectionDelegate,SSOCustomDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate,UIWebViewDelegate,UITabBarControllerDelegate,SSOCustomDelegate>
 
 @end
