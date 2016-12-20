@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConnectionClass : NSObject<NSURLConnectionDelegate,NSURLConnectionDataDelegate>
+@interface ConnectionClass : NSObject<NSURLSessionDelegate,NSURLSessionDataDelegate, NSURLSessionTaskDelegate>
 
 +(ConnectionClass *) sharedSingleton;
 +(void)cancelNSUrlConnectionForIdentifier:(NSString *)identifier;
