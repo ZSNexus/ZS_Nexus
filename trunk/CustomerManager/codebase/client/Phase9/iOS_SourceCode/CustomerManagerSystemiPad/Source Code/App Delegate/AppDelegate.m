@@ -64,7 +64,7 @@
     
     //Set title attributes to bar button items in order to avoid text truncation
     UIFont *font = [UIFont fontWithName:@"Roboto-Medium" size:12.0];
-    NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:font,UITextAttributeFont, nil];
+    NSDictionary *attributeDict = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:attributeDict forState:UIControlStateNormal];
     
@@ -198,7 +198,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //Get reference calender
-    NSCalendar *gregorianCalender = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSCalendar *gregorianCalender = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorianCalender = [NSCalendar currentCalendar];
     
     //Get Last DB Update Date and its components
     NSString *lastDBUpdateDateString = [defaults objectForKey:@"lastDBUpdateDate"];
@@ -207,7 +208,7 @@
     if(lastDBUpdateDateString.length)
     {
         lastDbUpdateDate = [dateFormatter dateFromString:lastDBUpdateDateString];
-        lastDbUpdateDateComponents = [gregorianCalender components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:lastDbUpdateDate];
+        lastDbUpdateDateComponents = [gregorianCalender components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:lastDbUpdateDate];
     }
     
     //Get Next DB Update Date and its components
@@ -220,7 +221,7 @@
     
     //Get Current Date and its components
     NSDate *currentDate = [NSDate date];
-    NSDateComponents *currentDateComponents = [gregorianCalender components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:currentDate];
+    NSDateComponents *currentDateComponents = [gregorianCalender components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:currentDate];
     
     //Check for fresh installation
     if(lastDBUpdateDateString == nil || nextDBUpdateDateString == nil)

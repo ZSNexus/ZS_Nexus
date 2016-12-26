@@ -259,7 +259,7 @@
                                       ^(NSData *data, NSURLResponse *response, NSError *error) {
                                           // ...
                                           if (response) {
-                                              NSMutableData* receivedData = [NSMutableData data];
+//                                              NSMutableData* receivedData = [NSMutableData data];
 //                                              NSString *str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 //                                              NSLog(@"Response : %@", str);
                                               

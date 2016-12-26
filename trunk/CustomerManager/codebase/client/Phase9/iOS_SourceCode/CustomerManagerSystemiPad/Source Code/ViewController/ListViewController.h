@@ -19,7 +19,7 @@
     NSMutableArray *searchData;
     
     UISearchBar *searchBar;
-    UISearchDisplayController *searchDisplayController;
+    UISearchController *searchDisplayController;
     NSDictionary *typeAheadDataDict;
 }
 
