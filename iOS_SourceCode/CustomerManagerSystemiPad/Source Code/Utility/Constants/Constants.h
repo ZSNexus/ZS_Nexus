@@ -331,7 +331,7 @@
 #define TABLE_HEADER_FOR_DUPLICATE          @"Addresses marked as duplicates will only be sent to BMS' customer master for review. If present in your CTU, they will not be removed as part of this request."
 
 #define SELECT_ONE_DUPLICATE_ADDRESS    @"Please select at least one duplicate address."
-#define ADDRESS_REMOVAL_STRING          @"Please click OK to submit the request for verification."
+//#define ADDRESS_REMOVAL_STRING          @"Please click OK to submit the request for verification."
 #define REMOVE_ADDRESS_TABLE_HEADER     @"Use ‘Select ALL’ Option, if HCP moved out of your territory."
 
 #define ADD_STRING          @"Add"

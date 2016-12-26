@@ -75,7 +75,7 @@
     
     //Add 'About map' button for map view controller
     self.navigationItem.leftItemsSupplementBackButton = YES;
-    UIBarButtonItem *aboutMapsButton = [[UIBarButtonItem alloc] initWithTitle:ABOUT_MAPS_STRING style:UIBarButtonItemStyleBordered target:self action:@selector(showGoogleMapsAttributionText)];
+    UIBarButtonItem *aboutMapsButton = [[UIBarButtonItem alloc] initWithTitle:ABOUT_MAPS_STRING style:UIBarButtonItemStylePlain target:self action:@selector(showGoogleMapsAttributionText)];
     aboutMapsButton.tintColor = [UIColor whiteColor];
     [self.navigationItem setLeftBarButtonItem:aboutMapsButton];
     

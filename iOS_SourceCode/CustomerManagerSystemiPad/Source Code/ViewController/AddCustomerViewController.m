@@ -1587,7 +1587,13 @@
     
     CGSize size = CGSizeMake(210, 190);// here is some trick.
     
-    CGSize textSize = [str sizeWithFont:[UIFont boldSystemFontOfSize:12.0] constrainedToSize:size];
+//    CGSize textSize = [str sizeWithFont:[UIFont boldSystemFontOfSize:12.0] constrainedToSize:size];
+    CGRect textRect = [str boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin
+                                      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:12.0]}
+                                         context:nil];
+    
+    CGSize textSize = textRect.size;
     
     return textSize.height + CELL_PADDING;
     
@@ -1602,7 +1608,13 @@
         {
             NSString *string  = [recentChangesData objectAtIndex:indexPath.row];
             CGSize maximumLabelSize = CGSizeMake(296, FLT_MAX);
-            CGSize expectedLabelSize = [[self.recentChangesData objectAtIndex:indexPath.row] sizeWithFont:[UIFont boldSystemFontOfSize:12.0] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
+//            CGSize expectedLabelSize = [[self.recentChangesData objectAtIndex:indexPath.row] sizeWithFont:[UIFont boldSystemFontOfSize:12.0] constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];
+            CGRect textRect = [[self.recentChangesData objectAtIndex:indexPath.row] boundingRectWithSize:maximumLabelSize
+                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                             attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:12.0]}
+                                                context:nil];
+            
+            CGSize expectedLabelSize = textRect.size;
 
             CGFloat height = expectedLabelSize.height;
             

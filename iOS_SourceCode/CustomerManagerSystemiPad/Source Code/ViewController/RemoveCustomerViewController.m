@@ -166,14 +166,14 @@
     {
         
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [UIFont systemFontOfSize:13], UITextAttributeFont,
-                                    [UIColor colorWithRed:15.0/255.0 green:68.0/255.0 blue:146.0/255.0 alpha:1.0], UITextAttributeTextColor,
+                                    [UIFont systemFontOfSize:13], NSFontAttributeName,
+                                    [UIColor colorWithRed:15.0/255.0 green:68.0/255.0 blue:146.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
                                     nil];
         [indvidualOrganisationSegmentControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
-        NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+        NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
         [indvidualOrganisationSegmentControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateHighlighted];
         
-        indvidualOrganisationSegmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
+//        indvidualOrganisationSegmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
         indvidualOrganisationSegmentControl.tintColor = [UIColor colorWithRed:6.0 / 255.0 green:86.0 / 255.0 blue:161.0 / 255.0 alpha:1.0];
     }
     indvidualOrganisationSegmentControl.frame= CGRectMake(10, 10, 280, 35);
@@ -3104,7 +3104,8 @@
              [identifier isEqualToString:@"RefineSearchForRemoveCustomerOfTypeOrganization"] ||
              [identifier isEqualToString:CLEAR_VIEW_ERROR_LABEL])
     {
-        if (!responseMsgOrNil.length >0)
+//        if (!responseMsgOrNil.length >0)
+        if (responseMsgOrNil == nil && responseMsgOrNil.length == 0)
         {
             serverResponseLabel.text = @"";//Added to fix On Track 516
             NSDictionary *onOffDictionary = [defaults objectForKey:ADD_REMOVE_USER_DEFAULT_KEY];

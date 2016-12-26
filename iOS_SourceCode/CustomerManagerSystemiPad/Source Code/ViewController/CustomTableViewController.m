@@ -164,7 +164,13 @@
     if([tableFooterText length] > 0)
     {
         UIFont *footerTextFont = [UIFont fontWithName:@"Roboto-Regular" size:15.0];
-        CGSize footerSize = [tableFooterText sizeWithFont:footerTextFont constrainedToSize:CGSizeMake(770, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+//        CGSize footerSize = [tableFooterText sizeWithFont:footerTextFont constrainedToSize:CGSizeMake(770, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect textRect = [tableFooterText boundingRectWithSize:CGSizeMake(770, MAXFLOAT)
+                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                         attributes:@{NSFontAttributeName:footerTextFont}
+                                            context:nil];
+        
+        CGSize footerSize = textRect.size;
         NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         
@@ -458,7 +464,7 @@
     
     [cell.cellTitleLabel setText:str_cellTitle];
     [cell.cellTitleLabel setFont:[UIFont fontWithName:@"Roboto-Medium" size:14.0]];
-    [[cell cellTextField] setTag:[[NSString stringWithFormat:@"%d%d",indexPath.section,indexPath.row] integerValue]];
+    [[cell cellTextField] setTag:[[NSString stringWithFormat:@"%d%d",(int)indexPath.section,(int)indexPath.row] integerValue]];
     [cell.cellTextField setFont:[UIFont fontWithName:@"Roboto-Medium" size:14.0]];
     
     if([[rowParameters objectForKey:ACCESSORY] isEqual:[NSNumber numberWithInt:UITableViewCellAccessoryCheckmark]])

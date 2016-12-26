@@ -131,7 +131,13 @@
     if([tableFooterText length] > 0)
     {
         UIFont *footerTextFont = [UIFont fontWithName:@"Roboto-Regular" size:15.0];
-        CGSize footerSize = [tableFooterText sizeWithFont:footerTextFont constrainedToSize:CGSizeMake(770, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+//        CGSize footerSize = [tableFooterText sizeWithFont:footerTextFont constrainedToSize:CGSizeMake(770, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        CGRect textRect = [tableFooterText boundingRectWithSize:CGSizeMake(770, MAXFLOAT)
+                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                     attributes:@{NSFontAttributeName:footerTextFont}
+                                                        context:nil];
+        
+        CGSize footerSize = textRect.size;
         
         CGRect footerViewFrame = CGRectMake(25, 0, 770, footerSize.height+20);
         UILabel *footerLabel = [[UILabel alloc] initWithFrame:footerViewFrame];
