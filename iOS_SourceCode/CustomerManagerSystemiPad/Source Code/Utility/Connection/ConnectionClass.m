@@ -151,9 +151,12 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
                                           NSLog(@"Response : %@", str);
                                           
                                           NSMutableDictionary * connInfo=[identiferFullData objectForKey:[session description]];
-                                          [[connInfo objectForKey:@"recievedData"] appendData:data];
-                                          [identiferFullData setObject:connInfo forKey:[session description]];
-                                          DebugLog(@"Connection Class | connectionDidFinishLoading | Identifier: %@", [[identiferFullData objectForKey:[session description]] objectForKey:@"identifier"]);
+                                          if (connInfo) {
+                                              [[connInfo objectForKey:@"recievedData"] appendData:data];
+                                              [identiferFullData setObject:connInfo forKey:[session description]];
+                                              DebugLog(@"Connection Class | connectionDidFinishLoading | Identifier: %@", [[identiferFullData objectForKey:[session description]] objectForKey:@"identifier"]);
+                                          }
+                                         
                                           
                                               [self performSelectorOnMainThread:@selector(receiveDataFromServerToUI:) withObject:session waitUntilDone:NO];
                                           

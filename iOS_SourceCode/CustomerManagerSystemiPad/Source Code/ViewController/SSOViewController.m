@@ -11,10 +11,11 @@
 #import "Themes.h"
 #import "Utilities.h"
 #import "AppDelegate.h"
+#import <WebKit/WebKit.h>
 
-@interface SSOViewController ()<UIWebViewDelegate,NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate,UITextFieldDelegate>
+@interface SSOViewController ()<NSURLSessionDelegate, NSURLSessionDataDelegate, NSURLSessionTaskDelegate,UITextFieldDelegate, WKUIDelegate, WKNavigationDelegate>
 {
-    UIWebView *webViewSSO;
+    WKWebView *webViewSSO;
     UIView* spinnerView;
     IBOutlet UINavigationBar *topBar;
     NSURL * url;
@@ -27,7 +28,7 @@
     NSString * SSOToken;
     CGRect originalSsoViewFrame;
     CGPoint offset;
-    UIWebViewNavigationType formSubmitted;
+    WKNavigationType formSubmitted;
     BOOL isRequestLoaded;
     
     NSTimer *webViewTimeoutTimer;
@@ -53,8 +54,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSessionTimeoutRetry) name:@"USER_SESSION_TIMEOUT_RETRY" object:nil];/*Add UIAlertController*/
-
     //Set Top Bar Theme
     topBar.tintColor=THEME_COLOR;
     topBar.topItem.titleView=[Themes setNavigationBarNormal:LOGIN_SCREEN_TITLE_STRING ofViewController:@"Login"];
@@ -94,15 +93,26 @@
     [spinner startAnimating];
     [UIApplication sharedApplication].networkActivityIndicatorVisible=TRUE;
     
-    //webViewSSO=[[UIWebView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, 500, 350)];
-    webViewSSO=[[UIWebView alloc]initWithFrame:CGRectMake(262, 95, 500, 378)];
     
-    [webViewSSO setBackgroundColor:[UIColor lightGrayColor]];
-    [webViewSSO setDelegate:self];
+    NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    
+    WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    [wkUController addUserScript:wkUScript];
+    
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    wkWebConfig.userContentController = wkUController;
+    
+    
+    webViewSSO = [[WKWebView alloc] initWithFrame:CGRectMake(262, 95, 500, 378) configuration:wkWebConfig];
+//    [webViewSSO setBackgroundColor:[UIColor lightGrayColor]];
+    [webViewSSO setNavigationDelegate:self];
+    [webViewSSO setUIDelegate:self];
     [webViewSSO setClipsToBounds:YES];
     [webViewSSO.scrollView setBounces:NO];
     [webViewSSO.scrollView setScrollEnabled:NO];
     webViewSSO.hidden=NO;
+    
     //webViewSSO.scrollView.contentOffset = CGPointZero;
     //webViewSSO.center=self.view.center;
     [self.view addSubview:webViewSSO];
@@ -208,45 +218,45 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark -
 
-#pragma mark Web View Delegate
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
-    [self.view bringSubviewToFront:spinnerView];
-    DebugLog(@"SSO | webViewDidStartLoadUrl - %@",webView.request.URL);
-    
-    if(formSubmitted==UIWebViewNavigationTypeFormSubmitted)
-        isRequestLoaded=YES;
-    
-    //    if ([[NSString stringWithFormat:@"%@",webView.request.URL] rangeOfString:@"affwebservices/public/saml2sso?"].location != NSNotFound) {
-    //        isRequestLoaded=YES;
-    //    }
-    
-    //Start timer
-    webViewTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:CONNECTION_TIMEOUT target:self selector:@selector(webViewConnectionTimedOut) userInfo:nil repeats:NO];
-}
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+#pragma mark
+
+#pragma WKWebview Methods
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    if (navigationType==UIWebViewNavigationTypeFormSubmitted && formSubmitted!=UIWebViewNavigationTypeFormSubmitted) {
-        formSubmitted=navigationType;
-        NSArray *subViews=[spinnerView subviews];
-        for (UILabel *label in subViews) {
-            if(label.tag==8888)
-            {
-                [label setText:LOGGING_IN_STRING];
-                break;
+    
+//     decisionHandler(WKNavigationActionPolicyAllow);
+    
+    
+    switch (navigationAction.navigationType) {
+        case WKNavigationTypeFormSubmitted:
+        {
+            formSubmitted=navigationAction.navigationType;
+            NSArray *subViews=[spinnerView subviews];
+            for (UILabel *label in subViews) {
+                if(label.tag==8888)
+                {
+                    [label setText:LOGGING_IN_STRING];
+                    break;
+                }
             }
+            
         }
+            break;
+            
+        default:
+        {
+            formSubmitted=navigationAction.navigationType;
+        }
+            break;
     }
-    else
-        formSubmitted=navigationType;
+//    if let url = navigationAction.request.URL {
+//        print(url.absoluteString)
+//        
+//    }
     
-    [webViewSSO setHidden:NO];
-    if (isRequestLoaded) {
-        [webViewSSO setHidden:YES];
-    }
     if(isCertificateError)
     {
         [self.view bringSubviewToFront:spinnerView];
@@ -254,14 +264,14 @@
         NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:Nil];
         
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:[NSURLRequest requestWithURL:request.URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:[NSURLRequest requestWithURL:navigationAction.request.URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0]
                                                 completionHandler:
                                       ^(NSData *data, NSURLResponse *response, NSError *error) {
                                           // ...
                                           if (response) {
 //                                              NSMutableData* receivedData = [NSMutableData data];
-//                                              NSString *str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-//                                              NSLog(@"Response : %@", str);
+                                              //                                              NSString *str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+                                              //                                              NSLog(@"Response : %@", str);
                                               
                                               
                                           }
@@ -273,12 +283,92 @@
                                       }];
         
         [task resume];
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+       
     }
-    return YES;
+    else
+    {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+    
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation
+{
+    [self.view bringSubviewToFront:spinnerView];
+   // DebugLog(@"SSO | webViewDidStartLoadUrl - %@",webView.request.URL);
+    
+    if(formSubmitted==WKNavigationTypeFormSubmitted)
+        isRequestLoaded=YES;
+    
+    //    if ([[NSString stringWithFormat:@"%@",webView.request.URL] rangeOfString:@"affwebservices/public/saml2sso?"].location != NSNotFound) {
+    //        isRequestLoaded=YES;
+    //    }
+    
+    //Start timer
+    webViewTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:CONNECTION_TIMEOUT target:self selector:@selector(webViewConnectionTimedOut) userInfo:nil repeats:NO];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation
+{
+    [webViewTimeoutTimer invalidate];
+    
+    DebugLog(@"SSO | webViewDidFinishLoad | Url - %@",webView.URL);
+    [webView evaluateJavaScript:@"document.documentElement.outerHTML" completionHandler:^(id result, NSError * _Nullable error) {
+        if (error==nil) {
+            DebugLog(@"SSO Url Loaded in Web view %@",result);
+        } else {
+            DebugLog(@"SSO Url Loaded in Web view %@",error);
+        }
+    }];
+    
+    isConnectionInProgress=FALSE;
+    
+    [self.view bringSubviewToFront:webViewSSO];
+    
+    //Second Time if Certificate is Already Authenticated then it will go to Tomcat Page So check whether Url Contains openToken then we are successfully logged in
+    
+    if ([[NSString stringWithFormat:@"%@",webViewSSO.URL] rangeOfString:@"opentoken"].location != NSNotFound ) {
+        
+        DebugLog(@"SSO | webViewDidFinishLoad | Certificate Already Authenticated");
+        SSOToken=[NSString stringWithFormat:@"%@",[[webView.URL query] substringFromIndex:10]];
+        
+        if(SSOToken!=nil && SSOToken.length!=0)
+        {
+            if(iSLiveApp)
+            {
+                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                [appDelegate updateZipLovDatabase];
+            }
+            
+            [self dismissSSOView];
+            [self.delegate ssoLoginisSucessFul:YES withCallbackParameters:[NSDictionary dictionaryWithObjectsAndKeys:SSOToken,@"SSOToken", nil]];
+        }
+        else
+        {
+            //Error While getting Token SHow User messgae
+            [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED_NO_TOKEN withDelegate:self];
+            [self loadSSOPage];
+        }
+        
+    }
+    else if([[NSString stringWithFormat:@"%@",webView.URL] rangeOfString:@"bms_authenfailed.html"].location != NSNotFound)
+    {
+        
+        ////https://smusxath.bms.com/public/bms_authenfailed.html
+        //Error While getting Token SHow User messgae
+        [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED withDelegate:self];
+        [self loadSSOPage];
+    }
+//    else if([html rangeOfString:@"The following error occurred"].location != NSNotFound)
+//    {
+//        [webViewSSO setHidden:NO];
+//        [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED withDelegate:self];
+//        [self loadSSOPage];
+//    }
+
+}
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error
 {
     [webViewTimeoutTimer invalidate];
     
@@ -319,7 +409,7 @@
             
             DebugLog(@"SSO Token -  %@",SSOToken);
         }
-        else 
+        else
         {
             //Do not show error alert view if it is due to cancellation of loadRequest. Timeout error will be shown at point of cancellation.
             if(error.code == kCFURLErrorCancelled)
@@ -332,14 +422,14 @@
             //Modify error description if error is of type No Internet connection
             if(error.code == kCFURLErrorNotConnectedToInternet)
             {
-           
+                
                 errorDescription = [errorDescription stringByAppendingString:[NSString stringWithFormat:@" %@", ERROR_NO_INTERNET_CONNECTION_RETRY]];
             }
             else
             {
-                   
-                 errorDescription = [errorDescription stringByAppendingString:[NSString stringWithFormat:@" %@", ERROR_UNKNOWN_PLEASE_RETRY]];
-//                errorDescription = ERROR_UNKNOWN_PLEASE_RETRY;
+                
+                errorDescription = [errorDescription stringByAppendingString:[NSString stringWithFormat:@" %@", ERROR_UNKNOWN_PLEASE_RETRY]];
+                //                errorDescription = ERROR_UNKNOWN_PLEASE_RETRY;
             }
             
             //Append 'Retry' to alert view title; to be removed while diplaying alert view
@@ -357,60 +447,11 @@
     {
         isConnectionInProgress=TRUE;
     }
+
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [webViewTimeoutTimer invalidate];
-    
-    DebugLog(@"SSO | webViewDidFinishLoad | Url - %@",webView.request.URL);
-    NSString *html = [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
-    DebugLog(@"SSO Url Loaded in Web view %@",html);
-    isConnectionInProgress=FALSE;
-    
-    [self.view bringSubviewToFront:webViewSSO];
-    
-    //Second Time if Certificate is Already Authenticated then it will go to Tomcat Page So check whether Url Contains openToken then we are successfully logged in
-    
-    if ([[NSString stringWithFormat:@"%@",webView.request.URL] rangeOfString:@"opentoken"].location != NSNotFound ) {
-        
-        DebugLog(@"SSO | webViewDidFinishLoad | Certificate Already Authenticated");
-        SSOToken=[NSString stringWithFormat:@"%@",[[webView.request.URL query] substringFromIndex:10]];
-        
-        if(SSOToken!=nil && SSOToken.length!=0)
-        {
-            if(iSLiveApp)
-            {
-                AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                [appDelegate updateZipLovDatabase];
-            }
-            
-            [self dismissSSOView];
-            [self.delegate ssoLoginisSucessFul:YES withCallbackParameters:[NSDictionary dictionaryWithObjectsAndKeys:SSOToken,@"SSOToken", nil]];
-        }
-        else
-        {
-            //Error While getting Token SHow User messgae
-            [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED_NO_TOKEN withDelegate:self];
-            [self loadSSOPage];
-        }
 
-    }
-    else if([[NSString stringWithFormat:@"%@",webView.request.URL] rangeOfString:@"bms_authenfailed.html"].location != NSNotFound)
-    {
-        
-        ////https://smusxath.bms.com/public/bms_authenfailed.html
-        //Error While getting Token SHow User messgae
-        [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED withDelegate:self];
-        [self loadSSOPage];
-    }
-    else if([html rangeOfString:@"The following error occurred"].location != NSNotFound)
-    {
-        [webViewSSO setHidden:NO];
-        [Utilities displayErrorAlertWithTitle:SSO_AUTHENTICATION_STRING andErrorMessage:ERROR_SSO_AUTHENTICATION_FAILED withDelegate:self];
-        [self loadSSOPage];
-    }
-}
+
 #pragma mark -
 
 #pragma mark Connection Delegates
@@ -551,7 +592,6 @@ didReceiveResponse:(NSURLResponse *)response
 }
 #pragma mark -
 
-/*Add UIAlertController
 #pragma mark UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -574,25 +614,6 @@ didReceiveResponse:(NSURLResponse *)response
         [self.view bringSubviewToFront:spinnerView];
     }
 }
-*/
-
--(void)userSessionTimeoutRetry
-{
-    ConnectionClass *connection = [ConnectionClass sharedSingleton];
-    [connection fetchDataFromUrl:[SSO_URL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] withParameters:nil forConnectionIdentifier:@"SSORedirect" andConnectionCallback:^(NSMutableData* data, NSString* identifier, NSString* error)
-     {
-         //CallBack Block
-         if(!error)
-         {
-             [self receiveDataFromServer:data ofCallIdentifier:identifier];
-         }
-         else
-         {
-             [self failWithError:error ofCallIdentifier:identifier];
-         }
-     }];
-    
-    [self.view bringSubviewToFront:spinnerView];
-}
+#pragma mark -
 
 @end
