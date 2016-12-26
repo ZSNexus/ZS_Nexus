@@ -173,10 +173,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
 #pragma mark -
 
 #pragma mark Initialise LOV Data
@@ -1036,7 +1032,7 @@
     [self updateSearchResultsForSearchController:self.searchController];
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     // This will create a "invisible" footer
     return 0.01f;
 }

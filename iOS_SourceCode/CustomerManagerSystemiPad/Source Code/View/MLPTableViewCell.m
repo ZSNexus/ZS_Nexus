@@ -36,9 +36,4 @@
     // Configure the view for the selected state
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
-
 @end

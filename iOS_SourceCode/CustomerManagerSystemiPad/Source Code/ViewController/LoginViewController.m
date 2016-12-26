@@ -167,11 +167,6 @@
                                                   object:nil];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

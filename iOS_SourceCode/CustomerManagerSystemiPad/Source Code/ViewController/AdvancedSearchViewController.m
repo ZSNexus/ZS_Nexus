@@ -171,10 +171,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
-}
+
 #pragma mark -
 
 #pragma mark UI Actions

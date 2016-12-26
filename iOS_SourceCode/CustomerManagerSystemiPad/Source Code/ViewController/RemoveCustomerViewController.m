@@ -334,21 +334,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-}
-
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return (UIInterfaceOrientationMaskLandscape);
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -2257,9 +2242,10 @@
                             cell.responseLabel.text=customerAddressRemovalStatus;
                             
                             [cell.responseLabel setTextColor:[UIColor redColor]];
+                            break;
                         }
                         
-                        break;
+//                        break;
                         
                     }
                    
