@@ -195,9 +195,6 @@
 		DBEDBBFB17744F62007D3941 /* detail_right_big.png in Resources */ = {isa = PBXBuildFile; fileRef = DBEDBBF917744F62007D3941 /* detail_right_big.png */; };
 		DBEDBBFC17744F62007D3941 /* list_popup.png in Resources */ = {isa = PBXBuildFile; fileRef = DBEDBBFA17744F62007D3941 /* list_popup.png */; };
 		DBEF053A1771F06A0062E636 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEF05391771F06A0062E636 /* AppDelegate.m */; };
-		DBEF05541771F0AB0062E636 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBEF053D1771F0AA0062E636 /* Default-568h@2x.png */; };
-		DBEF05551771F0AB0062E636 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DBEF053E1771F0AA0062E636 /* Default.png */; };
-		DBEF05561771F0AB0062E636 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBEF053F1771F0AA0062E636 /* Default@2x.png */; };
 		DBEF05571771F0AB0062E636 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBEF05411771F0AA0062E636 /* InfoPlist.strings */; };
 		DBEF05581771F0AB0062E636 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEF05431771F0AB0062E636 /* main.m */; };
 		DBEF05591771F0AB0062E636 /* AddCustomerCustomCellSearchTwo.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBEF05451771F0AB0062E636 /* AddCustomerCustomCellSearchTwo.xib */; };
@@ -508,9 +505,6 @@
 		DBEF05391771F06A0062E636 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DBEF053B1771F0AA0062E636 /* CustomerManagerSystemiPad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CustomerManagerSystemiPad-Info.plist"; path = "Supporting Files/CustomerManagerSystemiPad-Info.plist"; sourceTree = "<group>"; };
 		DBEF053C1771F0AA0062E636 /* CustomerManagerSystemiPad-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CustomerManagerSystemiPad-Prefix.pch"; path = "Supporting Files/CustomerManagerSystemiPad-Prefix.pch"; sourceTree = "<group>"; };
-		DBEF053D1771F0AA0062E636 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Supporting Files/Default-568h@2x.png"; sourceTree = "<group>"; };
-		DBEF053E1771F0AA0062E636 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "Supporting Files/Default.png"; sourceTree = "<group>"; };
-		DBEF053F1771F0AA0062E636 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Supporting Files/Default@2x.png"; sourceTree = "<group>"; };
 		DBEF05421771F0AA0062E636 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		DBEF05431771F0AB0062E636 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
 		DBEF05451771F0AB0062E636 /* AddCustomerCustomCellSearchTwo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCustomerCustomCellSearchTwo.xib; sourceTree = "<group>"; };
@@ -931,9 +925,6 @@
 			children = (
 				DBEF053B1771F0AA0062E636 /* CustomerManagerSystemiPad-Info.plist */,
 				DBEF053C1771F0AA0062E636 /* CustomerManagerSystemiPad-Prefix.pch */,
-				DBEF053D1771F0AA0062E636 /* Default-568h@2x.png */,
-				DBEF053E1771F0AA0062E636 /* Default.png */,
-				DBEF053F1771F0AA0062E636 /* Default@2x.png */,
 				DBEF05431771F0AB0062E636 /* main.m */,
 				DBEF05401771F0AA0062E636 /* en.lproj */,
 				DBEF05441771F0AB0062E636 /* Xib */,
@@ -1322,13 +1313,10 @@
 				770337881B95AD7A00DD3CD5 /* approve_selected@2x.png in Resources */,
 				DB8B02571769CFB30098191A /* Roboto-Thin.ttf in Resources */,
 				DB8B02581769CFB30098191A /* Roboto-ThinItalic.ttf in Resources */,
-				DBEF05541771F0AB0062E636 /* Default-568h@2x.png in Resources */,
 				77FD0D0D1ACC411F00FDA54C /* detail_right_big@2x.png in Resources */,
 				77FD0CF81ACC411F00FDA54C /* btn_logout@2x.png in Resources */,
 				77FD0D1A1ACC411F00FDA54C /* requests_selected@2x.png in Resources */,
-				DBEF05551771F0AB0062E636 /* Default.png in Resources */,
 				77FD0CED1ACC411F00FDA54C /* bottom_bar@2x.png in Resources */,
-				DBEF05561771F0AB0062E636 /* Default@2x.png in Resources */,
 				DBEF05571771F0AB0062E636 /* InfoPlist.strings in Resources */,
 				77FD0D0B1ACC411F00FDA54C /* clear_btn@2x.png in Resources */,
 				77FD0D121ACC411F00FDA54C /* info_blue_btn@2x.png in Resources */,
