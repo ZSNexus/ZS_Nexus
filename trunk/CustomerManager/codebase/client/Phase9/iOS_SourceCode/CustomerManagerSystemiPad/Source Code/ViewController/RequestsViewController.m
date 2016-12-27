@@ -27,7 +27,6 @@
 #import "TicketIdContentViewController.h"
 #import "RequestAddressCell.h"
 #import "RequestStatusCell.h"
-#import "MLPModalViewController.h"
 #import "RemoveAddressRequestStatusCell.h"
 #import "DealignBPA.h"
 
@@ -721,7 +720,7 @@
     customModalViewController.view.frame=CGRectMake(customModalViewController.view.frame.origin.x, offset, customModalViewController.view.frame.size.width, customModalViewController.view.frame.size.height);
     
     //Set Customer Data Delegate Delegate
-    customModalViewController.customTableViewController.customerDataDelegate = self;
+    customModalViewController.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     customModalViewController.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForRequest];
     
     //Do any UI changes after frame set
@@ -1368,7 +1367,7 @@
     }
     
     mlpModalviewController = [[MLPModalViewController alloc] initWithNibName:@"MLPModalViewController" bundle:nil];
-    self.mlpModalviewController.duplicateAddressDataDelegate = (id)self;
+    self.mlpModalviewController.duplicateAddressDataOfMLPModalViewDelegate = (id)self;
     
     CGFloat offset = CGRectGetMaxY(self.navigationItem.titleView.frame) + mlpModalviewController.view.frame.size.height;
     mlpModalviewController.view.frame=CGRectMake(mlpModalviewController.view.frame.origin.x, offset, mlpModalviewController.view.frame.size.width, mlpModalviewController.view.frame.size.height);
@@ -1405,7 +1404,7 @@
     
     
     //Set data
-    mlpModalviewController.customTableViewController.customerDataDelegate = self;
+    mlpModalviewController.customTableViewController.customerDataOfMLPModalViewDelegate = self;
     mlpModalviewController.customTableViewController.isIndividual = [[DataManager sharedObject]
                                                                      isIndividualSegmentSelectedForAddCustomer];
     mlpModalviewController.customTableViewController.dataArray = [[NSArray alloc] init];

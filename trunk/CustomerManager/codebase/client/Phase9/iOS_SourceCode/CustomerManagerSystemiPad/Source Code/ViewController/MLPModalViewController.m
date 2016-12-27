@@ -61,7 +61,7 @@
 @synthesize cdfFLagMasterIdString;
 @synthesize cdfFLagNPIString;
 @synthesize responseArrayForCDF;
-@synthesize mlpSearchPDelegate;
+@synthesize mlpSearchPOfMLPModalViewDelegate;
 @synthesize allFlagsDMessage;
 @synthesize isAllFlagD;
 
@@ -143,8 +143,8 @@
     cdfFLagNPIString = npiValue;
     
     
-    if ([self.cdfProtocolDataDelegate respondsToSelector:@selector(setUpCDFFLagScreenwithName:primarySpeciality:secondarySpeciality:masterID:andNPI:)]) {
-        [self.cdfProtocolDataDelegate setUpCDFFLagScreenwithName:name primarySpeciality:primarySpe secondarySpeciality:secondarySpe masterID:bpaId andNPI:npiValue];
+    if ([self.cdfProtocolDataOfMLPModalViewDelegate respondsToSelector:@selector(setUpCDFFLagScreenwithName:primarySpeciality:secondarySpeciality:masterID:andNPI:)]) {
+        [self.cdfProtocolDataOfMLPModalViewDelegate setUpCDFFLagScreenwithName:name primarySpeciality:primarySpe secondarySpeciality:secondarySpe masterID:bpaId andNPI:npiValue];
     }
     //instead make  call to fetchdata and in receive response call showCDFFLagscreen method
     //--[self showCDFFLagScreen];
@@ -156,8 +156,8 @@
 -(void)affiliateMLP
 {
     //call parent from here
-    if ([self.cdfProtocolDataDelegate respondsToSelector:@selector(affiliateMLPRequestWithString:)]) {
-        [self.cdfProtocolDataDelegate affiliateMLPRequestWithString:cdfFLagMasterIdString];
+    if ([self.cdfProtocolDataOfMLPModalViewDelegate respondsToSelector:@selector(affiliateMLPRequestWithString:)]) {
+        [self.cdfProtocolDataOfMLPModalViewDelegate affiliateMLPRequestWithString:cdfFLagMasterIdString];
     }
 }
 
@@ -316,8 +316,8 @@
                     [reasonString appendString:[NSString stringWithFormat:@",%@", [item objectForKey:@"bpaId"]]];
                     //count++;
                 }
-                if ([self.duplicateAddressDataDelegate respondsToSelector:@selector(getDuplicateAddressRemovalReasonWithString:)]) {
-                    [self.duplicateAddressDataDelegate getDuplicateAddressRemovalReasonWithString:reasonString];
+                if ([self.duplicateAddressDataOfMLPModalViewDelegate respondsToSelector:@selector(getDuplicateAddressRemovalReasonWithString:)]) {
+                    [self.duplicateAddressDataOfMLPModalViewDelegate getDuplicateAddressRemovalReasonWithString:reasonString];
                 }
             }]];
             [alertController addAction:[UIAlertAction actionWithTitle:NO_STRING style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -338,8 +338,8 @@
 - (IBAction)click_search:(id)sender {
     if([customTableViewController.popUpScreenTitle isEqualToString:MLP_SCREEN])
     {
-        if ([self.mlpSearchPDelegate respondsToSelector:@selector(dismissSearchPage)]) {
-            [self.mlpSearchPDelegate dismissSearchPage];
+        if ([self.mlpSearchPOfMLPModalViewDelegate respondsToSelector:@selector(dismissSearchPage)]) {
+            [self.mlpSearchPOfMLPModalViewDelegate dismissSearchPage];
         }
     }
     else

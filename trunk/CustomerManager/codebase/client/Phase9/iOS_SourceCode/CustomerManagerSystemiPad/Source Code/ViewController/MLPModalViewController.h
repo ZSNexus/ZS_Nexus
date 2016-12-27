@@ -12,20 +12,20 @@
 #import "MLPModalTableTableTableViewController.h"
 #import "CDFFlagModalViewController.h"
 
-@protocol DuplicateAddressRemovalProtocol <NSObject>
+@protocol DuplicateAddressRemovalOfMLPModalViewProtocol <NSObject>
 
 -(void) getDuplicateAddressRemovalReasonWithString:(NSString *)removalReasonString;
 
 @end
 
-@protocol CDFFlagForMLPProtocol <NSObject>
+@protocol CDFFlagForMLPOfMLPModalViewProtocol <NSObject>
 
 -(void) setUpCDFFLagScreenwithName:(NSString *)name primarySpeciality:(NSString *)primarySpe secondarySpeciality:(NSString *)secondarySpe masterID:(NSString *)bpaId andNPI:(NSString *)npiValue;
 -(void)affiliateMLPRequestWithString:(NSString*)masterID;
 
 @end
 
-@protocol MLPSearchPageProtocol <NSObject>
+@protocol MLPSearchPageOfMLPModalViewProtocol <NSObject>
 
 -(void)dismissSearchPage;
 @end
@@ -35,9 +35,9 @@
     IBOutlet UIView      *topBarView;
 }
 
-@property (nonatomic, strong) id<DuplicateAddressRemovalProtocol> duplicateAddressDataDelegate;
-@property (nonatomic, strong) id<CDFFlagForMLPProtocol> cdfProtocolDataDelegate;
-@property (nonatomic, strong) id<MLPSearchPageProtocol> mlpSearchPDelegate;
+@property (nonatomic, strong) id<DuplicateAddressRemovalOfMLPModalViewProtocol> duplicateAddressDataOfMLPModalViewDelegate;
+@property (nonatomic, strong) id<CDFFlagForMLPOfMLPModalViewProtocol> cdfProtocolDataOfMLPModalViewDelegate;
+@property (nonatomic, strong) id<MLPSearchPageOfMLPModalViewProtocol> mlpSearchPOfMLPModalViewDelegate;
 @property(nonatomic,retain) CDFFlagModalViewController *cdfFlagModalviewController;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic ,strong) IBOutlet UILabel *subTitleLabel;

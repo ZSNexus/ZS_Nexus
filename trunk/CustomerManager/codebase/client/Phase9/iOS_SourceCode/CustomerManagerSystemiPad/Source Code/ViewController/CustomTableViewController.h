@@ -14,11 +14,16 @@
 #import "DatePickerViewController.h"
 #import "RequestObject.h"
 
-@protocol CustomerDataDelegate
+@protocol CustomerDataOfCustomTableViewDelegate
+
+@required
 -(void)processCustomerData:(NSArray *)data forIdentifier:(NSString*)identifier;
 -(void)displayErrorMessage:(NSString *)errorMsg;
+
+@optional
 -(void)getCurrentScreenName:(BOOL)isSearchAffiliationPage withMasterId:(NSString*)masterId;
 -(void)showSearchError;
+
 @end
 
 
@@ -34,7 +39,7 @@
     NSIndexPath         *m_selectedIndexPath;
 }
 
-@property (nonatomic, assign) id<CustomerDataDelegate> customerDataDelegate;
+@property (nonatomic, assign) id<CustomerDataOfCustomTableViewDelegate> customerDataOfCustomTableViewDelegate;
 @property (nonatomic, assign) id<TextFiledEventsProtocol> textFieldEventsDelegate;
 @property (nonatomic, strong) UITextField *activeTextField;
 @property (nonatomic, strong) NSMutableDictionary *inputTableDataDict;

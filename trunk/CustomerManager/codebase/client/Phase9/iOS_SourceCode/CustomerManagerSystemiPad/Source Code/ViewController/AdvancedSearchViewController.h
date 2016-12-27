@@ -11,7 +11,7 @@
 #import "ConnectionClass.h"
 #import "CustomTableViewController.h"
 
-@interface AdvancedSearchViewController : UIViewController<ListViewCustomDelegate, UIPopoverControllerDelegate, CustomerDataDelegate>
+@interface AdvancedSearchViewController : UIViewController<ListViewCustomDelegate,  UIPopoverControllerDelegate, CustomerDataOfCustomTableViewDelegate>
 
 @property (nonatomic, strong) CustomTableViewController *customTableViewController;
 @property (nonatomic, strong) IBOutlet UIView *tableContainerView;

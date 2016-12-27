@@ -25,7 +25,6 @@
 #import "LOVData.h"
 #import "CustomerInfoCell.h"
 #import "PopOverContentViewController.h"
-#import "MLPAddressViewController.h"
 
 @interface RemoveCustomerViewController ()
 {
@@ -114,7 +113,7 @@
 -(IBAction)clickSubmitForRemoval:(id)sender;
 -(void)clickRemoveAddress:(id)sender;
 -(void)clickMap:(id)sender;
--(IBAction)clickInfoCustomerRemoval:(NSString*)senderata;
+//-(IBAction)clickInfoCustomerRemoval:(NSString*)senderata;
 // Display BU/Team/Terr selection page on button click
 -(void)loadBuTeamTerrSelectionView;
 @end
@@ -442,7 +441,7 @@
     customModalViewController.view.frame=CGRectMake(customModalViewController.view.frame.origin.x, offset, customModalViewController.view.frame.size.width, customModalViewController.view.frame.size.height);
     
     //Set Delegate
-    customModalViewController.customTableViewController.customerDataDelegate = self;
+    customModalViewController.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     customModalViewController.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForRemoveCustomer];
     
     //Do any required UI changes after frame set
@@ -635,7 +634,7 @@
     [Utilities removeSpinnerFromView:self.view];
     
     //Set data
-    mlpModalviewController.customTableViewController.customerDataDelegate = self;
+    mlpModalviewController.customTableViewController.customerDataOfMLPModalViewDelegate = self;
     mlpModalviewController.customTableViewController.isIndividual = [[DataManager sharedObject]isIndividualSegmentSelectedForAddCustomer];
     mlpModalviewController.customTableViewController.dataArray = [[NSArray alloc] init];
     mlpModalviewController.customTableViewController.popUpScreenTitle = DUPLICATE_ADDRESS_SCREEN;

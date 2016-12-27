@@ -72,7 +72,7 @@
 
 - (IBAction)click_search:(id)sender;
 -(IBAction)click_SelectAll:(id)sender;
--(IBAction)click_Reset:(id)sender;
+//-(IBAction)click_Reset:(id)sender;
 -(IBAction) click_Cancel:(id)sender;
 
 -(void)displayErrorMessage:(NSString*)errorMsg;

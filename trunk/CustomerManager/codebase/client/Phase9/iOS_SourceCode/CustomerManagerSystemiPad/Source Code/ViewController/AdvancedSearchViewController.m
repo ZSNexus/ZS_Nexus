@@ -128,7 +128,7 @@
     self.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForAddCustomer];
     
     //Set data delegate for table
-    self.customTableViewController.customerDataDelegate = self;
+    self.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     
     //Add target to search button
     [searchButton addTarget:self.customTableViewController action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];

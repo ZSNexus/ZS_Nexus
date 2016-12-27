@@ -11,6 +11,6 @@
 #import "ConnectionClass.h"
 #import "CustomModalViewController.h"
 
-@interface AddCustomerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ListViewCustomDelegate,UIPopoverControllerDelegate,CustomerDataDelegate,UIAlertViewDelegate>
+@interface AddCustomerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate,CustomerDataOfCustomTableViewDelegate, UIAlertViewDelegate>
 
 @end

@@ -12,7 +12,8 @@
 #import "CustomModalViewController.h"
 #import "MLPModalViewController.h"
 #import "CDFFlagModalViewController.h"
-@interface AddCustomerSearchDetailsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,ListViewCustomDelegate,UIPopoverControllerDelegate, CustomerDataDelegate,CDFFlagForMLPProtocol, MLPSearchPageProtocol>
+
+@interface AddCustomerSearchDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate, CDFFlagForMLPOfMLPModalViewProtocol, MLPSearchPageOfMLPModalViewProtocol>
 
 @property(nonatomic,retain) NSMutableDictionary* searchParameters;
 @property(nonatomic,retain)NSArray* custData;

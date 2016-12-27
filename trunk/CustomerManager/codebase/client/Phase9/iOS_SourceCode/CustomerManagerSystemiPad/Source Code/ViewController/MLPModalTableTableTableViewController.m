@@ -40,7 +40,7 @@
 
 @implementation MLPModalTableTableViewController
 
-@synthesize customerDataDelegate;
+@synthesize customerDataOfMLPModalViewDelegate;
 @synthesize inputTableDataDict;
 @synthesize sectionArray;
 @synthesize rowArray;
@@ -155,7 +155,7 @@
 -(void)searchButtonAction
 {
     //Clear error message on table view container
-    [self.customerDataDelegate displayErrorMessage:nil];
+    [self.customerDataOfMLPModalViewDelegate displayErrorMessage:nil];
     
     //Save textField value which is currently being updated
     if(self.activeTextField != nil)
@@ -194,17 +194,17 @@
         
         if(self.requestObject)
         {
-            [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.requestObject, nil] forIdentifier:callBackIdentifier];
+            [self.customerDataOfMLPModalViewDelegate processCustomerData:[NSArray arrayWithObjects:self.requestObject, nil] forIdentifier:callBackIdentifier];
         }
         else
         {
             if(self.isIndividual)   // Individual
             {
-                [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.customerDataObject, nil] forIdentifier:callBackIdentifier];
+                [self.customerDataOfMLPModalViewDelegate processCustomerData:[NSArray arrayWithObjects:self.customerDataObject, nil] forIdentifier:callBackIdentifier];
             }
             else // Organization
             {
-                [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.orgDataObject, nil] forIdentifier:callBackIdentifier];
+                [self.customerDataOfMLPModalViewDelegate processCustomerData:[NSArray arrayWithObjects:self.orgDataObject, nil] forIdentifier:callBackIdentifier];
             }}
     }
 }
@@ -357,9 +357,9 @@
         }
         
         //Add Google Map Touch Event
-        UITapGestureRecognizer* tapGestMap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMap:)];
-        [tapGestMap setNumberOfTapsRequired:1];
-        [cell.imageType addGestureRecognizer:tapGestMap];
+//        UITapGestureRecognizer* tapGestMap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMap:)];
+//        [tapGestMap setNumberOfTapsRequired:1];
+//        [cell.imageType addGestureRecognizer:tapGestMap];
         [cell.add1 setFont:[UIFont fontWithName:@"Roboto-Bold" size:14.0]];
         [cell.add1 setTextColor:[UIColor darkGrayColor]];
         //    [cell.add1 setTextColor:THEME_COLOR];
@@ -380,7 +380,7 @@
         
         //Add To territoryButton
         [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory.png"] forState:UIControlStateNormal];
-        [cell.addTerritoryBtn addTarget:self action:@selector(clickAddTerritory:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.addTerritoryBtn addTarget:self action:@selector(clickAddTerritory:) forControlEvents:UIControlEventTouchUpInside];
         //error Label
         [cell.responseLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:14.0]];
         [cell.responseLabel setTextColor:[UIColor redColor]];
@@ -399,7 +399,7 @@
         
         [cell.moreInfoLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:14.0]];
         [cell.moreInfoLabel setTextColor:[UIColor grayColor]];
-        [cell.moreInfoButton addTarget:self action:@selector(showMoreAddressInfo:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.moreInfoButton addTarget:self action:@selector(showMoreAddressInfo:) forControlEvents:UIControlEventTouchUpInside];
         
         cell.tag=indexPath.row;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -459,8 +459,8 @@
 //        }
         
         //Add Google Map Touch Event
-        UITapGestureRecognizer* tapGestMap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMap:)];
-        [tapGestMap setNumberOfTapsRequired:1];
+//        UITapGestureRecognizer* tapGestMap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMap:)];
+//        [tapGestMap setNumberOfTapsRequired:1];
        
         [cell.masterId setFont:[UIFont fontWithName:@"Roboto-Regular" size:14.0]];
         [cell.masterId setTextColor:[UIColor blackColor]];
@@ -1074,14 +1074,14 @@
         {
             if(self.searchParameters.count==0)
             {
-                [self.customerDataDelegate displayErrorMessage:ERROR_SEARCH_FORM_NO_FIELD_ENTERED];  //Ref: R-SCO-0022
+                [self.customerDataOfMLPModalViewDelegate displayErrorMessage:ERROR_SEARCH_FORM_NO_FIELD_ENTERED];  //Ref: R-SCO-0022
                 return NO;
             }
             else if(self.searchParameters.count==1)
             {
                 if([self.searchParameters objectForKey:STATE_KEY])
                 {
-                    [self.customerDataDelegate displayErrorMessage:ERROR_SEARCH_FORM_ONLY_STATE_IS_ENTERED];  //Ref: R-SCO-0022
+                    [self.customerDataOfMLPModalViewDelegate displayErrorMessage:ERROR_SEARCH_FORM_ONLY_STATE_IS_ENTERED];  //Ref: R-SCO-0022
                     return NO;
                 }
             }

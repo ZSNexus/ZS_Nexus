@@ -10,7 +10,7 @@
 #import "ListViewController.h"
 #import "SSOViewController.h"
 
-@interface SelectTerritoryLoginViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITabBarControllerDelegate,ListViewCustomDelegate,UIPopoverControllerDelegate,UITextFieldDelegate,SSOCustomDelegate>
+@interface SelectTerritoryLoginViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITabBarControllerDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, UITextFieldDelegate>
 {
     NSIndexPath         *m_selectedIndexPath;
 }
