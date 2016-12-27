@@ -47,7 +47,7 @@
 
 @implementation CustomTableViewController
 
-@synthesize customerDataDelegate;
+@synthesize customerDataOfCustomTableViewDelegate;
 @synthesize inputTableDataDict;
 @synthesize sectionArray;
 @synthesize rowArray;
@@ -194,7 +194,7 @@
 {
     [searchParameters removeAllObjects];
     //Clear error message on table view container
-    [self.customerDataDelegate displayErrorMessage:nil];
+    [self.customerDataOfCustomTableViewDelegate displayErrorMessage:nil];
     
     if([currentScreen isEqualToString:@"Align To Territory"])
     {
@@ -230,21 +230,21 @@
             }
             if((firstNameinTable.length ==0) || (lastNameinTable.length ==0) || (stateinTable.length ==0))
             {
-                [self.customerDataDelegate showSearchError];
+                [self.customerDataOfCustomTableViewDelegate showSearchError];
                 return;
             }
         }
         
         //@"Enter all the fields in Name section or enter any one id"
         //[self.customerDataDelegate displayErrorMessage:ERROR_SEARCH_FORM_NO_FIELD_ENTERED];
-        [self.customerDataDelegate getCurrentScreenName:YES withMasterId:masterIdclear];
+        [self.customerDataOfCustomTableViewDelegate getCurrentScreenName:YES withMasterId:masterIdclear];
     }
     else
     {
         if([currentScreen isEqualToString:@"Add Refine Search"])
         {
             isCreateAffiliationSearchPage = NO;
-            [self.customerDataDelegate getCurrentScreenName:NO withMasterId:masterIdclear];
+            [self.customerDataOfCustomTableViewDelegate getCurrentScreenName:NO withMasterId:masterIdclear];
         }
     }
     
@@ -287,17 +287,17 @@
         
         if(self.requestObject)
         {
-            [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.requestObject, nil] forIdentifier:callBackIdentifier];
+            [self.customerDataOfCustomTableViewDelegate processCustomerData:[NSArray arrayWithObjects:self.requestObject, nil] forIdentifier:callBackIdentifier];
         }
         else
         {
             if(self.isIndividual)   // Individual
             {
-                [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.customerDataObject, nil] forIdentifier:callBackIdentifier];
+                [self.customerDataOfCustomTableViewDelegate processCustomerData:[NSArray arrayWithObjects:self.customerDataObject, nil] forIdentifier:callBackIdentifier];
             }
             else // Organization
             {
-                [self.customerDataDelegate processCustomerData:[NSArray arrayWithObjects:self.orgDataObject, nil] forIdentifier:callBackIdentifier];
+                [self.customerDataOfCustomTableViewDelegate processCustomerData:[NSArray arrayWithObjects:self.orgDataObject, nil] forIdentifier:callBackIdentifier];
             }}
     }
 }
@@ -1244,14 +1244,14 @@
         {
             if(self.searchParameters.count==0)
             {
-                [self.customerDataDelegate displayErrorMessage:ERROR_SEARCH_FORM_NO_FIELD_ENTERED];  //Ref: R-SCO-0022
+                [self.customerDataOfCustomTableViewDelegate displayErrorMessage:ERROR_SEARCH_FORM_NO_FIELD_ENTERED];  //Ref: R-SCO-0022
                 return NO;
             }
             else if(self.searchParameters.count==1)
             {
                 if([self.searchParameters objectForKey:STATE_KEY])
                 {
-                    [self.customerDataDelegate displayErrorMessage:ERROR_SEARCH_FORM_ONLY_STATE_IS_ENTERED];  //Ref: R-SCO-0022
+                    [self.customerDataOfCustomTableViewDelegate displayErrorMessage:ERROR_SEARCH_FORM_ONLY_STATE_IS_ENTERED];  //Ref: R-SCO-0022
                     return NO;
                 }
             }

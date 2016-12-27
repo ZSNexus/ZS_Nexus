@@ -13,7 +13,7 @@
 #import "MLPModalViewController.h"
 #import "CDFFlagModalViewController.h"
 
-@interface ApproveCustomerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIPopoverControllerDelegate,ListViewCustomDelegate,CustomerDataDelegate,UIAlertViewDelegate,DuplicateAddressRemovalProtocol,CDFFlagForMLPProtocol, MLPSearchPageProtocol>
+@interface ApproveCustomerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, UIPopoverControllerDelegate, UIAlertViewDelegate, ListViewCustomDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate,DuplicateAddressRemovalOfMLPModalViewProtocol, CDFFlagForMLPOfMLPModalViewProtocol, MLPSearchPageOfMLPModalViewProtocol>
 
 
 @end

@@ -13,16 +13,19 @@
 #import "DatePickerViewController.h"
 #import "RequestObject.h"
 
-@protocol CustomerDataDelegate
+@protocol CustomerDataOfMLPModalViewDelegate
 -(void)processCustomerData:(NSArray *)data forIdentifier:(NSString*)identifier;
 -(void)displayErrorMessage:(NSString *)errorMsg;
 @end
 
 @protocol MLPFlagProtocol <NSObject>
 
+@required
+-(void) callFlagScreenwithName:(NSString *)name primarySpeciality:(NSString *)primarySpe secondarySpeciality:(NSString *)secondarySpe masterID:(NSString *)bpaId andNPI:(NSString *)npiValue;
+
+@optional
 //-(void)callFlagScreen;
 -(void) addressCount:(NSInteger)selectedAddrCount from:(NSInteger)allAddrCount;
--(void) callFlagScreenwithName:(NSString *)name primarySpeciality:(NSString *)primarySpe secondarySpeciality:(NSString *)secondarySpe masterID:(NSString *)bpaId andNPI:(NSString *)npiValue;
 
 @end
 
@@ -31,7 +34,7 @@
     NSIndexPath         *m_selectedIndexPath;
 }
 
-@property (nonatomic, assign) id<CustomerDataDelegate> customerDataDelegate;
+@property (nonatomic, assign) id<CustomerDataOfMLPModalViewDelegate> customerDataOfMLPModalViewDelegate;
 @property (nonatomic, strong) id<MLPFlagProtocol> mlpDataDelegate;
 @property (nonatomic, strong) UITextField *activeTextField;
 @property (nonatomic, strong) NSMutableDictionary *inputTableDataDict;

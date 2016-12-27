@@ -920,7 +920,7 @@
     customModalViewController.view.frame=CGRectMake(customModalViewController.view.frame.origin.x, offset, customModalViewController.view.frame.size.width, customModalViewController.view.frame.size.height);
     
     //Set Data
-    customModalViewController.customTableViewController.customerDataDelegate = self;
+    customModalViewController.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     customModalViewController.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForAddCustomer];
     
     //Do any required UI changes after frame set

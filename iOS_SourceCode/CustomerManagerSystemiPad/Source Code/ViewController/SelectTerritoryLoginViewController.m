@@ -388,10 +388,10 @@
 
 -(void)loadSSO
 {
-    SSOViewController * ssoView=[[SSOViewController alloc]initWithNibName:@"SSOViewController" bundle:nil withParameters:nil];
+    /*SSOViewController * ssoView=[[SSOViewController alloc]initWithNibName:@"SSOViewController" bundle:nil withParameters:nil];
     ssoView.delegate=self;
     [self addChildViewController:ssoView];
-    [self.view addSubview:ssoView.view];
+    [self.view addSubview:ssoView.view];*/
 }
 
 -(void)searchViewDidLoad

@@ -555,7 +555,7 @@
     customModalViewController.view.frame=CGRectMake(customModalViewController.view.frame.origin.x, offset, customModalViewController.view.frame.size.width, customModalViewController.view.frame.size.height);
     
     //Set Delegate
-    customModalViewController.customTableViewController.customerDataDelegate = self;
+    customModalViewController.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     customModalViewController.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForRemoveCustomer];
     
     //Do any required UI changes after frame set
@@ -987,14 +987,14 @@
         mlpModalviewController.nameAnsLabel.text = [NSString stringWithFormat:@"%@ %@",custObj.custFirstName,custObj.custLastName];
     
     //Set data
-    mlpModalviewController.customTableViewController.customerDataDelegate = self;
+    mlpModalviewController.customTableViewController.customerDataOfMLPModalViewDelegate = self;
     mlpModalviewController.customTableViewController.isIndividual = [[DataManager sharedObject]
                                                                      isIndividualSegmentSelectedForAddCustomer];
     mlpModalviewController.customTableViewController.dataArray = [[NSArray alloc] init];
     mlpModalviewController.customTableViewController.dataArray = responseArray;
     mlpModalviewController.customTableViewController.popUpScreenTitle = MLP_SCREEN;
-    mlpModalviewController.cdfProtocolDataDelegate = self;
-    mlpModalviewController.mlpSearchPDelegate = self;
+    mlpModalviewController.cdfProtocolDataOfMLPModalViewDelegate = self;
+    mlpModalviewController.mlpSearchPOfMLPModalViewDelegate = self;
     
     [mlpModalviewController.cancelButton setBackgroundImage:nil forState:UIControlStateNormal];
     [mlpModalviewController.cancelButton setBackgroundImage:[UIImage imageNamed:@"button_searchagain.png"] forState:UIControlStateNormal];
@@ -2000,7 +2000,7 @@
     affiliationSearchViewController.view.frame=CGRectMake(affiliationSearchViewController.view.frame.origin.x, offset, affiliationSearchViewController.view.frame.size.width, affiliationSearchViewController.view.frame.size.height);
     
     //Set data
-    affiliationSearchViewController.customTableViewController.customerDataDelegate = self;
+    affiliationSearchViewController.customTableViewController.customerDataOfCustomTableViewDelegate = self;
     affiliationSearchViewController.customTableViewController.isIndividual = [[DataManager sharedObject] isIndividualSegmentSelectedForAddCustomer];
     
     //Do any required UI changes after frame set
