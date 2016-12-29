@@ -46,7 +46,7 @@
 @property(nonatomic,assign) IBOutlet UITableView * searchParameterTable;
 @property(nonatomic,assign) IBOutlet UITableView * customerListTable;
 @property(nonatomic,assign) IBOutlet UILabel *serverResponseLabel;
-@property(nonatomic,retain) UIPopoverController*  infoPopOver;
+@property(nonatomic,retain) UIPopoverPresentationController*  infoPopOver;
 @property(nonatomic,assign) IBOutlet UIButton * infoBtn ;
 @property(nonatomic,retain) UIButton *changeTerritoryBtn;
 @property(nonatomic,retain) UIButton *addNewCustomerBtn;
@@ -55,7 +55,7 @@
 @property(nonatomic,retain) NSMutableArray * selectedCustDetailAddress;
 @property(assign) NSInteger selectedIndexCustData;
 @property(assign) NSInteger selectedIndexCustAddress;
-@property(nonatomic,retain) UIPopoverController * listPopOverController;
+@property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 @property(nonatomic,assign) IBOutlet UILabel * nameText;
 @property(nonatomic,assign) IBOutlet UILabel * primarySpecialtyText;
 @property(nonatomic,assign) IBOutlet UILabel * secondarySpecialtyText;
@@ -335,11 +335,17 @@
     
     //INFO button is shown only if 25 search results are received
     infoViewController=[[PopOverContentViewController alloc]initWithNibName:@"PopOverContentViewController" bundle:nil infoText:[NSString stringWithFormat:@"%@", TOP_50_RESULTS_STRING]];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = infoBtn.frame;
+    infoViewController.popoverPresentationController.sourceView = self.view;
+    infoViewController.preferredContentSize= CGSizeMake(200, 130);
+//    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(200, 130);
-	[infoPopOver setBackgroundColor:[UIColor blackColor]];
-    [infoPopOver presentPopoverFromRect:infoBtn.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self presentViewController:infoViewController animated: YES completion: nil];
+    
 }
 
 -(void)clickAlertInfoAction:(id)sender{
@@ -351,11 +357,16 @@
     
     //INFO button is shown only if 50 search results are received
     infoViewController=[[PopOverContentViewController alloc]initWithNibName:@"PopOverContentViewController" bundle:nil infoText:[NSString stringWithFormat:@"%@", TOP_50_RESULTS_STRING]];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = frame;
+    infoViewController.popoverPresentationController.sourceView = self.view;
+    infoViewController.preferredContentSize= CGSizeMake(200, 130);
+//    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(200, 130);
-    [infoPopOver setBackgroundColor:[UIColor blackColor]];
-    [infoPopOver presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self presentViewController:infoViewController animated: YES completion: nil];
 }
 
 -(void)showMoreAddressInfo:(id)sender
@@ -1046,15 +1057,23 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:CHANGE_TERRITORY listHeader:CHANGE_TERRITORY withSelectedValue:[defaults objectForKey:@"SelectedTerritoryName"]];
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
+    
     listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
-    listPopOverController.delegate=self;
-    // [listPopOverController presentPopoverFromRect:CGRectMake(changeTerritoryBtn.frame.origin.x+60
-	listPopOverController.backgroundColor = [UIColor blackColor];
-    [listPopOverController presentPopoverFromRect:CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
-                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp
-                                         animated:NO];
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
+    
+    listViewController.popoverPresentationController.sourceRect =CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
+                                                                            , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+//    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    
+    [self presentViewController:listViewController animated: YES completion: nil];
 }
 
 -(void)clickLogOut
@@ -2756,14 +2775,30 @@
         return 44.0;
     }
 }
+
+#pragma mark -
+
+#pragma mark Popover Presentation Controller Delegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
+{
+    [changeTerritoryBtn setSelected:NO];
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [changeTerritoryBtn setSelected:NO];
+    return YES;
+}
+
+
+
 #pragma mark -
 
 #pragma mark List View Custom delegate
 -(void)listSelectedValue:(NSString*)value listType:(NSString*)listType
 {
-    [listPopOverController dismissPopoverAnimated:YES];
-    [listPopOverController dismissPopoverAnimated:NO];
-    [listPopOverController dismissPopoverAnimated:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
     listPopOverController = nil;
     
     if([listType isEqualToString:CHANGE_TERRITORY])
@@ -2784,13 +2819,8 @@
         }
     }
 }
-#pragma mark -
 
-#pragma mark PopOver Delegate
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    [changeTerritoryBtn setSelected:NO];
-}
+
 #pragma mark -
 
 #pragma mark View Handlers
@@ -3011,24 +3041,35 @@
 -(void)presentMoreInfoPopoverFromRect:(CGRect)presentFromRect inView:(UIView*)presentInView withMoreInfo:(NSString*)moreInfoString
 {
     ErrroPopOverContentViewController *infoViewController=[[ErrroPopOverContentViewController alloc]initWithNibName:@"ErrroPopOverContentViewController" bundle:nil info:moreInfoString];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(400, 200);
+    infoViewController.preferredContentSize= CGSizeMake(400, 200);;
     
     if(CGRectIsNull(presentFromRect))   //Present UIpopover at center of View
     {
         presentFromRect  = CGRectMake(presentInView.center.x, presentInView.center.y, 1, 1);
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:0 animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUnknown;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+        
     }
     else    //Present UIpopover anchored to rect
     {
-        if((CGRectGetMinY(presentFromRect)+ infoPopOver.popoverContentSize.height - CGRectGetMinY(custDetailAddressTable.frame)) > custDetailAddressTable.frame.size.height)
+        if((CGRectGetMinY(presentFromRect)+ infoViewController.preferredContentSize.height - CGRectGetMinY(custDetailAddressTable.frame)) > custDetailAddressTable.frame.size.height)
         {
-            [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+            infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+            infoViewController.popoverPresentationController.sourceView = presentInView;
+            infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionDown;
+            [self presentViewController:infoViewController animated: YES completion: nil];
         }
         else
         {
-            [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+            infoViewController.popoverPresentationController.sourceView = presentInView;
+            infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUp;
+            [self presentViewController:infoViewController animated: YES completion: nil];
         }
     }
 }

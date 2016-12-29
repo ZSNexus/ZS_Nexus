@@ -34,8 +34,8 @@
 
 }
 
-@property(nonatomic,strong) UIPopoverController *listPopOverController;
-@property(nonatomic,strong) UIPopoverController *datePickerPopoverController;
+@property(nonatomic,strong) UIPopoverPresentationController *listPopOverController;
+@property(nonatomic,strong) UIPopoverPresentationController *datePickerPopoverController;
 @property(nonatomic, assign) BOOL shouldPerformSearch;
 @property(nonatomic,strong) UIView *tableFooterView;
 
@@ -850,17 +850,20 @@
 
         ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:listType listHeader:listHeader withSelectedValue:selectedValue];
         listViewController.delegate=self;
-        listPopOverController = nil;
-        listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-        listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
-        listPopOverController.backgroundColor = [UIColor blackColor];
-        listPopOverController.delegate = self;
-        CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-        cellRect.size.width -= listPopOverController.popoverContentSize.width+CGRectGetMinX(self.tableView.frame);
-        
-        
-        [listPopOverController presentPopoverFromRect:cellRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                             animated:YES];
+            listViewController.modalPresentationStyle=UIModalPresentationPopover;
+            listPopOverController  = [listViewController popoverPresentationController];
+            CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+            cellRect.size.width -= listViewController.preferredContentSize.width+CGRectGetMinX(self.tableView.frame);
+            
+            listViewController.popoverPresentationController.sourceRect = cellRect;
+            listViewController.popoverPresentationController.sourceView = self.tableView;
+            listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+            listPopOverController.delegate=self;
+            listPopOverController.backgroundColor = [UIColor blackColor];
+            listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+            
+            [self presentViewController:listViewController animated: YES completion: nil];
+            
         });
     }
     else   //Creation date cell
@@ -869,24 +872,30 @@
             
             datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
             datePickerViewController.delegate = self;
-            datePickerPopoverController = nil;
-            datePickerPopoverController = [[UIPopoverController alloc] initWithContentViewController:datePickerViewController];
-            [datePickerViewController.dateLabel setText:[rowParameters objectForKey:TEXTFIELD_VALUE]];
-            datePickerPopoverController.backgroundColor = [UIColor blackColor];
-            
-            [datePickerPopoverController setPopoverContentSize:CGSizeMake(CGRectGetWidth(datePickerViewController.view.frame), CGRectGetHeight(datePickerViewController.view.frame))];
+             [datePickerViewController.dateLabel setText:[rowParameters objectForKey:TEXTFIELD_VALUE]];
+            datePickerViewController.modalPresentationStyle=UIModalPresentationPopover;
+            listPopOverController  = [datePickerViewController popoverPresentationController];
             CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-            cellRect.size.width -= datePickerPopoverController.popoverContentSize.width+CGRectGetMinX(self.tableView.frame);
-            [datePickerPopoverController presentPopoverFromRect:cellRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+            cellRect.size.width -= datePickerViewController.preferredContentSize.width+CGRectGetMinX(self.tableView.frame);
+            
+            datePickerViewController.popoverPresentationController.sourceRect = cellRect;
+            datePickerViewController.popoverPresentationController.sourceView = self.tableView;
+            datePickerViewController.preferredContentSize= CGSizeMake(CGRectGetWidth(datePickerViewController.view.frame), CGRectGetHeight(datePickerViewController.view.frame));
+            listPopOverController.delegate=self;
+            listPopOverController.backgroundColor = [UIColor blackColor];
+            listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+            
+            [self presentViewController:datePickerViewController animated: YES completion: nil];
+            
         });
     }
 }
 
-- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController{
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverController{
     return YES;
 }
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
 {
     if ([popoverController isEqual:listPopOverController]) {
         listPopOverController.delegate = nil;
@@ -1920,7 +1929,7 @@
         }
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-        [listPopOverController dismissPopoverAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
 #pragma mark -
@@ -2116,7 +2125,7 @@
     //If date is nil then dismiss date popover view
     if(!date && datePickerPopoverController)
     {
-        [datePickerPopoverController dismissPopoverAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         datePickerPopoverController = nil;
         return;
     }
@@ -2134,12 +2143,12 @@
     [self updateTableDataForKey:TEXTFIELD_VALUE withValue:dateLabel forSection:indexPathForCreationDate.section forRow:indexPathForCreationDate.row];
     
     //Dismiss date pop over view
-    [datePickerPopoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     datePickerViewController.delegate = nil;
     datePickerPopoverController = nil;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-        [datePickerPopoverController dismissPopoverAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
 #pragma mark -

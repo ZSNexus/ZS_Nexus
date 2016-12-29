@@ -113,7 +113,7 @@
         [listTableView setFrame:CGRectMake(0, 0,230,  44*7)];
     }
     
-    [self.view setBackgroundColor:[UIColor blueColor]]; //lightGrayColor
+    [self.view setBackgroundColor:[UIColor lightGrayColor]]; //lightGrayColor
     [self.view setFrame:CGRectMake(0, 0, 230, listTableView.frame.size.height)];
     
     if([self.listType isEqualToString:CHANGE_TERRITORY] || [listType isEqualToString:REMOVE_CUSTOMER_REASONS_KEY])

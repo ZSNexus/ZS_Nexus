@@ -27,11 +27,11 @@
     CGRect frameInWindow;
 }
 
-@property(nonatomic,strong) UIPopoverController *listPopOverController;
-@property(nonatomic,strong) UIPopoverController *datePickerPopoverController;
+@property(nonatomic,strong) UIPopoverPresentationController *listPopOverController;
+@property(nonatomic,strong) UIPopoverPresentationController *datePickerPopoverController;
 @property(nonatomic, assign) BOOL shouldPerformSearch;
 @property(nonatomic,strong) UIView *tableFooterView;
-@property(nonatomic,retain) UIPopoverController*  infoPopOver;
+@property(nonatomic,retain) UIPopoverPresentationController*  infoPopOver;
 
 
 -(BOOL)shouldPerformSearchOperation;
@@ -218,13 +218,19 @@
     //INFO button is shown only if 25 search results are received
     infoViewController=[[PopOverContentViewController alloc]initWithNibName:@"PopOverContentViewController" bundle:nil infoText:[NSString stringWithFormat:@"%@", TOP_50_RESULTS_STRING]];
     
-    
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
    
     infoViewController.infoTextDetails.frame = CGRectMake(infoViewController.infoText.frame.origin.x, infoViewController.infoText.frame.origin.y, infoViewController.infoTextDetails.frame.size.width, infoViewController.infoTextDetails.frame.size.height);
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(200, 130);
-    [infoPopOver presentPopoverFromRect:frameInWindow inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = frameInWindow;
+    infoViewController.popoverPresentationController.sourceView = self.view;
+    infoViewController.preferredContentSize= CGSizeMake(200, 130);
+    infoPopOver.delegate=self;
+    infoPopOver.backgroundColor = [UIColor blackColor];
+    infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    
+    [self presentViewController:infoViewController animated: YES completion: nil];
     
     
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
@@ -562,24 +568,39 @@
         
         ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:listType listHeader:listHeader withSelectedValue:selectedValue];
         listViewController.delegate=self;
-        listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-        listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+        
+        listViewController.modalPresentationStyle=UIModalPresentationPopover;
+        listPopOverController  = [listViewController popoverPresentationController];
         CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-        cellRect.size.width -= listPopOverController.popoverContentSize.width+CGRectGetMinX(self.tableView.frame);
-        [listPopOverController presentPopoverFromRect:cellRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                             animated:YES];
+        cellRect.size.width -= listViewController.preferredContentSize.width+CGRectGetMinX(self.tableView.frame);
+        listViewController.popoverPresentationController.sourceRect = cellRect;
+        listViewController.popoverPresentationController.sourceView = self.tableView;
+        listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+        listPopOverController.delegate=self;
+        listPopOverController.backgroundColor = [UIColor blackColor];
+        listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+        
+        [self presentViewController:listViewController animated: YES completion: nil];
+        
     }
     else   //Creation date cell
     {
         datePickerViewController = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil];
-        datePickerPopoverController = [[UIPopoverController alloc] initWithContentViewController:datePickerViewController];
+        datePickerViewController.modalPresentationStyle=UIModalPresentationPopover;
+        datePickerPopoverController  = [datePickerViewController popoverPresentationController];
+        CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+        cellRect.size.width -= datePickerViewController.preferredContentSize.width+CGRectGetMinX(self.tableView.frame);
+        datePickerViewController.popoverPresentationController.sourceRect = cellRect;
+        datePickerViewController.popoverPresentationController.sourceView = self.tableView;
+        datePickerViewController.preferredContentSize= CGSizeMake(CGRectGetWidth(datePickerViewController.view.frame), CGRectGetHeight(datePickerViewController.view.frame));
+        listPopOverController.delegate=self;
+        listPopOverController.backgroundColor = [UIColor blackColor];
         datePickerViewController.delegate = self;
         [datePickerViewController.dateLabel setText:[rowParameters objectForKey:TEXTFIELD_VALUE]];
+        listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
         
-        [datePickerPopoverController setPopoverContentSize:CGSizeMake(CGRectGetWidth(datePickerViewController.view.frame), CGRectGetHeight(datePickerViewController.view.frame))];
-        CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-        cellRect.size.width -= datePickerPopoverController.popoverContentSize.width+CGRectGetMinX(self.tableView.frame);
-        [datePickerPopoverController presentPopoverFromRect:cellRect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        [self presentViewController:datePickerViewController animated: YES completion: nil];
+        
     }
 }
 
@@ -1567,7 +1588,7 @@
         }
     }
     
-    [listPopOverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 #pragma mark -
@@ -1720,7 +1741,7 @@
     //If date is nil then dismiss date popover view
     if(!date && datePickerPopoverController)
     {
-        [datePickerPopoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];;
         datePickerPopoverController = nil;
         return;
     }
@@ -1738,7 +1759,7 @@
     [self updateTableDataForKey:TEXTFIELD_VALUE withValue:dateLabel forSection:indexPathForCreationDate.section forRow:indexPathForCreationDate.row];
     
     //Dismiss date pop over view
-    [datePickerPopoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];;
     datePickerPopoverController = nil;
 }
 #pragma mark -

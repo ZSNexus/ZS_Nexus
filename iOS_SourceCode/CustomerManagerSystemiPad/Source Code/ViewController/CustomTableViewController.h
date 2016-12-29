@@ -34,7 +34,7 @@
 
 @end
 
-@interface CustomTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, DatePickerViewControllerDelegate>
+@interface CustomTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverPresentationControllerDelegate, DatePickerViewControllerDelegate>
 {
     NSIndexPath         *m_selectedIndexPath;
 }

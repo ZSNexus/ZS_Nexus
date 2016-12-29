@@ -32,7 +32,7 @@
 @property(nonatomic,retain) UITabBarItem *targetTab;
 @property (nonatomic,assign)bool showHideTargetBool;
 @property (nonatomic,retain) NSUserDefaults *hoUserDefault;
-@property(nonatomic,retain) UIPopoverController * listPopOverController;
+@property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 @property(nonatomic,retain) UILabel * territoryBULabel;
 @property(nonatomic,retain) UITextField * territoryBUTextField;
 @property(nonatomic,retain) UILabel * territoryTeamLabel;
@@ -394,6 +394,7 @@
     [self.view addSubview:ssoView.view];*/
 }
 
+
 -(void)searchViewDidLoad
 {
     AddCustomerViewController *viewController1 = [[AddCustomerViewController alloc] initWithNibName:@"AddCustomerViewController" bundle:nil];
@@ -667,13 +668,18 @@
 {
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:BU_KEY listHeader:BU_KEY withSelectedValue:territoryBUTextField.text];
     listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listViewController.modalPresentationStyle=UIModalPresentationPopover;
+    listPopOverController  = [listViewController popoverPresentationController];
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y-65, territoryList.frame.size.width, territoryList.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = territoryList;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
     
     dispatch_async(dispatch_get_main_queue(), ^ {
         
-            [listPopOverController presentPopoverFromRect:CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y-65, territoryList.frame.size.width, territoryList.frame.size.height) inView:territoryList permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                                 animated:YES];
+        [self presentViewController:listViewController animated: YES completion: nil];
     });
 
 }
@@ -690,12 +696,19 @@
         _selectedBuIndexValue = [NSString stringWithFormat:@"%@",[NSNumber numberWithUnsignedInteger:[buArray indexOfObject:territoryBUTextField.text]]];
         [standardUserDefault setObject:_selectedBuIndexValue forKey:@"selectedBuIndex"];
     }
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listViewController.modalPresentationStyle=UIModalPresentationPopover;
+    listPopOverController  = [listViewController popoverPresentationController];
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y-22, territoryList.frame.size.width, territoryList.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = territoryList;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+
     dispatch_async(dispatch_get_main_queue(), ^ {
         
-        [listPopOverController presentPopoverFromRect:CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y-22, territoryList.frame.size.width, territoryList.frame.size.height) inView:territoryList permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                             animated:YES];
+        [self presentViewController:listViewController animated: YES completion: nil];
+        
     });
     
 }
@@ -733,11 +746,17 @@
         }
     }
     
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listViewController.modalPresentationStyle=UIModalPresentationPopover;
+    listPopOverController  = [listViewController popoverPresentationController];
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y+25, territoryList.frame.size.width, territoryList.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = territoryList;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+
     dispatch_async(dispatch_get_main_queue(), ^ {
-            [listPopOverController presentPopoverFromRect:CGRectMake(territoryList.frame.origin.x-165, territoryList.frame.origin.y+25, territoryList.frame.size.width, territoryList.frame.size.height) inView:territoryList permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                                 animated:YES];
+        [self presentViewController:listViewController animated: YES completion: nil];
     });
     
 }
@@ -746,7 +765,7 @@
 {
     if([listType isEqualToString:CHANGE_TERRITORY])
     {
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
         listPopOverController = nil;
         //Reset state of change territory button
 //        [changeTerritoryBtn setSelected:NO];
@@ -764,24 +783,23 @@
     else if([listType isEqualToString:BU_KEY])
     {
         territoryBUTextField.text = value;
-        [listPopOverController dismissPopoverAnimated:NO];
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];;
         listPopOverController = nil;
         
     }
     else if([listType isEqualToString:TEAM_KEY])
     {
         territoryTeamTextField.text = value;
-        [listPopOverController dismissPopoverAnimated:NO];
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
+//        [listPopOverController dismissPopoverAnimated:NO];
         listPopOverController = nil;
         
     }
     else if([listType isEqualToString:TERRIOTARY_KEY])
     {
         territoryTerrTextField.text = value;
-        [listPopOverController dismissPopoverAnimated:NO];
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
+//        [listPopOverController dismissPopoverAnimated:NO];
         listPopOverController = nil;
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:value forKey:SELECTED_TERRITTORY_NAME];
