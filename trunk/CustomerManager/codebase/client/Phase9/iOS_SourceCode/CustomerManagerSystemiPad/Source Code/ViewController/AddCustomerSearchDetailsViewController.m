@@ -186,10 +186,10 @@
     
     detailView.layer.borderWidth=1.0f;
     detailView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
-    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     
     UIImageView *imgView=[[UIImageView alloc]initWithFrame:custDetailAddressTable.frame];
-    [imgView setImage:[UIImage imageNamed:@"detail_add.png"]];
+    [imgView setImage:[UIImage imageNamed:@"detail_add"]];
     [custDetailAddressTable setBackgroundView:imgView];
     
     custDetailAddressTable.layer.borderWidth=1.0f;
@@ -200,7 +200,7 @@
 {
     //Set Navigation Bar Themes
     //self.navigationController.navigationBar.tintColor=THEME_COLOR;
-	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.titleView=[Themes setNavigationBarNormal:SEARCH_CUSTOMERS_TAB_TITLE_STRING ofViewController:@"AddCustomerDetails"];
     
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar. frame.size.height-1,self.navigationController.navigationBar.frame.size.width, 1)];
@@ -560,8 +560,8 @@
     mlpModalviewController.mlpSearchPOfMLPModalViewDelegate = self;
     
     [mlpModalviewController.cancelButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [mlpModalviewController.cancelButton setBackgroundImage:[UIImage imageNamed:@"button_searchagain.png"] forState:UIControlStateNormal];
-    [mlpModalviewController.searchButton setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:UIControlStateNormal];
+    [mlpModalviewController.cancelButton setBackgroundImage:[UIImage imageNamed:@"button_searchagain"] forState:UIControlStateNormal];
+    [mlpModalviewController.searchButton setBackgroundImage:[UIImage imageNamed:@"btn_cancel"] forState:UIControlStateNormal];
     [mlpModalviewController.cancelButton setTitle: @"" forState: UIControlStateNormal];
     [mlpModalviewController.searchButton setTitle: @"" forState: UIControlStateNormal];
     
@@ -979,7 +979,7 @@
     //Title
     [customModalViewController.titleLabel setText:ADD_NEW_ADDRESS_TITLE_STRING];
     //Replace search button with submit button
-    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit.png"] forState:UIControlStateNormal];
+    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit"] forState:UIControlStateNormal];
     
     [self addChildViewController:customModalViewController];
     [self.view addSubview:customModalViewController.view];
@@ -1034,7 +1034,7 @@
 	customModalViewController.customTableViewController.currentScreen = @"Add Refine Search";
     
     //Replace search button image with submit button
-    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit.png"] forState:UIControlStateNormal];
+    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit"] forState:UIControlStateNormal];
     if([DataManager sharedObject].isIndividualSegmentSelectedForAddCustomer)
         [customModalViewController.titleLabel setText:ADD_NEW_INDV_TITLE_STRING];
     else
@@ -2415,7 +2415,7 @@
         [cell.add3 setFont:[UIFont fontWithName:@"Roboto-Bold" size:14.0]];
         [cell.add3 setTextColor:[UIColor grayColor]];
         //Add To territoryButton
-        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory.png"] forState:UIControlStateNormal];
+        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory"] forState:UIControlStateNormal];
         [cell.addTerritoryBtn addTarget:self action:@selector(clickAddTerritory:) forControlEvents:UIControlEventTouchUpInside];
         //error Label
         [cell.responseLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:14.0]];
@@ -2632,9 +2632,9 @@
                 
                 //Change color of 'i' button as per the status of alignment
                 if([addObj.isAddedToTerritory isEqualToString:@"Yes"])
-                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn.png"] forState:UIControlStateNormal];
+                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn"] forState:UIControlStateNormal];
                 else
-                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info.png"] forState:UIControlStateNormal];
+                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info"] forState:UIControlStateNormal];
                 
                 NSArray *alignMsgArray = [addObj.errorlLabel componentsSeparatedByString:@"||"];
                 
@@ -2734,7 +2734,7 @@
         
         //Set Normal Color Color
         UIImageView *imgView=[[UIImageView alloc]initWithFrame:cell.frame];
-        [imgView setImage:[UIImage imageNamed:@"detail_add.png"]];
+        [imgView setImage:[UIImage imageNamed:@"detail_add"]];
         [cell setBackgroundView:imgView];
         
         return cell;
@@ -3166,7 +3166,7 @@
         custAddressNotAvailable.hidden=YES;
         
         UIImageView *imgView=[[UIImageView alloc]initWithFrame:custDetailAddressTable.frame];
-        [imgView setImage:[UIImage imageNamed:@"detail_add.png"]];
+        [imgView setImage:[UIImage imageNamed:@"detail_add"]];
         [custDetailAddressTable setBackgroundView:imgView];
     }
     

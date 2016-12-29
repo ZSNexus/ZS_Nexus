@@ -899,7 +899,7 @@
     cellTemp.textLabel.backgroundColor=[UIColor clearColor];
     //Set Normal Color Color
     UIView *bgColorNormalView = [[UIView alloc] init];
-    [bgColorNormalView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"list_popup.png"]]];
+    [bgColorNormalView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"list_popup"]]];
     [cellTemp setBackgroundView:bgColorNormalView];
     return cellTemp;
 }

@@ -165,7 +165,7 @@
 {
     //Set Navigation Bar Themes
     self.navigationController.navigationBar.tintColor=THEME_COLOR;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     
     self.navigationItem.titleView=[Themes setNavigationBarNormal:QUICK_SEARCH_TITLE_STRING ofViewController:@"SearchCustomers"];
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar. frame.size.height-1,self.navigationController.navigationBar.frame.size.width, 1)];
@@ -962,7 +962,7 @@
     [customModalViewController.customTableViewController setRowArray:customBO.customModalRowArray];
     
     //Replace search button image with submit button
-    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit.png"] forState:UIControlStateNormal];
+    [customModalViewController.searchButton setImage:[UIImage imageNamed:@"btn_submit"] forState:UIControlStateNormal];
     if([[defaults objectForKey:@"selectedsearchtype"] isEqualToString:INDIVIDUALS_KEY])
         [customModalViewController.titleLabel setText:ADD_NEW_INDV_TITLE_STRING];
     else

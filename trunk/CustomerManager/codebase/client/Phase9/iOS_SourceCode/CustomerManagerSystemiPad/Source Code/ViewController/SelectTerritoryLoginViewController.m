@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "CDFFlagModalTableViewCell.h"
 #import "Utilities.h"
+#import "TabBarViewController.h"
 
 @interface SelectTerritoryLoginViewController ()
 
@@ -73,7 +74,7 @@
     [Themes setBackgroundTheme1:self.view];
     self.topBar.tintColor=THEME_COLOR;
     self.topBar.topItem.titleView=[Themes setNavigationBarNormal:LOGIN_SCREEN_TITLE_STRING ofViewController:@"SelectTerritoryLogin"];
-	[self.topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+	[self.topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.topBar.frame.size.height-1,self.topBar.frame.size.width, 1)];
     [navBorder setBackgroundColor:THEME_COLOR];
     [self.topBar addSubview:navBorder];
@@ -104,12 +105,12 @@
     [self.view addSubview:tabBarLogoTitle];
     
     UIView* tabBarLogo=[[UIView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x+860,700, 206, 48)];
-    [tabBarLogo setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ZS.png"]]];
+    [tabBarLogo setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ZS"]]];
     [self.view addSubview:tabBarLogo];
     
     //BMS Logo On Tab Bar
     UIImageView* tabBarBMSLogo=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x+20,702, 266, 44)];
-    [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS.png"]];
+    [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS"]];
     [self.view addSubview:tabBarBMSLogo];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableSelectButton:) name:@"enableSelectButtonNotification" object:nil];
@@ -250,7 +251,7 @@
     
     self.selectTerritoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.selectTerritoryBtn.frame= CGRectMake(168,170,64,31);
-    [self.selectTerritoryBtn setImage:[UIImage imageNamed:@"btn_select.png"] forState:UIControlStateNormal];
+    [self.selectTerritoryBtn setImage:[UIImage imageNamed:@"btn_select"] forState:UIControlStateNormal];
     [self.selectTerritoryBtn addTarget:self action:@selector(clickSelectTerritoryBtn) forControlEvents:UIControlEventTouchUpInside];
     
     [loginView addSubview:self.selectTerritoryBtn];
@@ -397,6 +398,10 @@
 
 -(void)searchViewDidLoad
 {
+    TabBarViewController *tabBarViewController = (TabBarViewController*)[Utilities getViewController:@"TabBarViewController" fromStoryboardWithId:@"TabBarView"];
+    [self.navigationController pushViewController:tabBarViewController animated:YES];
+
+    /*
     AddCustomerViewController *viewController1 = [[AddCustomerViewController alloc] initWithNibName:@"AddCustomerViewController" bundle:nil];
     nav1=[[UINavigationController alloc]initWithRootViewController:viewController1];
     
@@ -408,12 +413,12 @@
 
     ApproveCustomerViewController *viewController4 =[[ApproveCustomerViewController alloc]initWithNibName:@"ApproveCustomerViewController" bundle:nil];
     nav4=[[UINavigationController alloc]initWithRootViewController:viewController4];
-    
+
     UITabBarController* tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = [NSArray
                                         arrayWithObjects:nav1,nav2,nav3,nav4, nil];
     tabBarController.delegate=self;
-    [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"bottom_bar.png"] ];
+    [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"bottom_bar"] ];
     //SetTab Bar  Images
     UITabBar *tabBar = tabBarController.tabBar;
     UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
@@ -421,19 +426,19 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     targetTab = [tabBar.items objectAtIndex:3];
     
-    [item0 setImage:[UIImage imageNamed:@"addcust_selected.png"]];
+    [item0 setImage:[UIImage imageNamed:@"addcust_selected"]];
     [item0 setTitle:SEARCH_CUSTOMERS_TAB_NAME_STRING];
-    [item1 setImage:[UIImage imageNamed:@"removecust_selected.png"]];
+    [item1 setImage:[UIImage imageNamed:@"removecust_selected"]];
     [item1 setTitle:REMOVE_CUSTOMER_TAB_TITLE_STRING];
-    [item2 setImage:[UIImage imageNamed:@"requests_selected.png"]];
+    [item2 setImage:[UIImage imageNamed:@"requests_selected"]];
     [item2 setTitle:REQUESTS_TAB_TITLE_STRING];
     targetTab = [tabBar.items objectAtIndex:3];
     
-    [targetTab setImage:[UIImage imageNamed:@"approve_selected.png"]];
+    [targetTab setImage:[UIImage imageNamed:@"approve_selected"]];
     [targetTab setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];
     if (self.showHideTargetBool) {
         [targetTab setEnabled:YES];
-        [targetTab setImage:[UIImage imageNamed:@"approve_selected.png"]];
+        [targetTab setImage:[UIImage imageNamed:@"approve_selected"]];
         [targetTab setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];
     }
     else
@@ -445,7 +450,7 @@
     
     //BMS Logo On Tab Bar
     UIImageView* tabBarBMSLogo=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x+20,722, 266, 44)];
-    [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS.png"]];
+    [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS"]];
     [tabBarController.view addSubview:tabBarBMSLogo];
     
     UINavigationController *nvc=[[UINavigationController alloc] initWithRootViewController:tabBarController];
@@ -453,7 +458,7 @@
     AppDelegate* appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     [appDelegate.nvc removeFromParentViewController];
     [appDelegate setNvc:nvc];
-    appDelegate.window.rootViewController=nvc;
+    appDelegate.window.rootViewController=nvc;*/
 }
 #pragma mark -
 

@@ -87,7 +87,7 @@
     }
     
     indvidualOrganisationSegmentControl.frame= CGRectMake(20, 10, 250, 35);
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_add.png"]]];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_add"]]];
     
     //Set Values From Home pgae
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

@@ -379,7 +379,7 @@
         //    [cell.nameLabel setTextColor:THEME_COLOR];
         
         //Add To territoryButton
-        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory.png"] forState:UIControlStateNormal];
+        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory"] forState:UIControlStateNormal];
 //        [cell.addTerritoryBtn addTarget:self action:@selector(clickAddTerritory:) forControlEvents:UIControlEventTouchUpInside];
         //error Label
         [cell.responseLabel setFont:[UIFont fontWithName:@"Roboto-Regular" size:14.0]];

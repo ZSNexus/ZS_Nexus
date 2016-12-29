@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		528CC2151E14CC81004A3B70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528CC2141E14CC81004A3B70 /* Launch Screen.storyboard */; };
+		529BDD2F1E153103006F89D2 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 529BDD2E1E153103006F89D2 /* TabBarViewController.m */; };
 		52B8976A1E112BDF00F3AE6B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B897691E112BDF00F3AE6B /* WebKit.framework */; };
 		52FEA2541E14DE46005DA623 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FEA2531E14DE46005DA623 /* LoginView.storyboard */; };
 		52FEA2561E14DEA6005DA623 /* TabBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FEA2551E14DEA6005DA623 /* TabBarView.storyboard */; };
@@ -154,6 +155,8 @@
 		1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.release.xcconfig"; sourceTree = "<group>"; };
 		2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.staging.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.staging.xcconfig"; sourceTree = "<group>"; };
 		528CC2141E14CC81004A3B70 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Storyboards/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		529BDD2D1E153103006F89D2 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		529BDD2E1E153103006F89D2 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		52B897691E112BDF00F3AE6B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		52FEA2531E14DE46005DA623 /* LoginView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LoginView.storyboard; path = Storyboards/LoginView.storyboard; sourceTree = "<group>"; };
 		52FEA2551E14DEA6005DA623 /* TabBarView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TabBarView.storyboard; path = Storyboards/TabBarView.storyboard; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				EDA136FA19F509AF008D457E /* CreateAffiliationSearchViewController.h */,
 				EDA136FB19F509AF008D457E /* CreateAffiliationSearchViewController.m */,
 				EDA136FC19F509AF008D457E /* CreateAffiliationSearchViewController.xib */,
+				529BDD2D1E153103006F89D2 /* TabBarViewController.h */,
+				529BDD2E1E153103006F89D2 /* TabBarViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1044,6 +1049,7 @@
 				77386E191B6FA5860093CFB6 /* ApproveCustomerViewController.m in Sources */,
 				77AA19791BB400AE00380D44 /* ApproveAddressDetailCell.m in Sources */,
 				7724A2DF1B1DF76500510484 /* AlignNewAddressViewController.m in Sources */,
+				529BDD2F1E153103006F89D2 /* TabBarViewController.m in Sources */,
 				DB8B02701769CFB30098191A /* RemoveCustomerViewController.m in Sources */,
 				DB8B02721769CFB30098191A /* RequestsViewController.m in Sources */,
 				ED9CF14419D474030041D530 /* MLPTableViewCell.m in Sources */,

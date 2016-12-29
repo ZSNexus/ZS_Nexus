@@ -60,7 +60,7 @@
     [topBar setBackgroundColor:[UIColor blackColor]];
     [self.view bringSubviewToFront:topBar];
     [self.view sendSubviewToBack:self.mainView];
-    [topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     [self.mainView setBackgroundColor:[UIColor clearColor]];
     [self.view setBackgroundColor:[UIColor blackColor]];
     [Themes setBackgroundTheme1:self.view];

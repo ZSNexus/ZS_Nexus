@@ -183,7 +183,7 @@
     indvidualOrganisationSegmentControl.frame= CGRectMake(10, 10, 280, 35);
     detailView.layer.borderWidth=1.0f;
     detailView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
-    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     [[DataManager sharedObject] setIsIndividualSegmentSelectedForRemoveCustomer:YES];
     detailViewOrg.layer.borderWidth=1.0f;
     detailViewOrg.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
@@ -204,7 +204,7 @@
 {
     //Set Navigation Bar Themes
     self.navigationController.navigationBar.tintColor=THEME_COLOR;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.titleView=[Themes setNavigationBarNormal:APPROVE_CUSTOMER_TAB_TITLE_STRING ofViewController:@"RemoveCustomer"];
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar. frame.size.height-1,self.navigationController.navigationBar.frame.size.width, 1)];
     [navBorder setBackgroundColor:THEME_COLOR];
@@ -1027,8 +1027,8 @@
     mlpModalviewController.mlpSearchPOfMLPModalViewDelegate = self;
     
     [mlpModalviewController.cancelButton setBackgroundImage:nil forState:UIControlStateNormal];
-    [mlpModalviewController.cancelButton setBackgroundImage:[UIImage imageNamed:@"button_searchagain.png"] forState:UIControlStateNormal];
-    [mlpModalviewController.searchButton setBackgroundImage:[UIImage imageNamed:@"btn_cancel.png"] forState:UIControlStateNormal];
+    [mlpModalviewController.cancelButton setBackgroundImage:[UIImage imageNamed:@"button_searchagain"] forState:UIControlStateNormal];
+    [mlpModalviewController.searchButton setBackgroundImage:[UIImage imageNamed:@"btn_cancel"] forState:UIControlStateNormal];
     [mlpModalviewController.cancelButton setTitle: @"" forState: UIControlStateNormal];
     [mlpModalviewController.searchButton setTitle: @"" forState: UIControlStateNormal];
     
@@ -2332,7 +2332,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"ApproveAddressDetailCell" owner:self options:nil] objectAtIndex:0];
         }
         
-        [cell.imageType setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"map_thumb.png"]]];
+        [cell.imageType setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"map_thumb"]]];
         
         //Add Google Map Touch Event
         UITapGestureRecognizer* tapGestMap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMap:)];
@@ -2346,13 +2346,13 @@
         [cell.add3 setTextColor:[UIColor grayColor]];
         
         //Add To territoryButton
-        [cell.approveTargetBtn setImage:[UIImage imageNamed:@"button_approve.png"] forState:UIControlStateNormal];
+        [cell.approveTargetBtn setImage:[UIImage imageNamed:@"button_approve"] forState:UIControlStateNormal];
         [cell.approveTargetBtn addTarget:self action:@selector(changeTargetAddressStatus:) forControlEvents:UIControlEventTouchUpInside];
         [cell.approveTargetBtn setTag:APPROVE_ADDRESS];
         
         //Add Reject target button
         [cell.rejectTargetBtn setHidden:NO];
-        [cell.rejectTargetBtn setImage:[UIImage imageNamed:@"button_reject.png"] forState:UIControlStateNormal];
+        [cell.rejectTargetBtn setImage:[UIImage imageNamed:@"button_reject"] forState:UIControlStateNormal];
         [cell.rejectTargetBtn addTarget:self action:@selector(changeTargetAddressStatus:) forControlEvents:UIControlEventTouchUpInside];
         [cell.rejectTargetBtn setTag:REJECT_ADDRESS];
         
@@ -2506,9 +2506,9 @@
                 
                 //Change color of 'i' button as per the status of alignment
                 if([addObj.addressApprovalFlag isEqualToString:A_STRING])
-                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn.png"] forState:UIControlStateNormal];
+                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn"] forState:UIControlStateNormal];
                 else
-                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info.png"] forState:UIControlStateNormal];
+                    [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info"] forState:UIControlStateNormal];
                 
                 NSArray *alignMsgArray = [addObj.errorlLabel componentsSeparatedByString:@"||"];
                 

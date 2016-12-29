@@ -194,7 +194,7 @@
     [cell.add3 setTextColor:[UIColor grayColor]];
     
     //Add To territoryButton
-    [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory.png"] forState:UIControlStateNormal];
+    [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_addTerritory"] forState:UIControlStateNormal];
     [cell.addTerritoryBtn addTarget:self action:@selector(clickAddToTerritory:) forControlEvents:UIControlEventTouchUpInside];
     [cell.addTerritoryBtn setTag:indexPath.row];
     
@@ -336,9 +336,9 @@
             
             //Change color of 'i' button as per the status of alignment
             if([addObj.isAddedToTerritory isEqualToString:@"Yes"])
-                [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn.png"] forState:UIControlStateNormal];
+                [cell.moreInfoButton setImage:[UIImage imageNamed:@"info_blue_btn"] forState:UIControlStateNormal];
             else
-                [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info.png"] forState:UIControlStateNormal];
+                [cell.moreInfoButton setImage:[UIImage imageNamed:@"btn_info"] forState:UIControlStateNormal];
             
             NSArray *alignMsgArray = [addObj.errorlLabel componentsSeparatedByString:@"||"];
             
@@ -438,7 +438,7 @@
     
     //Set Normal Color Color
     UIImageView *imgView=[[UIImageView alloc]initWithFrame:cell.frame];
-    [imgView setImage:[UIImage imageNamed:@"detail_add.png"]];
+    [imgView setImage:[UIImage imageNamed:@"detail_add"]];
     [cell setBackgroundView:imgView];
     
     return cell;
