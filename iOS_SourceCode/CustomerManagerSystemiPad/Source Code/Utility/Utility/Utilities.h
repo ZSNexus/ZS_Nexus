@@ -29,4 +29,15 @@
 
 +(NSString*)getSignatureForUrl:(NSString *)url usingPrivateKey:(NSString *)privateKey;
 
+/*
+ @method getViewController
+ @brief Method takes 2 arguments as input i.e. storyboard id and UIViewController class name
+ @param viewControllerName of NSString type which should be a valid class name that exist in build
+ @param storyboardName  of NSString type which should be a valid storyboard name that exist in build
+ @discussion This methos is used to create object of any UIViewController class from valid storyboard name and valid UIViewController class name.
+ @remark common method to create any class object using storyboard
+ @return UIViewController
+ */
++(UIViewController*)getViewController:(NSString*)viewControllerName fromStoryboardWithId:(NSString*)storyboardName;
+
 @end

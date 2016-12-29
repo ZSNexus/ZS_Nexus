@@ -1674,5 +1674,11 @@
     return signature;
 }
 #pragma mark -
++(UIViewController*)getViewController:(NSString*)viewControllerName fromStoryboardWithId:(NSString*)storyboardName
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle:[NSBundle mainBundle]];
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:viewControllerName];
+    return viewController;
+}
 
 @end

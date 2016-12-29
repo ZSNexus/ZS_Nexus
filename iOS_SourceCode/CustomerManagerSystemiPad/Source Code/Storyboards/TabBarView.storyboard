@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aym-h5-831">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -340,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6H-dd-udh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447" y="-22"/>
+            <point key="canvasLocation" x="984" y="-113"/>
         </scene>
         <!--Map Full Screen View Controller-->
         <scene sceneID="PQa-0T-0Sq">
@@ -620,7 +620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NY8-xI-Gsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621" y="-885"/>
+            <point key="canvasLocation" x="118" y="-885"/>
         </scene>
         <!--Requests View Controller-->
         <scene sceneID="01y-Ps-5AV">
@@ -1523,7 +1523,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyg-P0-HhV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="984"/>
+            <point key="canvasLocation" x="984" y="769"/>
         </scene>
         <!--Approve Customer View Controller-->
         <scene sceneID="DeN-ym-uQn">
@@ -1651,14 +1651,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0b-8j-WSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="224" y="1584"/>
+            <point key="canvasLocation" x="118" y="1584"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="GCk-gH-7Lg">
             <objects>
-                <tabBarController id="aym-h5-831" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
+                <tabBarController storyboardIdentifier="TabBarViewController" id="aym-h5-831" customClass="TabBarViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cgf-YL-mCc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1681,7 +1679,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iFB-pa-md0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="W3t-Tz-7dQ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="o5v-Qy-EeX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o5v-Qy-EeX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1692,7 +1690,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nr4-O7-rKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49.633967789165446" y="-667.3828125"/>
+            <point key="canvasLocation" x="-667" y="-885"/>
         </scene>
         <!--Remove-->
         <scene sceneID="ysp-xs-xaX">
@@ -1700,7 +1698,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iab-8x-uzX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Remove" id="ICI-h6-ijX"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mg2-xD-eO1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mg2-xD-eO1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1711,7 +1709,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPq-mj-ZRZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132.65007320644216" y="60.937499999999993"/>
+            <point key="canvasLocation" x="118" y="-113"/>
         </scene>
         <!--Request-->
         <scene sceneID="dUy-rg-AZJ">
@@ -1753,7 +1751,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGr-aY-QyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-488" y="1584"/>
+            <point key="canvasLocation" x="-667" y="1584"/>
         </scene>
     </scenes>
     <resources>

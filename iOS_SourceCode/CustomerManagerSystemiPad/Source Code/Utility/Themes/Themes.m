@@ -33,7 +33,7 @@
     
     //Client Logo Image
     UIImageView *imageview=[[UIImageView alloc] initWithFrame:CGRectMake(15,1,58,42)];
-    [imageview setImage:[UIImage imageNamed:@"Nexus_Logo_white.png"]];
+    [imageview setImage:[UIImage imageNamed:@"Nexus_Logo_white"]];
     [topBarView addSubview:imageview];
     
     UILabel *versionLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0, 44, 24)];
@@ -111,9 +111,9 @@
         //Logout Button
         UIButton * logOutBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         logOutBtn.frame= CGRectMake(0, 0, 44, 44);
-        [logOutBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_logout.png"]]];;
+        [logOutBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"btn_logout"]]];;
         [logOutBtn setTag:1];
-        [logOutBtn setImage:[UIImage imageNamed:@"btn_logout_clicked.png"] forState:UIControlStateHighlighted];
+        [logOutBtn setImage:[UIImage imageNamed:@"btn_logout_clicked"] forState:UIControlStateHighlighted];
         
         CGRect logOutBtnFrame = logOutBtn.frame;
         logOutBtnFrame.origin = CGPointMake(CGRectGetMinX(lineSeparator.frame) - 47, 0);
@@ -128,8 +128,8 @@
             UIButton * chnageTerritoryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             chnageTerritoryBtn.frame= CGRectMake(0, 0, 44, 44);
             [chnageTerritoryBtn setTag:3];
-            [chnageTerritoryBtn setImage:[UIImage imageNamed:@"btn_territory.png"] forState:UIControlStateNormal];
-            [chnageTerritoryBtn setImage:[UIImage imageNamed:@"btn_territory_clicked.png"] forState:UIControlStateSelected];
+            [chnageTerritoryBtn setImage:[UIImage imageNamed:@"btn_territory"] forState:UIControlStateNormal];
+            [chnageTerritoryBtn setImage:[UIImage imageNamed:@"btn_territory_clicked"] forState:UIControlStateSelected];
             
             CGRect chnageTerritoryBtnFrame = chnageTerritoryBtn.frame;
             chnageTerritoryBtnFrame.origin = CGPointMake(CGRectGetMinX(logOutBtn.frame) - 70, 0);
@@ -155,8 +155,8 @@
                 UIButton * addNewCustomerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 addNewCustomerBtn.frame= CGRectMake(0, 0, 44, 44);
                 [addNewCustomerBtn setTag:4];
-                [addNewCustomerBtn setImage:[UIImage imageNamed:@"btn_add_new.png"] forState:UIControlStateNormal];
-                [addNewCustomerBtn setImage:[UIImage imageNamed:@"btn_add_new_clicked.png"] forState:UIControlStateHighlighted];
+                [addNewCustomerBtn setImage:[UIImage imageNamed:@"btn_add_new"] forState:UIControlStateNormal];
+                [addNewCustomerBtn setImage:[UIImage imageNamed:@"btn_add_new_clicked"] forState:UIControlStateHighlighted];
                 
                 CGRect addNewCustomerBtnFrame = addNewCustomerBtn.frame;
                 addNewCustomerBtnFrame.origin = CGPointMake(CGRectGetMinX(chnageTerritoryBtn.frame) - 70, 0);
@@ -171,9 +171,9 @@
             if ([[standardDefaults objectForKey:HO_USER]isEqualToString:@"Y"]) {
                 UIButton * hoUserBtn = [UIButton buttonWithType:UIButtonTypeCustom];
                 hoUserBtn.frame= CGRectMake(0, 0, 44, 44);
-                [hoUserBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"home-icon.png"]]];
+                [hoUserBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"home-icon"]]];
                 [hoUserBtn setTag:1101];
-                [hoUserBtn setImage:[UIImage imageNamed:@"home-icon_clicked.png"] forState:UIControlStateHighlighted];
+                [hoUserBtn setImage:[UIImage imageNamed:@"home-icon_clicked"] forState:UIControlStateHighlighted];
                 
                 CGRect hoUserBtnFrame = hoUserBtn.frame;
                 hoUserBtnFrame.origin = CGPointMake(CGRectGetMinX(versionLabel.frame) + 40, 0);

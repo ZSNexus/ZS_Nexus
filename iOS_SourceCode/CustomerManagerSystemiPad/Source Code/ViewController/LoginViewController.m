@@ -86,7 +86,7 @@
     //Set Top Bar Theme
     self.topBar.tintColor=THEME_COLOR;
     self.topBar.topItem.titleView=[Themes setNavigationBarNormal:LOGIN_SCREEN_TITLE_STRING ofViewController:@"Login"];
-    [self.topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.topBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     self.topBar.frame = CGRectMake(0, 20, 1024, 44);
     
     [Themes setBackgroundTheme1:self.view];
@@ -348,7 +348,10 @@
 //            }
             
             [self dismissSpinner];
-            SelectTerritoryLoginViewController * selectTerritoryLoginViewController=[[SelectTerritoryLoginViewController alloc]initWithNibName:@"SelectTerritoryLoginViewController" bundle:nil];
+//            SelectTerritoryLoginViewController * selectTerritoryLoginViewController = [[SelectTerritoryLoginViewController alloc] initWithNibName:@"SelectTerritoryLoginViewController" bundle:nil];
+            
+            SelectTerritoryLoginViewController * selectTerritoryLoginViewController =
+            (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
             [self addChildViewController:selectTerritoryLoginViewController];
             [self.view addSubview:selectTerritoryLoginViewController.view];
         }
@@ -374,7 +377,10 @@
                     NSUserDefaults *hoUserDefault = [NSUserDefaults standardUserDefaults];
                     [hoUserDefault setObject:@"Y" forKey:HO_USER];
 
-                    SelectTerritoryLoginViewController * selectTerritoryLoginViewController=[[SelectTerritoryLoginViewController alloc]initWithNibName:@"SelectTerritoryLoginViewController" bundle:nil];
+//                    SelectTerritoryLoginViewController * selectTerritoryLoginViewController = (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
+                    
+                    SelectTerritoryLoginViewController * selectTerritoryLoginViewController =
+                    (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
                     [self addChildViewController:selectTerritoryLoginViewController];
                     [self.view addSubview:selectTerritoryLoginViewController.view];
                 }
@@ -416,7 +422,7 @@
                         }
                         
                         tabBarController.delegate=self;
-                        [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"bottom_bar.png"] ];
+                        [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"bottom_bar"] ];
                         //SetTab Bar  Images
                         UITabBar *tabBar = tabBarController.tabBar;
                         UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
@@ -424,30 +430,30 @@
                         UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
                         
                         
-                        [item0 setImage:[UIImage imageNamed:@"addcust_selected.png"]];
+                        [item0 setImage:[UIImage imageNamed:@"addcust_selected"]];
                         [item0 setTitle:SEARCH_CUSTOMERS_TAB_NAME_STRING];
-                        [item1 setImage:[UIImage imageNamed:@"removecust_selected.png"]];
+                        [item1 setImage:[UIImage imageNamed:@"removecust_selected"]];
                         [item1 setTitle:REMOVE_CUSTOMER_TAB_TITLE_STRING];
-                        [item2 setImage:[UIImage imageNamed:@"requests_selected.png"]];
+                        [item2 setImage:[UIImage imageNamed:@"requests_selected"]];
                         [item2 setTitle:REQUESTS_TAB_TITLE_STRING];
                         UITabBarItem *item3;
                         
                         /*
                         item3 = [tabBar.items objectAtIndex:3];
-                        [item3 setImage:[UIImage imageNamed:@"approve_selected.png"]];
+                        [item3 setImage:[UIImage imageNamed:@"approve_selected"]];
                         [item3 setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];
                         */
                         
                         
                         if([[defaults objectForKey:@"TargetFlag"] isEqualToString:@"Y"]){
                             item3 = [tabBar.items objectAtIndex:3];
-                            [item3 setImage:[UIImage imageNamed:@"approve_selected.png"]];
+                            [item3 setImage:[UIImage imageNamed:@"approve_selected"]];
                             [item3 setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];
                         }
                         
                         //BMS Logo On Tab Bar
                         UIImageView* tabBarBMSLogo=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x+20,722, 266, 44)];
-                        [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS.png"]];
+                        [tabBarBMSLogo setImage:[UIImage imageNamed:@"logo_BMS"]];
                         [tabBarController.view addSubview:tabBarBMSLogo];
                         
                         UINavigationController *nvc=[[UINavigationController alloc] initWithRootViewController:tabBarController];
@@ -459,7 +465,10 @@
                     }
                     else // For more than 1 role and territory
                     {
-                        SelectTerritoryLoginViewController * selectTerritoryLoginViewController=[[SelectTerritoryLoginViewController alloc]initWithNibName:@"SelectTerritoryLoginViewController" bundle:nil];
+//                        SelectTerritoryLoginViewController * selectTerritoryLoginViewController = (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
+                        
+                        SelectTerritoryLoginViewController * selectTerritoryLoginViewController =
+                        (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
                         [self addChildViewController:selectTerritoryLoginViewController];
                         [self.view addSubview:selectTerritoryLoginViewController.view];
                     }

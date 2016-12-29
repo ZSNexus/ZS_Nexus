@@ -337,11 +337,11 @@
     
     detailView.layer.borderWidth=1.0f;
     detailView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
-    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     
     removeAddressDetailView.layer.borderWidth=1.0f;
     removeAddressDetailView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
-    //[removeAddressDetailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    //[removeAddressDetailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     [removeAddressDetailView setBackgroundColor:[UIColor whiteColor]];
     
     detailViewOrg.layer.borderWidth=1.0f;
@@ -379,7 +379,7 @@
     //Set Navigation Bar Themes
     self.navigationController.navigationBar.tintColor=THEME_COLOR;
     self.navigationItem.titleView=[Themes setNavigationBarNormal:REQUESTS_TAB_TITLE_STRING ofViewController:@"Requests"];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar. frame.size.height-1,self.navigationController.navigationBar.frame.size.width, 1)];
     [navBorder setBackgroundColor:THEME_COLOR];
     [self.navigationController.navigationBar addSubview:navBorder];

@@ -53,7 +53,7 @@
 
 -(void)setCustomFontsToUIComponent:(NSString*)infoStr
 {
-    [searchResultView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    [searchResultView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     searchResultView.layer.cornerRadius=10.0f;
     searchResultView.layer.borderWidth=1.0f;
     searchResultView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;

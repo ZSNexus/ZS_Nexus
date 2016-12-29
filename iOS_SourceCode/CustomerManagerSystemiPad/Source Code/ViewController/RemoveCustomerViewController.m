@@ -178,7 +178,7 @@
     indvidualOrganisationSegmentControl.frame= CGRectMake(10, 10, 280, 35);
     detailView.layer.borderWidth=1.0f;
     detailView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
-    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right.png"]]];
+    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_right"]]];
     [[DataManager sharedObject] setIsIndividualSegmentSelectedForRemoveCustomer:YES];
     detailViewOrg.layer.borderWidth=1.0f;
     detailViewOrg.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
@@ -195,7 +195,7 @@
 {
     //Set Navigation Bar Themes
     self.navigationController.navigationBar.tintColor=THEME_COLOR;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"topbar_bg_1024"] forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.titleView=[Themes setNavigationBarNormal:REMOVE_CUSTOMER_TAB_TITLE_STRING ofViewController:@"RemoveCustomer"];
     UIView *navBorder = [[UIView alloc] initWithFrame:CGRectMake(0,self.navigationController.navigationBar. frame.size.height-1,self.navigationController.navigationBar.frame.size.width, 1)];
     [navBorder setBackgroundColor:THEME_COLOR];
@@ -2140,7 +2140,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"CustomerAddressDetailCell" owner:self options:nil] objectAtIndex:0];
         }
         
-        [cell.imageType setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"map_thumb.png"]]];
+        [cell.imageType setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"map_thumb"]]];
         
         
         //Add Google Map Touch Event
@@ -2157,7 +2157,7 @@
         [cell.add3 setTextColor:[UIColor grayColor]];
         
         //Add To territoryButton
-        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_removeAddress.png"] forState:UIControlStateNormal];
+        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_removeAddress"] forState:UIControlStateNormal];
         [cell.addTerritoryBtn addTarget:self action:@selector(clickRemoveAddress:) forControlEvents:UIControlEventTouchUpInside];
         
         //error Label
@@ -2324,7 +2324,7 @@
         [cell.add3 setTextColor:[UIColor grayColor]];
         
         //Add To territoryButton
-        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_removeAddress.png"] forState:UIControlStateNormal];
+        [cell.addTerritoryBtn setImage:[UIImage imageNamed:@"btn_removeAddress"] forState:UIControlStateNormal];
         
         [cell.addTerritoryBtn addTarget:self action:@selector(clickRemoveAddress:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -2997,14 +2997,14 @@
     //Cancel and Remove Btn
     UIButton* cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     cancelBtn.frame= CGRectMake(reasonForRemovalTableView.frame.origin.x+20,reasonForRemovalTableView.frame.origin.y+reasonForRemovalTableView.frame.size.height+10,114,31);
-    [cancelBtn setImage:[UIImage imageNamed:@"btn_cancel.png"] forState:UIControlStateNormal];
+    [cancelBtn setImage:[UIImage imageNamed:@"btn_cancel"] forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(clickCancelRemoval) forControlEvents:UIControlEventTouchUpInside];
     [infoView addSubview:cancelBtn];
     
     //Cancel and Remove Btn
     removeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     removeBtn.frame= CGRectMake(reasonForRemovalTableView.frame.origin.x+150,reasonForRemovalTableView.frame.origin.y+reasonForRemovalTableView.frame.size.height+10,114,31);
-    [removeBtn setImage:[UIImage imageNamed:@"btn_remove.png"] forState:UIControlStateNormal];
+    [removeBtn setImage:[UIImage imageNamed:@"btn_remove"] forState:UIControlStateNormal];
     [removeBtn addTarget:self action:@selector(clickRemoveCustomer) forControlEvents:UIControlEventTouchUpInside];
     [infoView addSubview:removeBtn];
     

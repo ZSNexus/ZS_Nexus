@@ -45,7 +45,7 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:REMOVE_MESSAGE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEARCH_MESSAGE_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:TARGET_MESSAGE_KEY];
-    
+    /*
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
@@ -53,7 +53,7 @@
     [nvc setNavigationBarHidden:YES];
     [self setNvc:self.nvc];
     self.window.rootViewController = self.nvc;
-    [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];*/
     
 //TODO: Uncomment when API_KEY for business license is received from ZS Team
 //#ifdef PRODUCTION_BUILD
@@ -156,7 +156,7 @@
     /*
     tabItem = [itemsArray objectAtIndex:3];
     [tabItem setEnabled:YES];
-    [tabItem setImage:[UIImage imageNamed:@"approve_selected.png"]];
+    [tabItem setImage:[UIImage imageNamed:@"approve_selected"]];
     [tabItem setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];*/
     
     //Comment this to disable Hide & Show functionality on Review(Target) Tab.
@@ -165,7 +165,7 @@
         if([[defaults objectForKey:@"TargetFlag"] isEqualToString:@"Y"]){
             tabItem = [itemsArray objectAtIndex:3];
             [tabItem setEnabled:YES];
-            [tabItem setImage:[UIImage imageNamed:@"approve_selected.png"]];
+            [tabItem setImage:[UIImage imageNamed:@"approve_selected"]];
             [tabItem setTitle:APPROVE_CUSTOMER_TAB_BOTTOM_STRING];
         }
         else{
@@ -365,24 +365,32 @@
          }];
     }
     
+    [self.nvc popToRootViewControllerAnimated:YES];
+    //    self.viewController = (LoginViewController*)[Utilities getViewController:@"LoginViewController" fromStoryboardWithId:@"LoginView"];
+    
     //No need to check for the response in case of Logout, it should always succeed
-    [self.nvc removeFromParentViewController];
+    /*[self.nvc removeFromParentViewController];
     self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    
     nvc=[[UINavigationController alloc]initWithRootViewController:self.viewController];
     [nvc setNavigationBarHidden:YES];
     [self setNvc:self.nvc];
-    self.window.rootViewController = self.nvc;
+    self.window.rootViewController = self.nvc;*/
 }
 
 //on click Home button load BU, Team and terriotary selection page
 -(void)displayHOUserHomePage
 {
-    [self.nvc removeFromParentViewController];
+    [self.nvc popToRootViewControllerAnimated:YES];
+//    self.terriotaryViewController = (SelectTerritoryLoginViewController*)[Utilities getViewController:@"SelectTerritoryLoginViewController" fromStoryboardWithId:@"LoginView"];
+    
+    /*[self.nvc removeFromParentViewController];
     self.terriotaryViewController = [[SelectTerritoryLoginViewController alloc] initWithNibName:@"SelectTerritoryLoginViewController" bundle:nil];
+   
     nvc=[[UINavigationController alloc]initWithRootViewController:self.terriotaryViewController];
     [nvc setNavigationBarHidden:YES];
     [self setNvc:self.nvc];
-    self.window.rootViewController = self.nvc;
+    self.window.rootViewController = self.nvc;*/
 }
 
 #pragma mark -

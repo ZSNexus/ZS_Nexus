@@ -10,8 +10,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>icon.png</string>
-		<string>icon@2x.png</string>
+		<string>icon</string>
+		<string>icon@2x</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict/>
@@ -42,6 +42,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>0</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>LoginView</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.business</string>
 	<key>LSRequiresIPhoneOS</key>
