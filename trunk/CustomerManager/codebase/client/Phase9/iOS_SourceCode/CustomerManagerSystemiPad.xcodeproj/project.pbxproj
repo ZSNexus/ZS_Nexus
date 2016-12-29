@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		528CC2151E14CC81004A3B70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528CC2141E14CC81004A3B70 /* Launch Screen.storyboard */; };
 		52B8976A1E112BDF00F3AE6B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B897691E112BDF00F3AE6B /* WebKit.framework */; };
+		52FEA2541E14DE46005DA623 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FEA2531E14DE46005DA623 /* LoginView.storyboard */; };
+		52FEA2561E14DEA6005DA623 /* TabBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FEA2551E14DEA6005DA623 /* TabBarView.storyboard */; };
 		7724A2DD1B1DF76500510484 /* AlignNewAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724A2D81B1DF76500510484 /* AlignNewAddressTableViewCell.m */; };
 		7724A2DE1B1DF76500510484 /* AlignNewAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7724A2D91B1DF76500510484 /* AlignNewAddressTableViewCell.xib */; };
 		7724A2DF1B1DF76500510484 /* AlignNewAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724A2DB1B1DF76500510484 /* AlignNewAddressViewController.m */; };
@@ -150,7 +153,10 @@
 /* Begin PBXFileReference section */
 		1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.release.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.release.xcconfig"; sourceTree = "<group>"; };
 		2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomerManagerSystemiPad.staging.xcconfig"; path = "Pods/Target Support Files/Pods-CustomerManagerSystemiPad/Pods-CustomerManagerSystemiPad.staging.xcconfig"; sourceTree = "<group>"; };
+		528CC2141E14CC81004A3B70 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Storyboards/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		52B897691E112BDF00F3AE6B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		52FEA2531E14DE46005DA623 /* LoginView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LoginView.storyboard; path = Storyboards/LoginView.storyboard; sourceTree = "<group>"; };
+		52FEA2551E14DEA6005DA623 /* TabBarView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TabBarView.storyboard; path = Storyboards/TabBarView.storyboard; sourceTree = "<group>"; };
 		7724A2D71B1DF76500510484 /* AlignNewAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlignNewAddressTableViewCell.h; path = "CustomerManagerSystemiPad/Source Code/View/AlignNewAddressTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		7724A2D81B1DF76500510484 /* AlignNewAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlignNewAddressTableViewCell.m; path = "CustomerManagerSystemiPad/Source Code/View/AlignNewAddressTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		7724A2D91B1DF76500510484 /* AlignNewAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlignNewAddressTableViewCell.xib; path = "CustomerManagerSystemiPad/Source Code/View/AlignNewAddressTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
@@ -398,6 +404,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		528CC2131E14CC32004A3B70 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				528CC2141E14CC81004A3B70 /* Launch Screen.storyboard */,
+				52FEA2531E14DE46005DA623 /* LoginView.storyboard */,
+				52FEA2551E14DEA6005DA623 /* TabBarView.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		82C9D9A7177B006E008C609A /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +495,7 @@
 		DB8B02081769CFB30098191A /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
+				528CC2131E14CC32004A3B70 /* Storyboards */,
 				DBEF05371771F0690062E636 /* App Delegate */,
 				DB8B02091769CFB30098191A /* Utility */,
 				DBEF05911771F2390062E636 /* View */,
@@ -923,12 +940,14 @@
 				DB5AB6EC17BA60E000BBEBD2 /* CustMgrDB.db in Resources */,
 				B20B407B17BA65A6001F8740 /* DatePickerViewController.xib in Resources */,
 				C9C24EAC17F3FD8F000C9DEF /* SSOViewController.xib in Resources */,
+				52FEA2561E14DEA6005DA623 /* TabBarView.storyboard in Resources */,
 				DA41BB3E17F55741007CC3E7 /* CustomerAddressDetailCell.xib in Resources */,
 				DA41BB4217FD69FE007CC3E7 /* Specilality.json in Resources */,
 				DABB352C1807FF6A00BE548C /* CustomerInfoCell.xib in Resources */,
 				C9BCFC2B180EA31E009A1229 /* RequestInfoCell.xib in Resources */,
 				DA28D6A3180FEBCC00EE6B42 /* ErrroPopOverContentViewController.xib in Resources */,
 				EDA2651619D98C4F001C4783 /* DuplicateAddressTableViewCell.xib in Resources */,
+				528CC2151E14CC81004A3B70 /* Launch Screen.storyboard in Resources */,
 				77ADFE521B25C66300C56DB4 /* PopOverAlertViewController.xib in Resources */,
 				778EA6F51B9EE28000BF9350 /* PopOverApproveViewController.xib in Resources */,
 				DA28D6A4180FEBCC00EE6B42 /* PopOverContentViewController.xib in Resources */,
@@ -936,6 +955,7 @@
 				DA28D6A91811407000EE6B42 /* RequestAddressCell.xib in Resources */,
 				DA28D6AE1811480B00EE6B42 /* RequestStatusCell.xib in Resources */,
 				CC17511A1B8B3CBB007112CA /* ApproveInfoCell.xib in Resources */,
+				52FEA2541E14DE46005DA623 /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,7 +1004,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#Load Google maps library from business SDK for Production build\n#Also load Settings bundle for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\ncp -r $PROJECT_DIR/GoogleMapsM4B.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/ProductionSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Load Google maps library from iOS SDK for free license to be used with internal releases\n#Also load Settings bundle for internal releases\nif [ $CONFIGURATION == \"Debug\" ] || [ $CONFIGURATION == \"Staging\" ] || [ $CONFIGURATION == \"Intg_Staging\" ]; then\ncp -r $PROJECT_DIR/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/StagingSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Change Server Domain on Settings page as per the build type\nAPPS_SETTINGS_BUNDLE_PATH=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Settings.bundle\"\n\nif [ $CONFIGURATION == \"Debug\" ]; then\nSERVER_DOMAIN=\"https://nexus.test.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Intg_Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.intgstaging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.staging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\nfi\n\n#Load bundle version from info.plist into Settings bundle for Production build\n#No need to change Server domain as we are not displaying it on Settings page for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\nBUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$PROJECT_DIR/CustomerManagerSystemiPad/Supporting Files/$PRODUCT_NAME-Info.plist\")\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $BUNDLE_SHORT_VERSION\"\n\n#Change version on Settings page for internal releases\nelse\nAPP_VERSION=\"5.2.3\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $APP_VERSION\"\nfi";
+			shellScript = "#Load Google maps library from business SDK for Production build\n#Also load Settings bundle for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\ncp -r $PROJECT_DIR/GoogleMapsM4B.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/ProductionSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Load Google maps library from iOS SDK for free license to be used with internal releases\n#Also load Settings bundle for internal releases\nif [ $CONFIGURATION == \"Debug\" ] || [ $CONFIGURATION == \"Staging\" ] || [ $CONFIGURATION == \"Intg_Staging\" ]; then\ncp -r $PROJECT_DIR/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nSETTINGS_BUNDLE_PATH=\"$PROJECT_DIR/CustomerManagerSystemiPad/Resources/StagingSettings/Settings.bundle\"\ncp -r $SETTINGS_BUNDLE_PATH $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\nfi\n\n#Change Server Domain on Settings page as per the build type\nAPPS_SETTINGS_BUNDLE_PATH=\"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Settings.bundle\"\n\nif [ $CONFIGURATION == \"Debug\" ]; then\nSERVER_DOMAIN=\"https://nexus.test.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Intg_Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.intgstaging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\n\nelif [ $CONFIGURATION == \"Staging\" ]; then\nSERVER_DOMAIN=\"https://nexus.staging.zsservices.com\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:3:DefaultValue $SERVER_DOMAIN\"\nfi\n\n#Load bundle version from info.plist into Settings bundle for Production build\n#No need to change Server domain as we are not displaying it on Settings page for Production build\nif [ $CONFIGURATION == \"Release\" ]; then\nBUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"$PROJECT_DIR/CustomerManagerSystemiPad/Supporting Files/$PRODUCT_NAME-Info.plist\")\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $BUNDLE_SHORT_VERSION\"\n\n#Change version on Settings page for internal releases\nelse\nAPP_VERSION=\"7.0\"\n/usr/libexec/PlistBuddy \"$APPS_SETTINGS_BUNDLE_PATH/Root.plist\" -c \"Set PreferenceSpecifiers:1:DefaultValue $APP_VERSION\"\nfi";
 		};
 		E5E2FB52C50BB9B809E4A01B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1128,7 +1148,6 @@
 			baseConfigurationReference = E63A0BC1B6EECC3292FFFB73 /* Pods-CustomerManagerSystemiPad.intg_staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1206,7 +1225,6 @@
 			baseConfigurationReference = 2B2730F50FCE90FCFAE61BE8 /* Pods-CustomerManagerSystemiPad.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1331,7 +1349,6 @@
 			baseConfigurationReference = 7CDF51C62B740411D4C79F67 /* Pods-CustomerManagerSystemiPad.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1366,7 +1383,6 @@
 			baseConfigurationReference = 1C770B3661EA5F706156E38C /* Pods-CustomerManagerSystemiPad.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZS Associates (6ZX93FC9AG)";
 				FRAMEWORK_SEARCH_PATHS = (
