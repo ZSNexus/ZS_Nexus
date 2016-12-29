@@ -10,7 +10,7 @@
 #import "ConnectionClass.h"
 #import "ListViewController.h"
 
-@interface MapFullScreenViewController : UIViewController<UIPopoverControllerDelegate, ListViewCustomDelegate>
+@interface MapFullScreenViewController : UIViewController<UIAdaptivePresentationControllerDelegate,UIPopoverPresentationControllerDelegate, ListViewCustomDelegate >
 -(void)setTitle:(NSString *)title withSnippet:(NSString *)snippet ofAddress:(NSString *)address;
 
 @end

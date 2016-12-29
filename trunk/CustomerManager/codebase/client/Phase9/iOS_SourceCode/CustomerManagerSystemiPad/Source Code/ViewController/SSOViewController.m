@@ -103,9 +103,7 @@
     WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
     wkWebConfig.userContentController = wkUController;
     
-    
     webViewSSO = [[WKWebView alloc] initWithFrame:CGRectMake(262, 95, 500, 378) configuration:wkWebConfig];
-//    [webViewSSO setBackgroundColor:[UIColor lightGrayColor]];
     [webViewSSO setNavigationDelegate:self];
     [webViewSSO setUIDelegate:self];
     [webViewSSO setClipsToBounds:YES];

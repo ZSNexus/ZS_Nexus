@@ -55,7 +55,7 @@
 @property(nonatomic,assign) IBOutlet UILabel * searchCriteriaOneLbl;
 @property(nonatomic,assign) IBOutlet UILabel *OrLbl;
 @property(nonatomic,assign) IBOutlet UIView * seperatorLine;
-@property(nonatomic,retain) UIPopoverController * listPopOverController;
+@property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 
 @property(nonatomic,assign) IBOutlet UIView *searchOnIdView;
 @property(nonatomic,assign) IBOutlet UIView *searchOnNameView;
@@ -885,20 +885,40 @@
 {
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:STATE_KEY listHeader:STATE_KEY withSelectedValue:stateText.text];
     listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
+    
+    listViewController.delegate=self;
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
+    
+    
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+//    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+  
+    
+   
+
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     dispatch_async(dispatch_get_main_queue(), ^ {
         
         if([[defaults objectForKey:@"selectedsearchtype"] isEqualToString:INDIVIDUALS_KEY])
         {
-            [listPopOverController presentPopoverFromRect:CGRectMake(searchTwoTableView.frame.origin.x-50, searchTwoTableView.frame.origin.y+20, searchTwoTableView.frame.size.width, searchTwoTableView.frame.size.height) inView:searchTwoTableView permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                                 animated:YES];
+            listViewController.popoverPresentationController.sourceRect = CGRectMake(searchTwoTableView.frame.origin.x-50, searchTwoTableView.frame.origin.y+20, searchTwoTableView.frame.size.width, searchTwoTableView.frame.size.height);
+             [self presentViewController:listViewController animated: YES completion: nil];
+              listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+           
         }
         else
         {
-            [listPopOverController presentPopoverFromRect:CGRectMake(searchTwoTableView.frame.origin.x-50, searchTwoTableView.frame.origin.y-22, searchTwoTableView.frame.size.width, searchTwoTableView.frame.size.height) inView:searchTwoTableView permittedArrowDirections:UIPopoverArrowDirectionLeft
-                                                 animated:YES];
+              listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
+            listViewController.popoverPresentationController.sourceRect =CGRectMake(searchTwoTableView.frame.origin.x-50, searchTwoTableView.frame.origin.y-22, searchTwoTableView.frame.size.width, searchTwoTableView.frame.size.height);
+            [self presentViewController:listViewController animated: YES completion: nil];
         }
     });
 }
@@ -968,14 +988,27 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:CHANGE_TERRITORY listHeader:CHANGE_TERRITORY withSelectedValue:[defaults objectForKey:@"SelectedTerritoryName"]];
+   
+    
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
+    
     listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.delegate=self;
-    listPopOverController.backgroundColor=[UIColor blackColor];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
-    [listPopOverController presentPopoverFromRect:CGRectMake(changeTerritoryBtn.frame.origin.x+5+14
-                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp
-                                         animated:YES];
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
+    
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+5+14
+                                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+//    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    
+    [self presentViewController:listViewController animated: YES completion: nil];
+
+   
 }
 #pragma mark -
 
@@ -1823,7 +1856,7 @@
 {
     if([listType isEqualToString:CHANGE_TERRITORY])
     {
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
         listPopOverController = nil;
 
 
@@ -1864,7 +1897,7 @@
     else if([listType isEqualToString:STATE_KEY])
     {
         stateText.text=value;
-        [listPopOverController dismissPopoverAnimated:NO];
+       [self dismissViewControllerAnimated:YES completion:nil];
         listPopOverController = nil;
     }
 }
@@ -1940,13 +1973,19 @@
     frame.origin.y = 64;
     [self.view setFrame:frame];
 }
+
 #pragma mark -
 
-#pragma mark PopOver Controller Delgate 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+#pragma mark Popover Presentation Controller Delegate
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
     [changeTerritoryBtn setSelected:NO];
+    return YES;
 }
+
+
+
 #pragma mark -
 
 #pragma mark View Handlers

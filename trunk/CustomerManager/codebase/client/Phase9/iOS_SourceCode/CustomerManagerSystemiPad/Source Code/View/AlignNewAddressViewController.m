@@ -61,24 +61,35 @@
 -(void)presentMoreInfoPopoverFromRect:(CGRect)presentFromRect inView:(UIView*)presentInView withMoreInfo:(NSString*)moreInfoString
 {
     ErrroPopOverContentViewController *infoViewController=[[ErrroPopOverContentViewController alloc]initWithNibName:@"ErrroPopOverContentViewController" bundle:nil info:moreInfoString];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(400, 200);
+    infoViewController.preferredContentSize= CGSizeMake(400, 200);
     
     if(CGRectIsNull(presentFromRect))   //Present UIpopover at center of View
     {
         presentFromRect  = CGRectMake(presentInView.center.x, presentInView.center.y, 1, 1);
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:0 animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUnknown;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+        
     }
     else    //Present UIpopover anchored to rect
     {
-        if((CGRectGetMinY(presentFromRect)+ infoPopOver.popoverContentSize.height - CGRectGetMinY(alignNewAddressTableView.frame)) > alignNewAddressTableView.frame.size.height)
+        if((CGRectGetMinY(presentFromRect)+ infoViewController.preferredContentSize.height - CGRectGetMinY(alignNewAddressTableView.frame)) > alignNewAddressTableView.frame.size.height)
         {
-            [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+            infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+            infoViewController.popoverPresentationController.sourceView = presentInView;
+            infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionDown;
+            [self presentViewController:infoViewController animated: YES completion: nil];
         }
         else
         {
-            [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+            infoViewController.popoverPresentationController.sourceView = presentInView;
+            infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUp;
+            [self presentViewController:infoViewController animated: YES completion: nil];
         }
     }
 }

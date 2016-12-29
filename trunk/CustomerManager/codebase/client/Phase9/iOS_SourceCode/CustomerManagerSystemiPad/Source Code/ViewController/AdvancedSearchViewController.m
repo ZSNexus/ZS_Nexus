@@ -27,7 +27,7 @@
     UITextField *activeTextField;
 }
 @property(nonatomic,assign) IBOutlet UISegmentedControl* indvidualOrganisationSegmentControl;
-@property(nonatomic,retain) UIPopoverController * listPopOverController;
+@property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 @property(nonatomic,retain) UIButton *changeTerritoryBtn;
 @property(nonatomic,assign) IBOutlet UIButton *searchButton;
 @property(nonatomic,assign) IBOutlet UILabel *errorMessageLabel;
@@ -235,16 +235,28 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:CHANGE_TERRITORY listHeader:CHANGE_TERRITORY withSelectedValue:[defaults objectForKey:@"SelectedTerritoryName"]];
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
+    
+    [changeTerritoryBtn setSelected:YES];
+    
+    
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
+    
     listViewController.delegate=self;
-    listPopOverController.delegate = self;
-    listPopOverController.backgroundColor = [UIColor blackColor];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
-    [listPopOverController presentPopoverFromRect:CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
-                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height)
-                                           inView:self.view
-                         permittedArrowDirections:UIPopoverArrowDirectionUp
-                                         animated:NO];
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
+    
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
+                                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    
+    [self presentViewController:listViewController animated: YES completion: nil];
+
 }
 
 -(void)clickLogOut
@@ -604,6 +616,23 @@
         [self.view bringSubviewToFront:errorMessageLabel];
     }
 }
+
+#pragma mark -
+
+#pragma mark Popover Presentation Controller Delegate
+- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
+{
+    [changeTerritoryBtn setSelected:NO];
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [changeTerritoryBtn setSelected:NO];
+    return YES;
+}
+
+
+
 #pragma mark -
 
 #pragma mark List View Custom Delegate
@@ -611,7 +640,7 @@
 {
     if([listType isEqualToString:CHANGE_TERRITORY])
     {
-        [listPopOverController dismissPopoverAnimated:NO];
+        [self dismissViewControllerAnimated:YES completion:nil];
         listPopOverController = nil;
         //Reset state of change territory button
         [changeTerritoryBtn setSelected:NO];
@@ -628,19 +657,12 @@
     }
     else //if([listType isEqualToString:STATE_KEY])
     {
-            [listPopOverController dismissPopoverAnimated:NO];
-            [listPopOverController dismissPopoverAnimated:NO];
+            [self dismissViewControllerAnimated:YES completion:nil];;
             listPopOverController = nil;
     
         }
 }
-#pragma mark -
 
-#pragma mark UIPopoverControllerDelegate
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    [changeTerritoryBtn setSelected:NO];
-}
 #pragma mark -
 
 @end

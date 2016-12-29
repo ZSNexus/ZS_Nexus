@@ -29,7 +29,7 @@
 
 @end
 
-@interface MLPModalTableTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, DatePickerViewControllerDelegate>
+@interface MLPModalTableTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverPresentationControllerDelegate, DatePickerViewControllerDelegate>
 {
     NSIndexPath         *m_selectedIndexPath;
 }

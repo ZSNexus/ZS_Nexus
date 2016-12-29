@@ -12,8 +12,9 @@
 #import "CustomModalViewController.h"
 #import "MLPModalViewController.h"
 #import "MLPAddressViewController.h"
+#import "AppDelegate.h"
 
-@interface RemoveCustomerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIPopoverControllerDelegate, UIAlertViewDelegate, ListViewCustomDelegate, CustomerDataDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate,DuplicateAddressRemovalOfMLPModalViewProtocol, DuplicateAddressRemovalProtocol>
+@interface RemoveCustomerViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate, UIAlertViewDelegate, ListViewCustomDelegate, CustomerDataDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate,DuplicateAddressRemovalOfMLPModalViewProtocol, DuplicateAddressRemovalProtocol>
 
 
 @end

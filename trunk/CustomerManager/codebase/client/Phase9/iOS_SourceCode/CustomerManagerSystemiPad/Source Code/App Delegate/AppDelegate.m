@@ -24,7 +24,7 @@
 
 @interface AppDelegate()
 {
-    UIPopoverController *listPopOverController;
+    UIPopoverPresentationController *listPopOverController;
     UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 }
 

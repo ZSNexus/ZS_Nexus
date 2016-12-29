@@ -75,7 +75,7 @@
 @property(nonatomic,assign) IBOutlet UITableView * requestStatusTableOrg;
 @property(nonatomic,assign) IBOutlet UITableView * requestStatusTable;
 @property(nonatomic,assign) IBOutlet UITableView * requestStatusTableRemoveAddress;
-@property(nonatomic,retain)UIPopoverController*  infoPopOver;
+@property(nonatomic,retain)UIPopoverPresentationController*  infoPopOver;
 @property(nonatomic,assign) IBOutlet UIButton * infoBtn;
 @property(nonatomic,assign) IBOutlet UILabel * addressLbl;
 @property(nonatomic,assign) IBOutlet UILabel * removeAddressAddressLbl;
@@ -83,7 +83,7 @@
 @property(nonatomic,assign) IBOutlet UILabel * removeAddressStatusLbl;
 @property(nonatomic,assign) NSUInteger selectedRequestListIndex;
 @property(assign) NSUInteger receivedAlignAddressIndex;
-@property(nonatomic,retain)  UIPopoverController * listPopOverController;
+@property(nonatomic,retain)  UIPopoverPresentationController * listPopOverController;
 @property(nonatomic,assign) IBOutlet UILabel * nameText;
 @property(nonatomic,assign) IBOutlet UILabel * removeAddressnameText;
 @property(nonatomic,assign) IBOutlet UILabel * primarySpecialtyText;
@@ -695,11 +695,17 @@
     
     PopOverContentViewController *infoViewController;
     infoViewController=[[PopOverContentViewController alloc]initWithNibName:@"PopOverAlertViewController" bundle:nil infoText:[NSString stringWithFormat:@"%@", HCP_MSG_STRING]];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = rect;
+    infoViewController.popoverPresentationController.sourceView = cell;
+    infoViewController.preferredContentSize= CGSizeMake(258, 134);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(258, 134);
-    infoPopOver.backgroundColor = [UIColor blackColor];
-    [infoPopOver presentPopoverFromRect:rect inView:cell permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self presentViewController:infoViewController animated: YES completion: nil];
+    
 }
 
 
@@ -1011,13 +1017,18 @@
     
     //INFO button is shown only if 25 search results are received
     infoViewController=[[PopOverContentViewController alloc]initWithNibName:@"PopOverContentViewController" bundle:nil infoText:[NSString stringWithFormat:@"%@", TOP_50_RESULTS_STRING]];
-    
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
     CGRect infoBtnFrameModified = CGRectMake(infoBtn.frame.origin.x, infoBtn.frame.origin.y, infoBtn.frame.size.width, infoBtn.frame.size.height);
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = infoBtnFrameModified;
+    infoViewController.popoverPresentationController.sourceView = self.view;
+    infoViewController.preferredContentSize= CGSizeMake(200, 130);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionLeft;
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(200, 130);
-    infoPopOver.backgroundColor = [UIColor blackColor];
-    [infoPopOver presentPopoverFromRect:infoBtnFrameModified inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self presentViewController:infoViewController animated: YES completion: nil];
+    
 }
 
 
@@ -1086,14 +1097,24 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:CHANGE_TERRITORY listHeader:CHANGE_TERRITORY withSelectedValue:[defaults objectForKey:@"SelectedTerritoryName"]];
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
+    
     listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
+    
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+5+14
+                                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
     listPopOverController.delegate=self;
-    listPopOverController.backgroundColor = [UIColor blackColor];
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
-    [listPopOverController presentPopoverFromRect:CGRectMake(changeTerritoryBtn.frame.origin.x+5+14
-                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp
-                                         animated:YES];
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    
+    [self presentViewController:listViewController animated: YES completion: nil];
+  
 }
 
 -(void)clickLogOut
@@ -3740,13 +3761,30 @@
     
     return footerView;
 }
+
+
+#pragma mark -
+
+#pragma mark Popover Presentation Controller Delegate
+- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
+{
+    [changeTerritoryBtn setSelected:NO];
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [changeTerritoryBtn setSelected:NO];
+    return YES;
+}
+
+
+
 #pragma mark -
 
 #pragma mark List View Custom Delegate
 -(void)listSelectedValue:(NSString*)value listType:(NSString*)listType
 {
-    [listPopOverController dismissPopoverAnimated:NO];
-    [listPopOverController dismissPopoverAnimated:NO];
+     [self dismissViewControllerAnimated:YES completion:nil];
     listPopOverController = nil;
     
     if([listType isEqualToString:CHANGE_TERRITORY])
@@ -4027,13 +4065,7 @@
         }
     }
 }*/
-#pragma mark -
 
-#pragma mark Popover Controller Delegate
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    [changeTerritoryBtn setSelected:NO];
-}
 #pragma mark -
 
 #pragma mark View Handlers
@@ -5211,29 +5243,45 @@
 -(void)presentMoreInfoForTicketIdPopoverFromRect:(CGRect)presentFromRect inView:(UIView*)presentInView withMoreInfo:(NSString*)moreInfoString
 {
     TicketIdContentViewController *infoViewController=[[TicketIdContentViewController alloc]initWithNibName:@"TicketIdContentViewController" bundle:nil info:moreInfoString];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
+    infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+    infoViewController.popoverPresentationController.sourceView = presentInView;
+    infoViewController.preferredContentSize= CGSizeMake(225, 65);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor blackColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionRight;
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(225, 65);
-    infoPopOver.backgroundColor = [UIColor blackColor];
-    [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+    [self presentViewController:infoViewController animated: YES completion: nil];
+    
 }
 
 -(void)presentMoreInfoPopoverFromRect:(CGRect)presentFromRect inView:(UIView*)presentInView withMoreInfo:(NSString*)moreInfoString
 {
     ErrroPopOverContentViewController *infoViewController=[[ErrroPopOverContentViewController alloc]initWithNibName:@"ErrroPopOverContentViewController" bundle:nil info:moreInfoString];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(400, 200);
-    infoPopOver.backgroundColor = [UIColor blackColor];
+    infoViewController.preferredContentSize= CGSizeMake(400, 200);
+    
+    [infoPopOver setBackgroundColor:[UIColor blackColor]];
     
     if(CGRectIsNull(presentFromRect))   //Present UIpopover at center of View
     {
         presentFromRect  = CGRectMake(presentInView.center.x, presentInView.center.y, 1, 1);
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:0 animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUnknown;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+        
     }
     else    //Present UIpopover anchored to rect
     {
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUp;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+        
     }
 }
 

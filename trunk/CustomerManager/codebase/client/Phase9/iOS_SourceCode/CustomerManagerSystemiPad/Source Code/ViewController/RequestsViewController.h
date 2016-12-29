@@ -13,6 +13,6 @@
 #import "AlignNewAddressViewController.h"
 #import "MLPModalViewController.h"
 
-@interface RequestsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate, AlignNewAddressDelegate>
+@interface RequestsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ListViewCustomDelegate, UIPopoverPresentationControllerDelegate,UIAdaptivePresentationControllerDelegate, CustomerDataOfCustomTableViewDelegate, CustomerDataOfMLPModalViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate, AlignNewAddressDelegate>
 
 @end

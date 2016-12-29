@@ -24,7 +24,7 @@
 
 @interface MapFullScreenViewController ()
 {
-    UIPopoverController *infoPopOver;
+    UIPopoverPresentationController *infoPopOver;
 }
 
 @property(nonatomic,retain)NSString * titleMap;
@@ -34,7 +34,7 @@
 @property(nonatomic,retain)NSString * addressMap;
 @property(nonatomic,retain) UIView * mapMainView;
 @property(nonatomic,retain)UIButton *changeTerritoryBtn;
-@property(nonatomic,retain) UIPopoverController * listPopOverController;
+@property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 @end
 
 @implementation MapFullScreenViewController
@@ -187,16 +187,24 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ListViewController* listViewController=[[ListViewController alloc]initWithNibName:@"ListViewController" bundle:nil listData:nil listType:CHANGE_TERRITORY listHeader:CHANGE_TERRITORY withSelectedValue:[defaults objectForKey:@"SelectedTerritoryName"]];
-    listViewController.delegate=self;
-    listPopOverController=[[UIPopoverController alloc]initWithContentViewController:listViewController];
-    listPopOverController.delegate=self;
-    listPopOverController.popoverContentSize = CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    // Present the view controller using the popover style.
+    listViewController.modalPresentationStyle = UIModalPresentationPopover;
     
+    listViewController.delegate=self;
+    
+    // Get the popover presentation controller and configure it.
+    listPopOverController  = [listViewController popoverPresentationController];
     CGRect presentFromRect = [self.navigationItem.titleView convertRect:changeTerritoryBtn.frame toView:self.view];
     presentFromRect.origin.y -=5;
-    [listPopOverController presentPopoverFromRect:presentFromRect inView:self.view
-                         permittedArrowDirections:UIPopoverArrowDirectionUp
-                                         animated:YES];
+    listViewController.popoverPresentationController.sourceRect =presentFromRect;
+    listViewController.popoverPresentationController.sourceView = self.view;
+    listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
+    listPopOverController.delegate=self;
+    listPopOverController.backgroundColor = [UIColor whiteColor];
+    listPopOverController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    
+    [self presentViewController:listViewController animated: YES completion: nil];
+    
 }
 
 -(void)clickLogOut
@@ -282,19 +290,28 @@
     
     [Utilities displayErrorAlertWithTitle:@"Map" andErrorMessage:@"Map cannot be loaded. Please ensure internet connectivity and try again later." withDelegate:self];
 }
+
+
 #pragma mark -
 
-#pragma mark Popover Controller Delegate
--(void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+#pragma mark Popover Presentation Controller Delegate
+- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
 {
     [changeTerritoryBtn setSelected:NO];
 }
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [changeTerritoryBtn setSelected:NO];
+    return YES;
+}
+
 #pragma mark -
 
 #pragma mark List View Custom Delegate
 -(void)listSelectedValue:(NSString*)value listType:(NSString*)listType
 {
-    [listPopOverController dismissPopoverAnimated:YES];
+     [self dismissViewControllerAnimated:YES completion:nil];
     
     if([listType isEqualToString:CHANGE_TERRITORY])
     {
@@ -318,22 +335,32 @@
 -(void)presentMoreInfoPopoverFromRect:(CGRect)presentFromRect inView:(UIView*)presentInView withMoreInfo:(NSString*)moreInfoString
 {
     ErrroPopOverContentViewController *infoViewController=[[ErrroPopOverContentViewController alloc]initWithNibName:@"ErrroPopOverContentViewController" bundle:nil info:moreInfoString];
+    infoViewController.modalPresentationStyle=UIModalPresentationPopover;
+    infoPopOver  = [infoViewController popoverPresentationController];
     
-    infoPopOver=[[UIPopoverController alloc]initWithContentViewController:infoViewController];
-    infoPopOver.popoverContentSize = CGSizeMake(CGRectGetWidth(self.view.frame)*0.6, CGRectGetHeight(self.view.frame)*0.6);
-    infoPopOver.backgroundColor = [UIColor blackColor];
+    infoViewController.preferredContentSize= CGSizeMake(CGRectGetWidth(self.view.frame)*0.6, CGRectGetHeight(self.view.frame)*0.6);
     
+    [infoPopOver setBackgroundColor:[UIColor blackColor]];
+
     infoViewController.titleLabel.text = @"Google Maps: Open source licenses";
     infoViewController.midView.dataDetectorTypes = UIDataDetectorTypeLink;
     
     if(CGRectIsNull(presentFromRect))   //Present UIpopover at center of View
     {
         presentFromRect  = CGRectMake(presentInView.center.x, presentInView.center.y-64, 1, 1);
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:0 animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUnknown;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+        
     }
     else    //Present UIpopover anchored to rect
     {
-        [infoPopOver presentPopoverFromRect:presentFromRect inView:presentInView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        infoViewController.popoverPresentationController.sourceRect = presentFromRect;
+        infoViewController.popoverPresentationController.sourceView = presentInView;
+        infoPopOver.permittedArrowDirections = UIPopoverArrowDirectionUp;
+        [self presentViewController:infoViewController animated: YES completion: nil];
+
     }
 }
 #pragma mark -

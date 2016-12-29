@@ -20,7 +20,7 @@
 -(void) alignAndApproveAddress;
 @end
 
-@interface AlignNewAddressViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface AlignNewAddressViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, UIAdaptivePresentationControllerDelegate, UIPopoverPresentationControllerDelegate>
 
 @property(nonatomic,strong) IBOutlet UITableView *alignNewAddressTableView;
 @property (nonatomic,strong) IBOutlet UILabel *masterIDAnsLabel;
@@ -32,7 +32,7 @@
 @property (nonatomic,retain) NSIndexPath* noteIndexPath;
 @property (nonatomic, strong, retain) CustomerObject *customerData;
 @property (nonatomic, strong, retain) NSMutableArray *selectedCustDetailAddress;
-@property(nonatomic,retain) UIPopoverController*  infoPopOver;
+@property(nonatomic,retain) UIPopoverPresentationController*  infoPopOver;
 
 @property NSInteger cellRowNo;
 

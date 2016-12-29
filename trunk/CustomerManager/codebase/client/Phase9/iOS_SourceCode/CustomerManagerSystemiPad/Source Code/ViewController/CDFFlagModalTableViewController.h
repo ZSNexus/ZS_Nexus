@@ -18,7 +18,7 @@
 -(void)displayErrorMessage:(NSString *)errorMsg;
 @end
 
-@interface CDFFlagModalTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverControllerDelegate, DatePickerViewControllerDelegate>
+@interface CDFFlagModalTableViewController : UITableViewController<UITextFieldDelegate, ListViewCustomDelegate, UIPopoverPresentationControllerDelegate, DatePickerViewControllerDelegate>
 {
     NSIndexPath         *m_selectedIndexPath;
 }
