@@ -388,7 +388,12 @@
         addObj = [selectedOrgDetailAddress objectAtIndex:row];
     }
     
-    MapFullScreenViewController* map=[[MapFullScreenViewController alloc]initWithNibName:@"MapFullScreenViewController" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"TabBarView" bundle:nil];
+    MapFullScreenViewController *map = [sb instantiateViewControllerWithIdentifier:@"MapFullScreenViewController"];
+//    vc.modalTransitionStyle = uimodaltr;
+  
+    
+//    MapFullScreenViewController* map=[[MapFullScreenViewController alloc]initWithNibName:@"MapFullScreenViewController" bundle:nil];
     
     NSMutableArray *addressTitleArray = [[NSMutableArray alloc] init];
     NSMutableArray *addressSnippetArray = [[NSMutableArray alloc] init];
@@ -440,8 +445,8 @@
     {
         customModalViewController = nil;
     }
-    
-    customModalViewController = [[CustomModalViewController alloc] initWithNibName:@"CustomModalViewController" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"TabBarView" bundle:nil];
+    customModalViewController = [sb instantiateViewControllerWithIdentifier:@"CustomModalViewController"];
     
     //Set frame for animation
     CGFloat offset = CGRectGetMaxY(self.navigationItem.titleView.frame) + customModalViewController.view.frame.size.height;
@@ -583,7 +588,9 @@
         mlpModalviewController = nil;
     }
     
-    mlpModalviewController = [[MLPAddressViewController alloc] initWithNibName:@"MLPAddressViewController" bundle:nil];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"TabBarView" bundle:nil];
+    mlpModalviewController = [sb instantiateViewControllerWithIdentifier:@"MLPAddressViewController"];
     self.mlpModalviewController.duplicateAddressDataDelegate = self;
     
     //Set frame for animation
@@ -3191,11 +3198,11 @@
         {
             //Adjust details view frame
             CGRect detailsViewFrame = detailView.frame;
-            detailsViewFrame.origin.y = 10;
+            detailsViewFrame.origin.y = 70;
             detailView.frame = detailsViewFrame;
             
             CGRect detailsViewOrgFrame = detailViewOrg.frame;
-            detailsViewOrgFrame.origin.y = 10;
+            detailsViewOrgFrame.origin.y = 70;
             detailViewOrg.frame = detailsViewOrgFrame;
         }
         
