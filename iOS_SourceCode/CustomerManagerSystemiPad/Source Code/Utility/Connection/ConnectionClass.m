@@ -177,7 +177,7 @@ void (^CMConnectionResponseCallback)(NSMutableData* data, NSString* identifier, 
     
     //Keep secondary thread active till received data passed to main thread for UI update
     NSThread *currentThread = [NSThread currentThread];
-    if(![currentThread isMainThread])
+    if(![currentThread isMainThread] && identiferFullData && identiferFullData.allKeys.count)
     {
         while ([identiferFullData objectForKey:[session description]]) {
             [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
