@@ -14,6 +14,7 @@
 #import "JSONDataFlowManager.h"
 #import "DataManager.h"
 #import "SelectTerritoryLoginViewController.h"
+#import "TabBarViewController.h"
 
 //TODO: Uncomment when API_KEY for business license is received from ZS Team
 //#ifdef PRODUCTION_BUILD
@@ -364,10 +365,24 @@
              }
          }];
     }
+    if([[self.window.rootViewController.childViewControllers lastObject] isKindOfClass:[UITabBarController class]] )
+    {
+        TabBarViewController *tabBarViewController = (TabBarViewController*)[self.window.rootViewController.childViewControllers lastObject];
+        [tabBarViewController.navigationController popToRootViewControllerAnimated:NO];
+    }
+    LoginViewController *loginViewController = (LoginViewController*)[self.window.rootViewController.childViewControllers objectAtIndex:0];
     
-    [self.nvc popToRootViewControllerAnimated:YES];
-    //    self.viewController = (LoginViewController*)[Utilities getViewController:@"LoginViewController" fromStoryboardWithId:@"LoginView"];
+    SelectTerritoryLoginViewController *selectTerritoryLoginViewController = (SelectTerritoryLoginViewController*)[[loginViewController  childViewControllers] lastObject];
+    [selectTerritoryLoginViewController willMoveToParentViewController:nil];
+    [selectTerritoryLoginViewController.view removeFromSuperview];
+    [selectTerritoryLoginViewController removeFromParentViewController];
     
+    SSOViewController *ssoViewController = (SSOViewController*) [loginViewController.childViewControllers objectAtIndex:0] ;
+    [ssoViewController willMoveToParentViewController:nil];
+    [ssoViewController.view removeFromSuperview];
+    [ssoViewController removeFromParentViewController];
+    [loginViewController viewWillAppear:YES];
+    [(SSOViewController*) [loginViewController.childViewControllers objectAtIndex:0] viewWillAppear:YES];
     //No need to check for the response in case of Logout, it should always succeed
     /*[self.nvc removeFromParentViewController];
     self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];

@@ -41,9 +41,6 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="clickRefineSearch:" destination="DWO-b6-mlk" eventType="touchUpInside" id="sdu-4J-gEm"/>
-                                        </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="19" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-Lm-Jp3">
                                         <frame key="frameInset" minY="85" maxX="80" maxY="507"/>
@@ -79,7 +76,7 @@
                                                 <rect key="frame" x="0.0" y="22" width="300" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HVE-sr-ZFn" id="0z5-vh-wdK">
-                                                    <frame key="frameInset" width="300" height="43"/>
+                                                    <frame key="frameInset" width="300" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrC-AB-HcB">
@@ -129,9 +126,6 @@
                                         <state key="highlighted" image="btn_info.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="clickInfo:" destination="DWO-b6-mlk" eventType="touchUpInside" id="vfJ-j3-0Rq"/>
-                                        </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HhL-Zh-GXa">
                                         <frame key="frameInset" minX="10" minY="10" width="280" height="30"/>
@@ -141,9 +135,6 @@
                                             <segment title="Organizations" width="139.5"/>
                                         </segments>
                                         <color key="tintColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="valueChangedSegmentControl:" destination="DWO-b6-mlk" eventType="valueChanged" id="lb5-g7-zD5"/>
-                                        </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aW5-fR-1sO">
                                         <frame key="frameInset" minX="140" minY="50" width="70" height="31"/>
@@ -156,9 +147,6 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <connections>
-                                            <action selector="clickResetButton:" destination="DWO-b6-mlk" eventType="touchUpInside" id="Alh-EX-mFb"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -690,9 +678,6 @@
                                 <state key="highlighted">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="clickSubmitForRemoval:" destination="DWO-b6-mlk" eventType="touchUpInside" id="jNM-av-rKF"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -701,52 +686,22 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
-                        <outlet property="BPIDLabel" destination="Wxu-1J-oda" id="jdz-xw-shc"/>
-                        <outlet property="BPIDLabelOrg" destination="Qfq-D5-iXQ" id="s8O-cE-DvX"/>
-                        <outlet property="BPIDText" destination="g44-vo-z28" id="khl-tk-NfJ"/>
-                        <outlet property="CustTypeLabel" destination="Mj2-Bi-daz" id="q5u-IH-Jxf"/>
-                        <outlet property="CustTypeText" destination="B5T-GQ-25D" id="YRy-VC-tdI"/>
-                        <outlet property="NPILabel" destination="MW5-0A-tog" id="L0S-OB-5cy"/>
-                        <outlet property="NPIText" destination="gM4-9J-iFb" id="EvJ-Ul-K0v"/>
                         <outlet property="custDetailAddressTable" destination="X9h-xx-bc5" id="z1B-tc-xpi"/>
                         <outlet property="custDetailAddressTableOrg" destination="gg7-BN-jl0" id="A7F-he-AlR"/>
                         <outlet property="customerListTable" destination="mXg-N4-GOF" id="YHJ-qK-IRT"/>
                         <outlet property="detailView" destination="Kzq-3V-e4a" id="Rxy-aO-BOc"/>
                         <outlet property="detailViewOrg" destination="zmz-S7-aSD" id="XT6-rz-s3Y"/>
-                        <outlet property="indvidualOrganisationSegmentControl" destination="HhL-Zh-GXa" id="UBc-cu-8oN"/>
-                        <outlet property="infoBtn" destination="opM-1n-4Vd" id="ZNc-QI-QaV"/>
-                        <outlet property="leftView" destination="a9X-jb-rKh" id="8f6-Cs-wqf"/>
-                        <outlet property="nameLabel" destination="pWj-v4-LNz" id="M27-FE-Fq4"/>
-                        <outlet property="nameLabelOrg" destination="lNi-1D-ypd" id="2on-FT-BlA"/>
-                        <outlet property="nameText" destination="fdh-gT-MJg" id="si7-cS-tCx"/>
-                        <outlet property="orgBPIDText" destination="YrU-Gh-efJ" id="qNn-av-OGJ"/>
-                        <outlet property="orgNameText" destination="KOg-Pg-Ta2" id="llv-sV-KVb"/>
-                        <outlet property="orgValidationStatusLabel" destination="Dhl-sF-kGZ" id="Hi3-Yl-aPk"/>
-                        <outlet property="orgValidationStatusText" destination="bzE-DH-gbW" id="l94-fc-H71"/>
-                        <outlet property="organizationTypeLabel" destination="0Iy-Z9-lyY" id="75V-Xu-tEI"/>
-                        <outlet property="organizationTypeText" destination="Knn-bK-VgT" id="Mej-mv-Osn"/>
-                        <outlet property="primarySpecialtyLabel" destination="M4r-Gf-pRf" id="ZL1-iZ-IQt"/>
-                        <outlet property="primarySpecialtyText" destination="sYR-bK-cS2" id="E83-Qc-NJy"/>
-                        <outlet property="professionalLabel" destination="qlv-kk-hL0" id="Uzd-rK-FOb"/>
-                        <outlet property="professionalText" destination="8fo-cK-3uG" id="Kmt-58-MAQ"/>
-                        <outlet property="resetButton" destination="aW5-fR-1sO" id="sO1-Wn-7Rb"/>
                         <outlet property="searchParameterTable" destination="gU2-Lm-Jp3" id="7CB-iB-ba0"/>
-                        <outlet property="secondarySpecialtyLabel" destination="FDs-nX-uDT" id="Zlt-pI-0r4"/>
-                        <outlet property="secondarySpecialtyText" destination="xlr-ci-1dE" id="CfL-bQ-PzP"/>
-                        <outlet property="serverResponseLabel" destination="AbO-T5-9h8" id="dz0-Ke-rdd"/>
-                        <outlet property="subClassificationLabel" destination="nwP-ml-FBe" id="Id5-k3-r0p"/>
-                        <outlet property="subClassificationText" destination="UWQ-BO-5LF" id="4k4-Uh-MTU"/>
-                        <outlet property="submitForRemovalButton" destination="Qea-eK-Gm8" id="fix-GF-h2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6H-dd-udh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2259" y="18"/>
+            <point key="canvasLocation" x="2126" y="-113"/>
         </scene>
         <!--Map Full Screen View Controller-->
         <scene sceneID="PQa-0T-0Sq">
             <objects>
-                <viewController storyboardIdentifier="MapFullScreenViewController" id="gYn-xp-xud" customClass="MapFullScreenViewController" sceneMemberID="viewController">
+                <viewController id="gYn-xp-xud" customClass="MapFullScreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JgZ-fk-K5t"/>
                         <viewControllerLayoutGuide type="bottom" id="6gJ-HB-FjI"/>
@@ -758,315 +713,21 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="768"/>
-                    <connections>
-                        <segue destination="DWO-b6-mlk" kind="show" id="qhC-WW-iOM"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKq-Qy-VWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4150" y="-278"/>
-        </scene>
-        <!--Address View Controller-->
-        <scene sceneID="cig-Gb-tgh">
-            <objects>
-                <viewController storyboardIdentifier="MLPAddressViewController" id="P2i-xd-ge5" customClass="MLPAddressViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1tC-zf-jSp"/>
-                        <viewControllerLayoutGuide type="bottom" id="xV0-EU-aiJ"/>
-                    </layoutGuides>
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2a7-fM-dV5">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrv-rK-3p7" userLabel="Fade Background View">
-                                <frame key="frameInset" minY="60" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JyU-fC-YuA">
-                                <frame key="frameInset" minX="80" minY="60" width="864" height="655"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlY-8r-GAT">
-                                        <frame key="frameInset" minX="40" minY="44" width="763" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aei-XF-zU9">
-                                                <frame key="frameInset" minX="14" minY="4" width="65" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3Z-5w-dq3">
-                                                <frame key="frameInset" minX="83" minY="4" width="600" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Primary Specialty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-nt-cRZ">
-                                                <frame key="frameInset" minX="14" minY="44" width="170" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="237" translatesAutoresizingMaskIntoConstraints="NO" id="D4w-Ed-AM3">
-                                                <frame key="frameInset" minX="15" minY="44" width="237" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hce-tf-WbS">
-                                                <frame key="frameInset" minX="195" minY="44" width="250" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Secondary Specialty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nB6-6K-Mle">
-                                                <frame key="frameInset" minX="14" minY="70" width="170" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agx-yd-6Go">
-                                                <frame key="frameInset" minX="193" minY="70" width="250" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Master Address ID #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwr-y0-uZ0">
-                                                <frame key="frameInset" minX="411" minY="44" width="186" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrZ-oc-T7a">
-                                                <frame key="frameInset" minX="593" minY="44" width="150" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="NPI #:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zch-dm-zmH">
-                                                <frame key="frameInset" minX="411" minY="70" width="186" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-Hv-K3P">
-                                                <frame key="frameInset" minX="593" minY="70" width="150" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DX0-zt-R0b" userLabel="TopBar View">
-                                        <frame key="frameInset" width="864" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Screen Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQZ-ZW-PMj" userLabel="Title label">
-                                                <frame key="frameInset" minX="177" width="483" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5O-Zt-q6d" userLabel="Done Btn">
-                                                <frame key="frameInset" minX="20" minY="6" width="94" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Done" backgroundImage="btn_background">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cI-2l-sP2" userLabel="Reset Btn">
-                                                <frame key="frameInset" minX="770" minY="6" width="77" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Reset" backgroundImage="btn_background">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtA-Qd-VPe" userLabel="Select All Btn">
-                                                <frame key="frameInset" minX="668" minY="6" width="88" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Select All" backgroundImage="btn_background">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.72787410019999998" green="0.72787410019999998" blue="0.72787410019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7n2-m6-GY7">
-                                        <frame key="frameInset" minX="54" minY="144" width="764" height="511"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.86274509799999999" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.86274509799999999" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a7e-ig-Lpn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5864" y="-18"/>
-        </scene>
-        <!--Custom Modal View Controller-->
-        <scene sceneID="4CU-lE-LLB">
-            <objects>
-                <viewController storyboardIdentifier="CustomModalViewController" id="wQC-d9-dhI" customClass="CustomModalViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="frS-rN-dVs"/>
-                        <viewControllerLayoutGuide type="bottom" id="PrC-Du-fNP"/>
-                    </layoutGuides>
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="xHt-QM-4WO">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCv-Hd-Whf" userLabel="Fade Background View">
-                                <frame key="frameInset" minY="60" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0u-q8-vLk">
-                                <frame key="frameInset" minX="80" minY="124" width="864" height="655"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="SubTitle Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAr-WJ-o8H">
-                                        <frame key="frameInset" minX="55" minY="54" width="700" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H4R-KJ-vXT" userLabel="TopBar View">
-                                        <frame key="frameInset" maxY="611"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Screen Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6D-NC-Zgf" userLabel="Title label">
-                                                <frame key="frameInset" minX="293" width="279" height="45"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
-                                                <color key="textColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWd-h6-4WP" userLabel="Cancel Btn">
-                                                <frame key="frameInset" minX="40" minY="6" width="70" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="btn_cancel">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="click_Cancel:" destination="wQC-d9-dhI" eventType="touchUpInside" id="uwY-t1-AsY"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0f-DG-cng" userLabel="Search Btn">
-                                                <frame key="frameInset" minX="750" minY="6" width="70" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="btn_search">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.72787410019999998" green="0.72787410019999998" blue="0.72787410019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="8oQ-9H-j1f">
-                                        <frame key="frameInset" minX="43" minY="44" width="778" height="540"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <color key="backgroundColor" red="0.86274509799999999" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableView>
-                                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXf-nM-ZPi">
-                                        <frame key="frameInset" minX="15" minY="44" width="834" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.86274509799999999" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
-                    <connections>
-                        <outlet property="cancelButton" destination="KWd-h6-4WP" id="KlC-fc-Dhg"/>
-                        <outlet property="errorMessageLabel" destination="hXf-nM-ZPi" id="9ag-Gm-iGd"/>
-                        <outlet property="searchButton" destination="h0f-DG-cng" id="owL-v9-mCj"/>
-                        <outlet property="subTitleLabel" destination="nAr-WJ-o8H" id="LAl-B0-mMZ"/>
-                        <outlet property="titleLabel" destination="n6D-NC-Zgf" id="t5b-jG-9zd"/>
-                        <outlet property="topBarView" destination="H4R-KJ-vXT" id="mpe-6h-uB4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cks-js-HND" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5968" y="768"/>
+            <point key="canvasLocation" x="1946" y="-137"/>
         </scene>
         <!--Add Customer View Controller-->
         <scene sceneID="vgn-L0-H7i">
             <objects>
-                <viewController id="EW7-l2-wQ0" customClass="AddCustomerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCustomerViewController" id="EW7-l2-wQ0" customClass="AddCustomerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWa-wH-dpT"/>
                         <viewControllerLayoutGuide type="bottom" id="mfL-ou-fzl"/>
                     </layoutGuides>
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="N5f-Qo-8pD">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="655"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qel-uV-A9f">
@@ -1077,8 +738,8 @@
                                 <color key="textColor" red="0.0" green="0.3411764706" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVX-Qd-WHr">
-                                <frame key="frameInset" minY="60" width="1366" height="620"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVX-Qd-WHr" userLabel="Main View">
+                                <frame key="frameInset" minX="20" width="984" height="620"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ge-g5-zzO">
@@ -1101,6 +762,10 @@
                                         <frame key="frameInset" minX="40" minY="80" maxX="284" maxY="452"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="EW7-l2-wQ0" id="ZHI-u8-LCU"/>
+                                            <outlet property="delegate" destination="EW7-l2-wQ0" id="5mJ-DK-Zsp"/>
+                                        </connections>
                                     </tableView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cU-fC-e2T">
                                         <frame key="frameInset" minX="360" minY="280" width="20" height="44"/>
@@ -1142,6 +807,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="clickAdvancedSearch:" destination="EW7-l2-wQ0" eventType="touchUpInside" id="urP-AJ-Wt0"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Recent Changes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvX-sx-sjs">
                                         <frame key="frameInset" minX="770" minY="190" width="200" height="30"/>
@@ -1157,12 +825,16 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="EW7-l2-wQ0" id="hCy-3l-cgE"/>
+                                            <outlet property="delegate" destination="EW7-l2-wQ0" id="jVZ-dY-31E"/>
+                                        </connections>
                                     </tableView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="bannerimage" translatesAutoresizingMaskIntoConstraints="NO" id="Hif-Kc-yYC">
-                                        <frame key="frameInset" minX="20" minY="441" width="1326" height="178"/>
+                                        <frame key="frameInset" minY="441" width="984" height="178"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgg-sV-iY6">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgg-sV-iY6" userLabel="Search On Id View">
                                         <frame key="frameInset" minX="40" minY="180" width="310" height="244"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -1186,7 +858,7 @@
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19J-h7-bNn">
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19J-h7-bNn" userLabel="BPIDView">
                                                         <frame key="frameInset" minX="20" minY="26" width="270" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
@@ -1204,6 +876,9 @@
                                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="EW7-l2-wQ0" id="U1e-T8-wsJ"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1234,6 +909,9 @@
                                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="EW7-l2-wQ0" id="R6l-V8-kOh"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1252,6 +930,9 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="clickSearchCriteriaOneBtn:" destination="EW7-l2-wQ0" eventType="touchUpInside" id="gxW-Vr-Kli"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1284,6 +965,10 @@
                                                         <frame key="frameInset" minX="20" minY="26" maxX="20" maxY="42"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="EW7-l2-wQ0" id="7ni-Jy-Krf"/>
+                                                            <outlet property="delegate" destination="EW7-l2-wQ0" id="Lfg-sL-nEp"/>
+                                                        </connections>
                                                     </tableView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.85882352939999995" green="0.90196078430000004" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1299,16 +984,13 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="clickSearchCriteriaTwoBtn:" destination="EW7-l2-wQ0" eventType="touchUpInside" id="IpY-Tp-Dbv"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXK-Ha-ZqG">
-                                        <frame key="frameInset" minX="660" minY="295" width="100" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Cool"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -1317,11 +999,34 @@
                     </view>
                     <navigationItem key="navigationItem" id="cjJ-1N-jNl"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="1024" height="768"/>
+                    <size key="freeformSize" width="1024" height="655"/>
+                    <connections>
+                        <outlet property="BPIDText" destination="qVN-MT-KDo" id="sjY-bA-naP"/>
+                        <outlet property="BPIDView" destination="19J-h7-bNn" id="jwA-4J-odD"/>
+                        <outlet property="NPILbl" destination="xCt-T8-O4A" id="9P1-l2-UxT"/>
+                        <outlet property="NPIText" destination="ER3-vn-hE3" id="2uw-Mh-gMm"/>
+                        <outlet property="NPIView" destination="dZh-g7-Dkd" id="vvB-ek-aHc"/>
+                        <outlet property="OrLbl" destination="weg-52-hKM" id="iIg-oY-yp3"/>
+                        <outlet property="idQuickSearchErrorLabel" destination="GhE-2P-ovI" id="7AN-hT-dfk"/>
+                        <outlet property="mainView" destination="bVX-Qd-WHr" id="Moh-Ey-ZwT"/>
+                        <outlet property="nameQuickSearchErrorLabel" destination="qw3-2r-9cu" id="3iq-km-xOc"/>
+                        <outlet property="recentChangesList" destination="EtL-k4-FIf" id="zeb-W2-keC"/>
+                        <outlet property="searchCriteriaOneLbl" destination="47d-gb-Hlh" id="DZS-uT-uox"/>
+                        <outlet property="searchCriteriaTwoLbl" destination="YP3-Ab-q7u" id="LiS-Dz-wsj"/>
+                        <outlet property="searchOnIdBtn" destination="QjR-qJ-V5F" id="t0F-jv-aMe"/>
+                        <outlet property="searchOnIdView" destination="Bgg-sV-iY6" id="wP6-dk-bPr"/>
+                        <outlet property="searchOnNameBtn" destination="k1I-YL-4if" id="hco-ox-5Tt"/>
+                        <outlet property="searchOnNameView" destination="sfj-gv-YzX" id="sX6-uc-kYw"/>
+                        <outlet property="searchTwoTableView" destination="JGx-eM-CQr" id="8oX-0P-UNt"/>
+                        <outlet property="searchType" destination="tDN-nl-d2Y" id="I4u-xE-lwp"/>
+                        <outlet property="seperatorLine" destination="mM4-oX-7MR" id="xH2-It-Aax"/>
+                        <outlet property="serverResponseCommonlabel" destination="Qel-uV-A9f" id="yxh-cd-y5n"/>
+                        <outlet property="welcomeUserText" destination="5Ge-g5-zzO" id="gn0-Bq-zv2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NY8-xI-Gsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261" y="-905"/>
+            <point key="canvasLocation" x="2125" y="-951"/>
         </scene>
         <!--Requests View Controller-->
         <scene sceneID="01y-Ps-5AV">
@@ -2224,7 +1929,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyg-P0-HhV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="769"/>
+            <point key="canvasLocation" x="2125" y="768"/>
         </scene>
         <!--Approve Customer View Controller-->
         <scene sceneID="DeN-ym-uQn">
@@ -2352,7 +2057,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0b-8j-WSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="1584"/>
+            <point key="canvasLocation" x="2125" y="1583"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="GCk-gH-7Lg">
@@ -2393,7 +2098,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nr4-O7-rKS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-667" y="-885"/>
+            <point key="canvasLocation" x="117" y="-952"/>
         </scene>
         <!--Remove-->
         <scene sceneID="ysp-xs-xaX">
@@ -2454,28 +2159,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGr-aY-QyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-667" y="1584"/>
-        </scene>
-        <!--Modal Table Table View Controller-->
-        <scene sceneID="NxR-Zs-fjW">
-            <objects>
-                <tableViewController storyboardIdentifier="MLPModalTableTableViewController" id="oeh-KB-b3b" customClass="MLPModalTableTableViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AhO-H1-zfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2377" y="790"/>
-        </scene>
-        <!--Custom Table View Controller-->
-        <scene sceneID="HPS-OC-lSf">
-            <objects>
-                <tableViewController storyboardIdentifier="CustomTableViewController" id="92c-jr-Bgf" customClass="CustomTableViewController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MSH-XM-La9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7343" y="789"/>
+            <point key="canvasLocation" x="118" y="1582"/>
         </scene>
     </scenes>
     <resources>
@@ -2502,7 +2186,4 @@
         <image name="removecust_selected" width="30" height="26"/>
         <image name="requests_selected" width="28" height="28"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="qhC-WW-iOM"/>
-    </inferredMetricsTieBreakers>
 </document>

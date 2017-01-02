@@ -998,8 +998,8 @@
     // Get the popover presentation controller and configure it.
     listPopOverController  = [listViewController popoverPresentationController];
     
-    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+5+14
-                                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+12
+                                                                             , changeTerritoryBtn.frame.origin.y+14, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
     listViewController.popoverPresentationController.sourceView = self.view;
     listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
 //    listPopOverController.delegate=self;
@@ -1959,7 +1959,7 @@
     }
     
     CGRect frame = self.view.frame;
-    frame.origin.y = -100;
+    frame.origin.y = -160;//-100;
     [self.view setFrame:frame];
 }
 -(void)keyboardWillHide
@@ -1970,7 +1970,7 @@
     }
     
     CGRect frame = self.view.frame;
-    frame.origin.y = 64;
+    frame.origin.y = 0;//64;
     [self.view setFrame:frame];
 }
 
@@ -2086,7 +2086,7 @@
         {
             //Adjust details view frame
             CGRect mainViewFrame = self.mainView.frame;
-            mainViewFrame.origin.y = 20;
+            mainViewFrame.origin.y = 20+60;
             self.mainView.frame = mainViewFrame;
         }
     }

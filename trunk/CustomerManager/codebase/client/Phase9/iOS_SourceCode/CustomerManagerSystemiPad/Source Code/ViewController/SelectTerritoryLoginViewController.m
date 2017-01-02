@@ -399,7 +399,7 @@
 -(void)searchViewDidLoad
 {
     TabBarViewController *tabBarViewController = (TabBarViewController*)[Utilities getViewController:@"TabBarViewController" fromStoryboardWithId:@"TabBarView"];
-    [self.navigationController pushViewController:tabBarViewController animated:YES];
+    [self.navigationController pushViewController:tabBarViewController animated:NO];
 
     /*
     AddCustomerViewController *viewController1 = [[AddCustomerViewController alloc] initWithNibName:@"AddCustomerViewController" bundle:nil];
