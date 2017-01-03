@@ -1984,6 +1984,11 @@
     return YES;
 }
 
+// Called on the delegate when the user has taken action to dismiss the popover. This is not called when the popover is dimissed programatically.
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    
+}
 
 
 #pragma mark -

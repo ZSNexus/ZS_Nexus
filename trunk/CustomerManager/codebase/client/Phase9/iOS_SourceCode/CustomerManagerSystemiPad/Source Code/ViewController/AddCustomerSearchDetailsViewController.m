@@ -2780,16 +2780,18 @@
 
 #pragma mark Popover Presentation Controller Delegate
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverPresentationController *)popoverController
-{
-    [changeTerritoryBtn setSelected:NO];
-}
-
 - (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
 {
     [changeTerritoryBtn setSelected:NO];
     return YES;
 }
+
+// Called on the delegate when the user has taken action to dismiss the popover. This is not called when the popover is dimissed programatically.
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    [changeTerritoryBtn setSelected:NO];
+}
+
 
 
 

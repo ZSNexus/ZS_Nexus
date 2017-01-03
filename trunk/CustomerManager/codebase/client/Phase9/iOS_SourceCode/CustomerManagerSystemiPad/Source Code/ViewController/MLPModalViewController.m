@@ -97,6 +97,13 @@
     [self.titleLabel setFont:[UIFont fontWithName:@"Roboto-Medium" size:20.0]];
     [self.titleLabel setTextColor:THEME_COLOR];
     
+    for (UIViewController *vc in self.childViewControllers)
+    {
+        if ([vc isKindOfClass:[MLPModalTableTableViewController class]])
+        {
+            self.customTableViewController = (MLPModalTableTableViewController *)vc;
+        }
+    }
     
     //Add subTitle to view if applicable
     if([self.subTitleString length] > 0)

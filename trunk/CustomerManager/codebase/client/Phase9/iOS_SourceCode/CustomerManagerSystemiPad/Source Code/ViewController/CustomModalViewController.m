@@ -51,8 +51,15 @@
     [self.titleLabel setFont:[UIFont fontWithName:@"Roboto-Medium" size:20.0]];
     [self.titleLabel setTextColor:THEME_COLOR];
     
+    for (UIViewController *vc in self.childViewControllers)
+    {
+        if ([vc isKindOfClass:[CustomTableViewController class]])
+        {
+            self.customTableViewController = (CustomTableViewController *)vc;
+        }
+    }
 	//self.customTableViewController.tableView.layer.cornerRadius=10.0f;
-    self.customTableViewController.tableView.layer.borderWidth=0.0f;
+    customTableViewController.tableView.layer.borderWidth=0.0f;
     //self.customTableViewController.tableView.layer.borderColor=[UIColor colorWithRed:205.0/255.0 green:205.0/255.0 blue:205.0/255.0 alpha:1.0].CGColor;
     //Add subTitle to view if applicable
     if([self.subTitleString length] > 0)
