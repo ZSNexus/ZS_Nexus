@@ -37,6 +37,7 @@
     NSString *masterIDForCheck;
 }
 
+@property(nonatomic,assign) IBOutlet UIView * mainView;
 @property(nonatomic,retain) CustomModalViewController *customModalViewController;
 @property(nonatomic,retain) CreateAffiliationSearchViewController *affiliationSearchViewController;
 @property(nonatomic,retain) MLPModalViewController *mlpModalviewController;
@@ -298,6 +299,9 @@
         [customerListTable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
         [self tableView:customerListTable didSelectRowAtIndexPath:indexPath];
     }
+    CGRect mainViewFrame = self.mainView.frame;
+    mainViewFrame.origin.y = 50;
+    self.mainView.frame = mainViewFrame;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -1065,8 +1069,8 @@
     // Get the popover presentation controller and configure it.
     listPopOverController  = [listViewController popoverPresentationController];
     
-    listViewController.popoverPresentationController.sourceRect =CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
-                                                                            , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceRect =CGRectMake(changeTerritoryBtn.frame.origin.x+60+5
+                                                                            , changeTerritoryBtn.frame.origin.y+13, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
     listViewController.popoverPresentationController.sourceView = self.view;
     listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
 //    listPopOverController.delegate=self;
@@ -3114,7 +3118,7 @@
         //Adjust details view frame
         CGRect detailsViewFrame = detailView.frame;
         // detailsViewFrame.origin.y = 10;
-		detailsViewFrame.origin.y = 6;
+		detailsViewFrame.origin.y = leftView.frame.origin.y;
         detailView.frame = detailsViewFrame;
     }
 }

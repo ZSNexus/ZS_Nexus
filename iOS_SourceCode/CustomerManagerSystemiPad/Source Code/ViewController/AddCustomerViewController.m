@@ -352,7 +352,8 @@
     //Disable Add new Customer button
     [self.addNewCustomerButton setEnabled:NO];
     
-    AdvancedSearchViewController* advancedSearchViewController=[[AdvancedSearchViewController alloc]initWithNibName:@"AdvancedSearchViewController" bundle:nil];
+//    AdvancedSearchViewController* advancedSearchViewController=[[AdvancedSearchViewController alloc]initWithNibName:@"AdvancedSearchViewController" bundle:nil];
+    AdvancedSearchViewController* advancedSearchViewController = (AdvancedSearchViewController*)[Utilities getViewController:@"AdvancedSearchViewController" fromStoryboardWithId:@"TabBarView"];
     NSString *callBackIdentifier = nil;
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -579,7 +580,8 @@
                 
                 [searchParameters setObject:searchBySectionRows forKey:SEARCH_FORM_FIELDS_SEQUENCE];
                 
-                AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//                AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+                AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
                 
                 NSArray *searchedCustDataFromServer;
                 searchedCustDataFromServer= [DummyData searchCustomerWithType:[defaults objectForKey:@"selectedsearchtype"]];
@@ -868,7 +870,8 @@
             
             [searchParameters setObject:searchBySectionRows forKey:SEARCH_FORM_FIELDS_SEQUENCE];
             
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSArray *searchedCustDataFromServer;
             searchedCustDataFromServer= [DummyData searchCustomerWithType:[defaults objectForKey:@"selectedsearchtype"]];
@@ -1150,7 +1153,8 @@
             
             [searchParameters setObject:searchBySectionRows forKey:SEARCH_FORM_FIELDS_SEQUENCE];
             
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSArray *searchedCustDataFromServer;
             searchedCustDataFromServer= [Utilities parseJsonSearchIndividual:jsonDataArrayOfObjects];
@@ -1257,7 +1261,8 @@
             
             [searchParameters setObject:searchBySectionRows forKey:SEARCH_FORM_FIELDS_SEQUENCE];
             
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSArray *searchedCustDataFromServer;
             searchedCustDataFromServer= [Utilities parseJsonSearchOrganization:jsonDataArrayOfObjects];
