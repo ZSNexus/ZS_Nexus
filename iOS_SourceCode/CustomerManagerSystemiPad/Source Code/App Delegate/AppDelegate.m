@@ -146,7 +146,7 @@
     [[DataManager sharedObject] setIsDefaultRequestForRemoveCustomer:TRUE];
     [[DataManager sharedObject] setIsDefaultRequestForRequests:TRUE];
     
-    UITabBarController *tabBarController = [self.nvc.viewControllers objectAtIndex:0];
+    UITabBarController *tabBarController = (TabBarViewController*)[self.window.rootViewController.childViewControllers lastObject];
     [tabBarController setSelectedViewController:[[tabBarController viewControllers] objectAtIndex:0]];
     
     //Enable target tab if flag is yes
