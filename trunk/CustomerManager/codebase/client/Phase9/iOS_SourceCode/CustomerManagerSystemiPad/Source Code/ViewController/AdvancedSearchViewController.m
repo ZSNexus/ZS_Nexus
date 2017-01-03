@@ -26,6 +26,7 @@
 {
     UITextField *activeTextField;
 }
+@property(nonatomic,assign) IBOutlet UIView * mainView;
 @property(nonatomic,assign) IBOutlet UISegmentedControl* indvidualOrganisationSegmentControl;
 @property(nonatomic,retain) UIPopoverPresentationController * listPopOverController;
 @property(nonatomic,retain) UIButton *changeTerritoryBtn;
@@ -86,7 +87,7 @@
         }
     }
     
-    indvidualOrganisationSegmentControl.frame= CGRectMake(20, 10, 250, 35);
+    indvidualOrganisationSegmentControl.frame= CGRectMake(20, 20, 250, 35);
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_add"]]];
     
     //Set Values From Home pgae
@@ -145,6 +146,9 @@
     //TODO: Investigate the issue
     [self.customTableViewController viewWillAppear:animated];
     self.indvidualOrganisationSegmentControl.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;//Fixed onTrack 510
+    CGRect mainViewFrame = self.mainView.frame;
+    mainViewFrame.origin.y = 65;
+    self.mainView.frame = mainViewFrame;
 }
 
 
@@ -247,8 +251,8 @@
     // Get the popover presentation controller and configure it.
     listPopOverController  = [listViewController popoverPresentationController];
     
-    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+60+15-27
-                                                                             , changeTerritoryBtn.frame.origin.y-50, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
+    listViewController.popoverPresentationController.sourceRect = CGRectMake(changeTerritoryBtn.frame.origin.x+60+5
+                                                                             , changeTerritoryBtn.frame.origin.y+13, changeTerritoryBtn.frame.size.width, changeTerritoryBtn.frame.size.height);
     listViewController.popoverPresentationController.sourceView = self.view;
     listViewController.preferredContentSize= CGSizeMake(listViewController.view.frame.size.width, listViewController.view.frame.size.height);
     listPopOverController.delegate=self;
@@ -379,7 +383,8 @@
         //Searchtype is already so > 1
         if([self.searchParameters count]>1)
         {
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSMutableArray *searchedCustDataFromServer;
             searchedCustDataFromServer=[DummyData searchCustomerWithType:INDIVIDUALS_KEY];
@@ -480,7 +485,8 @@
     {
         if([self.searchParameters count]>1)
         {
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSMutableArray *searchedCustDataFromServer;
             searchedCustDataFromServer=[DummyData searchCustomerWithType:ORGANIZATIONS_KEY];
@@ -503,7 +509,8 @@
     {
         if([identifier isEqualToString:@"SearchOrganizationWebServiceAdvanced"])
         {
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             
             NSArray *searchedCustDataFromServer;
             searchedCustDataFromServer= [Utilities parseJsonSearchOrganization:jsonDataArrayOfObjects];
@@ -534,7 +541,8 @@
         }
         else if([identifier isEqualToString:@"SearchIndividualWebServiceAdvanced"])
         {
-            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+//            AddCustomerSearchDetailsViewController * addCustomerSearchDetailsViewController=[[AddCustomerSearchDetailsViewController alloc]initWithNibName:@"AddCustomerSearchDetailsViewController" bundle:nil];
+            AddCustomerSearchDetailsViewController* addCustomerSearchDetailsViewController = (AddCustomerSearchDetailsViewController*)[Utilities getViewController:@"AddCustomerSearchDetailsViewController" fromStoryboardWithId:@"TabBarView"];
             NSArray *searchedCustDataFromServer;
             searchedCustDataFromServer= [Utilities parseJsonSearchIndividual:jsonDataArrayOfObjects];
             if(searchedCustDataFromServer!=nil && [searchedCustDataFromServer count]>0)
